@@ -16,6 +16,7 @@
 
 import KeymapANSI from "./components/Keymap-ANSI";
 import Focus from "@chrysalis-api/focus";
+import { raiseFlash } from "@chrysalis-api/flash";
 
 const Raise_ANSI = {
   info: {
@@ -42,8 +43,8 @@ const Raise_ANSI = {
     keymap: KeymapANSI
   },
 
-  flash: async () => {
-    console.log("Not implemented yet.");
+  flash: async (port, filename) => {
+    return raiseFlash(port, filename);
   },
 
   isDeviceSupported: async port => {

@@ -16,6 +16,7 @@
 
 import KeymapISO from "./components/Keymap-ISO";
 import Focus from "@chrysalis-api/focus";
+import { raiseFlash } from "@chrysalis-api/flash";
 
 const Raise_ISO = {
   info: {
@@ -42,8 +43,8 @@ const Raise_ISO = {
     keymap: KeymapISO
   },
 
-  flash: async () => {
-    console.log("Not implemented yet.");
+  flash: async (port, filename) => {
+    return raiseFlash(port, filename);
   },
 
   isDeviceSupported: async port => {
