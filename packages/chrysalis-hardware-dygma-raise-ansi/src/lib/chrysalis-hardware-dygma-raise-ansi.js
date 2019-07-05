@@ -43,6 +43,15 @@ const Raise_ANSI = {
     keymap: KeymapANSI
   },
 
+  instructions: {
+    en: {
+      updateInstructions: `To update the firmware, the keyboard needs a special reset. When you see the light on the Neuron go off, press and hold the Escape key. The Neuron's light should start a blue pulsing pattern`
+    },
+    hu: {
+      updateInstructions: `not translate`
+    }
+  },
+
   flash: async (port, filename) => {
     return raiseFlash(port, filename);
   },
