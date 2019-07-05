@@ -73,6 +73,10 @@ async function Avr109(board, port, filename, timeouts) {
   })
 }
 
+async function raiseFlashBootloader(port, filename, timeouts) {
+  console.log("Not implemented yet.");
+}
+
 async function raiseFlash(port, filename, timeouts) {
   timeouts = timeouts || 2000; // Time to wait for the boot loader to come up
   let flashRaise = new FlashRaise(port, filename, timeouts); 
@@ -127,4 +131,4 @@ async function DFUProgrammer(filename, mcu = "atmega32u4", timeout = 10000) {
   await runCommand([mcu, "start"])
 }
 
-export { Avr109, Avr109Bootloader, teensy, DFUProgrammer, raiseFlash }
+export { Avr109, Avr109Bootloader, teensy, DFUProgrammer, raiseFlash, raiseFlashBootloader }

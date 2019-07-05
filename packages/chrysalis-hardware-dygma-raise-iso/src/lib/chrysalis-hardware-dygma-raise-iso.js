@@ -16,7 +16,7 @@
 
 import KeymapISO from "./components/Keymap-ISO";
 import Focus from "@chrysalis-api/focus";
-import { raiseFlash } from "@chrysalis-api/flash";
+import { raiseFlash, raiseFlashBootloader } from "@chrysalis-api/flash";
 
 const Raise_ISO = {
   info: {
@@ -56,4 +56,26 @@ const Raise_ISO = {
   }
 };
 
-export { Raise_ISO };
+const Raise_ISOBootloader = {
+  info: {
+    vendor: "Dygma",
+    product: "Raise",
+    keyboardType: "ISO",
+    displayName: "Dygma Raise ISO",
+    urls: [
+      {
+        name: "Homepage",
+        url: "https://www.dygma.com/raise/"
+      }
+    ]
+  },
+  usb: {
+    vendorId: 0x1209,
+    productId: 0x2200
+  },
+  flash: async (port, filename) => {
+    return raiseFlashBootloader(port, filename);
+  }
+};
+
+export { Raise_ISO, Raise_ISOBootloader };

@@ -16,7 +16,7 @@
 
 import KeymapANSI from "./components/Keymap-ANSI";
 import Focus from "@chrysalis-api/focus";
-import { raiseFlash } from "@chrysalis-api/flash";
+import { raiseFlash, raiseFlashBootloader } from "@chrysalis-api/flash";
 
 const Raise_ANSI = {
   info: {
@@ -57,3 +57,28 @@ const Raise_ANSI = {
 };
 
 export { Raise_ANSI };
+
+const Raise_ANSIBootloader = {
+  info: {
+    vendor: "Dygma",
+    product: "Raise",
+    keyboardType: "ANSI",
+    displayName: "Dygma Raise ANSI",
+    urls: [
+      {
+        name: "Homepage",
+        url: "https://www.dygma.com/raise/"
+      }
+    ]
+  },
+  usb: {
+    vendorId: 0x1209,
+    productId: 0x2200
+  },
+
+  flash: async (port, filename) => {
+    return raiseFlashBootloader(port, filename);
+  }
+};
+
+export { Raise_ANSI, Raise_ANSIBootloader };
