@@ -79,9 +79,8 @@ async function raiseFlashBootloader(port, filename, timeouts) {
 
 async function raiseFlash(port, filename, timeouts) {
   timeouts = timeouts || 2000; // Time to wait for the boot loader to come up
-  let flashRaise = new FlashRaise(port, filename, timeouts); 
   try {
-    await flashRaise.backupSettings();
+    
   } catch (e) {
     console.log(e);
   }

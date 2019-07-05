@@ -44,7 +44,7 @@ export default class FlashRaise {
       hours = date.getHours(),
       minutes = date.getMinutes(),
       seconds = date.getSeconds();
-    const dateInString = `${year}-${month}-${day}-${hours}":"${minutes}":"${seconds}`;
+    const dateInString = `${year}-${month}-${day}-${hours}_${minutes}_${seconds}`;
     this.backupFileName = `${dir}Raise-backup-${dateInString}.json`;
 
     for (let command of commands) {
