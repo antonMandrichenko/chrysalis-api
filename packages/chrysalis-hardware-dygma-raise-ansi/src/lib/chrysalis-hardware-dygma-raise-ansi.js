@@ -56,8 +56,6 @@ const Raise_ANSI = {
   }
 };
 
-export { Raise_ANSI };
-
 const Raise_ANSIBootloader = {
   info: {
     vendor: "Dygma",
