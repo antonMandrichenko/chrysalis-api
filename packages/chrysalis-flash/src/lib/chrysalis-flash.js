@@ -16,6 +16,7 @@
 
 import AvrGirl from "avrgirl-arduino"
 import TeensyLoader from "teensy-loader"
+import FlashRaise from "./chrysalis-flash-raise"
 import { spawn } from "child_process"
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -33,7 +34,9 @@ async function Avr109Bootloader(board, port, filename) {
         console.log(error)
         try {
           avrgirl.connection.serialPort.close()
-        } catch (_) { /* ignore the error */ }
+        } catch (_) {
+          /* ignore the error */
+        }
         reject(error)
       } else {
         resolve()
@@ -68,6 +71,16 @@ async function Avr109(board, port, filename, timeouts) {
       })
     })
   })
+}
+
+async function raiseFlash(port, filename, timeouts) {
+  timeouts = timeouts || 2000; // Time to wait for the boot loader to come up
+  let flashRaise = new FlashRaise(port, filename, timeouts); 
+  try {
+    await flashRaise.backupSettings();
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 async function teensy(filename) {
@@ -114,4 +127,4 @@ async function DFUProgrammer(filename, mcu = "atmega32u4", timeout = 10000) {
   await runCommand([mcu, "start"])
 }
 
-export { Avr109, Avr109Bootloader, teensy, DFUProgrammer }
+export { Avr109, Avr109Bootloader, teensy, DFUProgrammer, raiseFlash }
