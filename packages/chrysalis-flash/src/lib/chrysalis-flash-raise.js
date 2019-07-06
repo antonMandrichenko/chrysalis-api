@@ -15,7 +15,9 @@
  */
 
 import Focus from "@chrysalis-api/focus";
+import Hardware from "@chrysalis-api/hardware";
 import fs from "fs";
+import usb from "usb";
 
 export default class FlashRaise {
   constructor(opts) {
@@ -35,7 +37,7 @@ export default class FlashRaise {
       "palette",
       "joint.threshold"
     ];
-    let results = {};
+    let results = { backup: {} };
     const dir = "./static/backup/";
     const date = new Date();
     let year = date.getFullYear(),
@@ -50,11 +52,9 @@ export default class FlashRaise {
     for (let command of commands) {
       let res = await focus.command(command);
       // if (res && res !== "") {
-      results[command] = res;
+      results.backup[command] = res;
       // }
     }
-
-    console.log("filename", this.backupFileName);
 
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
@@ -66,7 +66,31 @@ export default class FlashRaise {
     });
   }
 
-  async resetKeyboard() {
-
+  async resetKeyboard(port) {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    let timeouts = 2000;
+    return new Promise((resolve, reject) => {
+      port.update({ baudRate: 1200 }, async () => {
+        await delay(timeouts);
+        console.log("boud change");
+        port.close();
+        console.log("port after close", port);
+        await delay(timeouts);
+        const devices = usb
+          .getDeviceList()
+          .map(device => device.deviceDescriptor);
+        devices.forEach(desc => {
+          Hardware.nonSerial.forEach(device => {
+            if (
+              desc.idVendor == device.usb.vendorId &&
+              desc.idProduct == device.usb.productId
+            ) {
+              console.log("device", device);
+              resolve();
+            }
+          });
+        });
+      });
+    });
   }
 }
