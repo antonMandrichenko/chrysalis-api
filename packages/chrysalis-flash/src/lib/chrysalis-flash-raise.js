@@ -18,19 +18,27 @@ import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
 import fs from "fs";
 import usb from "usb";
+import Electron from "electron";
 
 export default class FlashRaise {
-  constructor(opts) {
+  constructor(port, filename, device) {
     this.backupFileName = null;
-    this.logs = [];
+    this.backupFileData = {
+      backup: {},
+      log: ["neuron detected"],
+      serialNumber: device.serialNumber,
+      firmwareFile: filename
+    };
   }
 
   formatedDate() {
     const date = new Date();
-    const re = /, /gi;
+    const firstFind = /, /gi;
+    const secondFind = /:/gi;
     const formatterDate = date
       .toLocaleString("en-CA", { hour12: false })
-      .replace(re, "-");
+      .replace(firstFind, "-")
+      .replace(secondFind, "_");
     return formatterDate;
   }
 
@@ -46,22 +54,36 @@ export default class FlashRaise {
       "palette",
       "joint.threshold"
     ];
-    let results = { backup: {} };
     const dir = "./static/backup/";
     this.backupFileName = `${dir}Raise-backup-${this.formatedDate()}.json`;
 
-    for (let command of commands) {
-      let res = await focus.command(command);
-      // if (res && res !== "") {
-      results.backup[command] = res;
-      // }
+    try {
+      for (let command of commands) {
+        let res = await focus.command(command);
+        if (res && res !== "") {
+          this.backupFileData.backup[command] = res;
+        } else {
+          throw Error(
+            "Firmware update failed, because the settings could not be saved"
+          );
+        }
+      }
+    } catch (e) {
+      this.backupFileData.log.push(e.message);
+      this.saveBackupFile();
+      throw e;
     }
+  }
 
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-    }
+  saveBackupFile() {
+    let fileName = Electron.remote.dialog.showSaveDialog({
+      title: "Save backup file",
+      defaultPath: this.backupFileName,
+      buttonLabel: "Save backup file",
+      filters: [{ name: "json", extensions: ["json"] }]
+    });
 
-    fs.writeFile(this.backupFileName, JSON.stringify(results), err => {
+    fs.writeFile(fileName, JSON.stringify(this.backupFileData), err => {
       if (err) throw err;
       console.log("Log file is created successfully.");
     });
