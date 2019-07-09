@@ -21,14 +21,26 @@ import usb from "usb";
 import Electron from "electron";
 
 export default class FlashRaise {
-  constructor(port, filename, device) {
+  constructor(port, device) {
+    this.port = port;
     this.backupFileName = null;
     this.backupFileData = {
       backup: {},
       log: ["neuron detected"],
       serialNumber: device.serialNumber,
-      firmwareFile: filename
+      firmwareFile: null
     };
+  }
+
+  async init() {
+    try {
+      // await this.backupSettings();
+      await this.resetKeyboard(this.port);
+    } catch (e) {
+      throw e;
+    } finally {
+      this.saveBackupFile();
+    }
   }
 
   formatedDate() {
@@ -54,22 +66,24 @@ export default class FlashRaise {
       "palette",
       "joint.threshold"
     ];
-    const dir = "./static/backup/";
-    this.backupFileName = `${dir}Raise-backup-${this.formatedDate()}.json`;
+    this.backupFileName = `Raise-backup-${this.formatedDate()}.json`;
 
     try {
+      let errorFlag = false;
+      const errorMessage =
+        "Firmware update failed, because the settings could not be saved";
       for (let command of commands) {
         let res = await focus.command(command);
-        if (res && res !== "") {
-          this.backupFileData.backup[command] = res;
-        } else {
-          throw Error(
-            "Firmware update failed, because the settings could not be saved"
+        this.backupFileData.backup[command] = res;
+        if (!res || res === "") {
+          this.backupFileData.log.push(
+            `Get backup settings ${command}: Error: ${errorMessage}`
           );
+          errorFlag = true;
         }
       }
+      if (errorFlag) throw Error(errorMessage);
     } catch (e) {
-      this.backupFileData.log.push(e.message);
       this.saveBackupFile();
       throw e;
     }
@@ -89,30 +103,43 @@ export default class FlashRaise {
     });
   }
 
+  createDialog() {
+    return `<div>My name is Anton</div>`;
+  }
+
   async resetKeyboard(port) {
     const delay = ms => new Promise(res => setTimeout(res, ms));
+    const errorMessage =
+      "The Raise bootloader wasn't found. Please try again, make sure you press and hold the Escape key when the Neuron light goes out";
     let timeouts = 2000;
     return new Promise((resolve, reject) => {
       port.update({ baudRate: 1200 }, async () => {
         await delay(timeouts);
         console.log("boud change");
         port.close();
-        console.log("port after close", port);
+        console.log("port close");
         await delay(timeouts);
         const devices = usb
           .getDeviceList()
           .map(device => device.deviceDescriptor);
-        devices.forEach(desc => {
-          Hardware.nonSerial.forEach(device => {
-            if (
-              desc.idVendor == device.usb.vendorId &&
-              desc.idProduct == device.usb.productId
-            ) {
-              console.log("device", device);
-              resolve();
-            }
+
+        try {
+          devices.forEach(desc => {
+            Hardware.nonSerial.forEach(device => {
+              if (
+                desc.idVendor == device.usb.vendorId &&
+                desc.idProduct == device.usb.productId
+              ) {
+                resolve();
+              }
+            });
           });
-        });
+          throw Error(errorMessage);
+        } catch (e) {
+          this.backupFileData.log.push(`Reset keyboard: Error: ${e.message}`);
+          this.saveBackupFile();
+          reject(e);
+        }
       });
     });
   }
