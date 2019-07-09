@@ -16,7 +16,8 @@
 
 import KeymapISO from "./components/Keymap-ISO";
 import Focus from "@chrysalis-api/focus";
-import { raiseFlash, raiseFlashBootloader } from "@chrysalis-api/flash";
+import FlashRaise from "@chrysalis-api/flash";
+import { raiseFlashBootloader } from "@chrysalis-api/flash";
 
 const Raise_ISO = {
   info: {
@@ -52,8 +53,17 @@ const Raise_ISO = {
     }
   },
 
-  flash: async (port, filename) => {
-    return raiseFlash(port, filename);
+  flash: async (port, filename, device) => {
+    let flashRaise = new FlashRaise(port, filename, device);
+    return new Promise(async (resolve, reject) => {
+      try {
+        await flashRaise.backupSettings();
+        await flashRaise.resetKeyboard(port);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
   },
 
   isDeviceSupported: async port => {
