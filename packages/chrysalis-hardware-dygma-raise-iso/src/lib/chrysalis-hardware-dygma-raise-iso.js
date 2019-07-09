@@ -57,8 +57,7 @@ const Raise_ISO = {
     let flashRaise = new FlashRaise(port, filename, device);
     return new Promise(async (resolve, reject) => {
       try {
-        await flashRaise.backupSettings();
-        await flashRaise.resetKeyboard(port);
+        await flashRaise.init();
         resolve();
       } catch (e) {
         reject(e);
