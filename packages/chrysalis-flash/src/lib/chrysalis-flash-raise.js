@@ -25,6 +25,15 @@ export default class FlashRaise {
     this.logs = [];
   }
 
+  formatedDate() {
+    const date = new Date();
+    const re = /, /gi;
+    const formatterDate = date
+      .toLocaleString("en-CA", { hour12: false })
+      .replace(re, "-");
+    return formatterDate;
+  }
+
   async backupSettings() {
     let focus = new Focus();
     const commands = [
@@ -39,15 +48,7 @@ export default class FlashRaise {
     ];
     let results = { backup: {} };
     const dir = "./static/backup/";
-    const date = new Date();
-    let year = date.getFullYear(),
-      month = date.getMonth() + 1,
-      day = date.getDate(),
-      hours = date.getHours(),
-      minutes = date.getMinutes(),
-      seconds = date.getSeconds();
-    const dateInString = `${year}-${month}-${day}-${hours}_${minutes}_${seconds}`;
-    this.backupFileName = `${dir}Raise-backup-${dateInString}.json`;
+    this.backupFileName = `${dir}Raise-backup-${this.formatedDate()}.json`;
 
     for (let command of commands) {
       let res = await focus.command(command);
@@ -62,7 +63,7 @@ export default class FlashRaise {
 
     fs.writeFile(this.backupFileName, JSON.stringify(results), err => {
       if (err) throw err;
-      console.log("File is created successfully.");
+      console.log("Log file is created successfully.");
     });
   }
 
