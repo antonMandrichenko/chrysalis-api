@@ -16,7 +16,6 @@
 
 import KeymapANSI from "./components/Keymap-ANSI";
 import Focus from "@chrysalis-api/focus";
-import { raiseFlash, raiseFlashBootloader } from "@chrysalis-api/flash";
 
 const Raise_ANSI = {
   info: {
@@ -52,8 +51,15 @@ const Raise_ANSI = {
     }
   },
 
-  flash: async (port, filename) => {
-    return raiseFlash(port, filename);
+  flash: async (port, filename, device, flashRaise) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await flashRaise.updateFirmware(port, filename, device);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
   },
 
   isDeviceSupported: async port => {
@@ -83,8 +89,15 @@ const Raise_ANSIBootloader = {
     productId: 0x2200
   },
 
-  flash: async (port, filename) => {
-    return raiseFlashBootloader(port, filename);
+  flash: async (port, filename, device, flashRaise) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await flashRaise.updateFirmware(port, filename, device);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
 };
 

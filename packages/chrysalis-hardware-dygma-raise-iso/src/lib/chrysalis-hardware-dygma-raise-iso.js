@@ -16,8 +16,6 @@
 
 import KeymapISO from "./components/Keymap-ISO";
 import Focus from "@chrysalis-api/focus";
-import FlashRaise from "@chrysalis-api/flash";
-import { raiseFlashBootloader } from "@chrysalis-api/flash";
 
 const Raise_ISO = {
   info: {
@@ -53,11 +51,10 @@ const Raise_ISO = {
     }
   },
 
-  flash: async (port, filename, device) => {
-    let flashRaise = new FlashRaise(port, filename, device);
+  flash: async (port, filename, device, flashRaise) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await flashRaise.init();
+        await flashRaise.updateFirmware(port, filename, device);
         resolve();
       } catch (e) {
         reject(e);
@@ -91,9 +88,16 @@ const Raise_ISOBootloader = {
     vendorId: 0x1209,
     productId: 0x2200
   },
-  flash: async (port, filename) => {
-    return raiseFlashBootloader(port, filename);
-  }
+  flash: async (port, filename, device, flashRaise) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await flashRaise.updateFirmware(port, filename, device);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+  },
 };
 
 export { Raise_ISO, Raise_ISOBootloader };
