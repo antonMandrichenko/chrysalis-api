@@ -14,15 +14,17 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Focus from "@chrysalis-api/focus";
-import Hardware from "@chrysalis-api/hardware";
 import fs from "fs";
 import usb from "usb";
 import Electron from "electron";
+import Focus from "@chrysalis-api/focus";
+import Hardware from "@chrysalis-api/hardware";
 
 export default class FlashRaise {
   constructor(port, device) {
     this.port = port;
+    this.device = device.device;
+    this.bootloader = null;
     this.backupFileName = null;
     this.backupFileData = {
       backup: {},
@@ -30,17 +32,6 @@ export default class FlashRaise {
       serialNumber: device.serialNumber,
       firmwareFile: null
     };
-  }
-
-  async init() {
-    try {
-      // await this.backupSettings();
-      await this.resetKeyboard(this.port);
-    } catch (e) {
-      throw e;
-    } finally {
-      this.saveBackupFile();
-    }
   }
 
   formatedDate() {
@@ -82,7 +73,8 @@ export default class FlashRaise {
           errorFlag = true;
         }
       }
-      if (errorFlag) throw Error(errorMessage);
+      if (errorFlag) throw new Error(errorMessage);
+      this.backupFileData.log.push(`Settings backed up OK`);
     } catch (e) {
       this.saveBackupFile();
       throw e;
@@ -103,44 +95,77 @@ export default class FlashRaise {
     });
   }
 
-  createDialog() {
-    return `<div>My name is Anton</div>`;
-  }
-
   async resetKeyboard(port) {
+    let focus = new Focus();
     const delay = ms => new Promise(res => setTimeout(res, ms));
     const errorMessage =
       "The Raise bootloader wasn't found. Please try again, make sure you press and hold the Escape key when the Neuron light goes out";
-    let timeouts = 2000;
+    let timeouts = {
+      dtrToggle: 250, // Time to wait (ms) between toggling DTR
+      waitingClose: 2750, // Time to wait for boot loader
+      bootLoaderUp: 2000 // Time to wait for the boot loader to come up
+    };
     return new Promise((resolve, reject) => {
       port.update({ baudRate: 1200 }, async () => {
-        await delay(timeouts);
-        console.log("boud change");
-        port.close();
-        console.log("port close");
-        await delay(timeouts);
-        const devices = usb
-          .getDeviceList()
-          .map(device => device.deviceDescriptor);
-
-        try {
-          devices.forEach(desc => {
-            Hardware.nonSerial.forEach(device => {
-              if (
-                desc.idVendor == device.usb.vendorId &&
-                desc.idProduct == device.usb.productId
-              ) {
-                resolve();
-              }
-            });
+        this.backupFileData.log.push(`Resetting neuron`);
+        console.log("baud update");
+        await delay(timeouts.dtrToggle);
+        port.set({ dtr: true }, async () => {
+          console.log("dtr on");
+          await delay(timeouts.waitingClose);
+          port.set({ dtr: false }, async () => {
+            this.backupFileData.log.push(`Waiting for bootloader`);
+            console.log("dtr off");
+            try {
+              await delay(timeouts.bootLoaderUp);
+              console.log("port dtr", port);
+              let deviceFind = false;
+              await focus.find(...Hardware.nonSerial).then(devices => {
+                for (const device of devices) {
+                  if (
+                    this.device.info.keyboardType ==
+                    device.device.info.keyboardType
+                  ) {
+                    this.backupFileData.log.push(`Bootloader detected`);
+                    deviceFind = true;
+                    this.bootloader = { ...device };
+                    resolve("findBootloader");
+                  }
+                }
+              });
+              if (!deviceFind) throw new Error(errorMessage);
+            } catch (e) {
+              this.backupFileData.log.push(
+                `Reset keyboard: Error: ${e.message}`
+              );
+              this.saveBackupFile();
+              reject(e);
+            }
           });
-          throw Error(errorMessage);
-        } catch (e) {
-          this.backupFileData.log.push(`Reset keyboard: Error: ${e.message}`);
-          this.saveBackupFile();
-          reject(e);
-        }
+        });
       });
     });
+  }
+
+  async updateFirmware(port, filename, device) {
+    console.log("update1", this.backupFileData);
+    console.log("update", port, filename, device);
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    return await delay(4000);
+  }
+
+  async restoreSettings() {
+    let focus = new Focus();
+    try {
+      await focus.open(this.port, this.device.info);
+      const commands = Object.keys(this.backupFileData.backup);
+      for (let command of commands) {
+        await focus.command(command, this.backupFileData.backup[command]);
+      }
+      this.backupFileData.log.push(`Restoring all settings`);
+    } catch (e) {
+      this.backupFileData.log.push(`Restore settings: Error: ${e.message}`);
+      this.saveBackupFile();
+    }
   }
 }
