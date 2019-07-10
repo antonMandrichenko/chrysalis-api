@@ -15,7 +15,6 @@
  */
 
 import fs from "fs";
-import usb from "usb";
 import Electron from "electron";
 import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
