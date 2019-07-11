@@ -22,8 +22,10 @@ import Hardware from "@chrysalis-api/hardware";
 export default class FlashRaise {
   constructor(port, device) {
     this.port = port;
+    this.path = port.path;
     this.device = device.device;
-    this.bootloader = null;
+    this.bootloaderPort = null;
+    this.keyboardPort = null;
     this.backupFileName = null;
     this.backupFileData = {
       backup: {},
@@ -31,6 +33,7 @@ export default class FlashRaise {
       serialNumber: device.serialNumber,
       firmwareFile: null
     };
+    this.delay = ms => new Promise(res => setTimeout(res, ms));
   }
 
   formatedDate() {
@@ -42,6 +45,21 @@ export default class FlashRaise {
       .replace(firstFind, "-")
       .replace(secondFind, "_");
     return formatterDate;
+  }
+
+  async foundDevices(hardware, message, findDevice) {
+    let focus = new Focus();
+    let isFindDevice = false;
+    await focus.find(...hardware).then(devices => {
+      for (const device of devices) {
+        if (this.device.info.keyboardType == device.device.info.keyboardType) {
+          this.backupFileData.log.push(message);
+          findDevice = { ...device };
+          isFindDevice = true;
+        }
+      }
+    });
+    return isFindDevice ? true : false;
   }
 
   async backupSettings() {
@@ -108,31 +126,27 @@ export default class FlashRaise {
       port.update({ baudRate: 1200 }, async () => {
         this.backupFileData.log.push(`Resetting neuron`);
         console.log("baud update");
-        await delay(timeouts.dtrToggle);
+        await this.delay(timeouts.dtrToggle);
         port.set({ dtr: true }, async () => {
           console.log("dtr on");
-          await delay(timeouts.waitingClose);
+          await this.delay(timeouts.waitingClose);
           port.set({ dtr: false }, async () => {
             this.backupFileData.log.push(`Waiting for bootloader`);
             console.log("dtr off");
             try {
-              await delay(timeouts.bootLoaderUp);
+              await this.delay(timeouts.bootLoaderUp);
               console.log("port dtr", port);
-              let deviceFind = false;
-              await focus.find(...Hardware.nonSerial).then(devices => {
-                for (const device of devices) {
-                  if (
-                    this.device.info.keyboardType ==
-                    device.device.info.keyboardType
-                  ) {
-                    this.backupFileData.log.push(`Bootloader detected`);
-                    deviceFind = true;
-                    this.bootloader = { ...device };
-                    resolve("findBootloader");
-                  }
-                }
-              });
-              if (!deviceFind) throw new Error(errorMessage);
+              if (
+                await this.foundDevices(
+                  Hardware.nonSerial,
+                  "Bootloader detected",
+                  this.bootloaderPort
+                )
+              ) {
+                resolve("findBootloader");
+              } else {
+                throw new Error(errorMessage);
+              }
             } catch (e) {
               this.backupFileData.log.push(
                 `Reset keyboard: Error: ${e.message}`
@@ -147,16 +161,48 @@ export default class FlashRaise {
   }
 
   async updateFirmware(port, filename, device) {
+    let focus = new Focus();
     console.log("update1", this.backupFileData);
     console.log("update", port, filename, device);
     const delay = ms => new Promise(res => setTimeout(res, ms));
-    return await delay(4000);
+    await delay(4000);
+    return await this.detectKeyboard(port);
+  }
+
+  async detectKeyboard(port) {
+    let focus = new Focus();
+    const timeouts = 2000;
+    const errorMessage =
+      "The firmware update has failed during the flashing process. Please unplug and replug the keyboard and try again";
+
+    //wait until the bootloader serial port disconnects and the keyboard serial port reconnects
+    this.delay(timeouts);
+    
+    if (await this.foundDevices(
+      Hardware.serial,
+      "Keyboard detected",
+      this.keyboardPort
+    )) {
+      console.log("find keyboard");
+      await this.restoreSettings();
+    } 
+    this.delay(timeouts);
+    if (await this.foundDevices(
+      Hardware.serial,
+      "Keyboard detected",
+      this.keyboardPort
+    )) {
+      console.log("find keyboard");
+      await this.restoreSettings();
+    } else {
+      throw new Error(errorMessage);
+    }
   }
 
   async restoreSettings() {
     let focus = new Focus();
     try {
-      await focus.open(this.port, this.device.info);
+      await focus.open(this.keyboardPort.comName, this.keyboardPort.device.info);
       const commands = Object.keys(this.backupFileData.backup);
       for (let command of commands) {
         await focus.command(command, this.backupFileData.backup[command]);
