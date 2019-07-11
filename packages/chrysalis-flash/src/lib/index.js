@@ -18,9 +18,7 @@ import {
   Avr109,
   Avr109Bootloader,
   teensy,
-  DFUProgrammer,
-  raiseFlash,
-  raiseFlashBootloader
+  DFUProgrammer
 } from "./chrysalis-flash.js";
 import FlashRaise from "./chrysalis-flash-raise.js";
 
@@ -29,7 +27,5 @@ export {
   Avr109,
   Avr109Bootloader,
   teensy,
-  DFUProgrammer,
-  raiseFlash,
-  raiseFlashBootloader
+  DFUProgrammer
 };
