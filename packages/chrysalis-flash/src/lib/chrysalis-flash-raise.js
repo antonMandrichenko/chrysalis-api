@@ -19,8 +19,16 @@ import Electron from "electron";
 import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
 
-
-
+/**
+ * Create a new flash raise object.
+ * @class FlashRaise
+ * @param {object} port - serial port object for the `path`
+ * @param {object} device - device data from SerailPort.list()
+ * @property {object} backupFileData Object with settings from raise keyboard EEPROM, logging data, keyboard serial number and file with firmware
+ * @emits backupSettings
+ * @emits resetKeyboard
+ * @emits updateFirmware
+ */
 export default class FlashRaise {
   constructor(port, device) {
     this.port = port;
@@ -38,6 +46,10 @@ export default class FlashRaise {
     this.delay = ms => new Promise(res => setTimeout(res, ms));
   }
 
+  /**
+   * Formats date for create name of backup file.
+   * @returns {string} formate date for example "2019-07-12-19_40_56"
+   */
   formatedDate() {
     const date = new Date();
     const firstFind = /, /gi;
@@ -49,6 +61,13 @@ export default class FlashRaise {
     return formatterDate;
   }
 
+  /**
+   * Founds device what connected from Chrysalis Hardware api.
+   * @param {array} hardware - Array of supported devices by Chrysalis api.
+   * @param {string} message - Message for backup file.
+   * @param {object} findDevice - Device that found (keyboard bootloader or keyboard).
+   * @returns {boolean} if device found - true, if no - false
+   */
   async foundDevices(hardware, message, findDevice) {
     let focus = new Focus();
     let isFindDevice = false;
@@ -64,6 +83,9 @@ export default class FlashRaise {
     return isFindDevice ? true : false;
   }
 
+  /**
+   * Takes backup settings from keyboard and writes its in backupfile.
+   */
   async backupSettings() {
     let focus = new Focus();
     const commands = [
@@ -100,6 +122,9 @@ export default class FlashRaise {
     }
   }
 
+  /**
+   * Saves backup file in directory what user selected. If user click "Close" button in save dialog, nothing will happen.
+   */
   saveBackupFile() {
     let fileName = Electron.remote.dialog.showSaveDialog({
       title: "Save backup file",
@@ -115,6 +140,11 @@ export default class FlashRaise {
       });
   }
 
+   /**
+   * Resets keyboard at the baud rate of 1200bps. Keyboard is restarted with the bootloader
+   * @param {object} port - serial port object for the `path`.
+   * @returns {promise} 
+   */
   async resetKeyboard(port) {
     let focus = new Focus();
     const errorMessage =
@@ -162,6 +192,11 @@ export default class FlashRaise {
     });
   }
 
+   /**
+   * Updates firmware of bootloader (not implemented)
+   * @param {object} port - serial port object for the `path`.
+   * @param {string} filename - path to file with firmware.
+   */
   async updateFirmware(port, filename, device) {
     let focus = new Focus();
     console.log("update1", this.backupFileData);
@@ -171,6 +206,9 @@ export default class FlashRaise {
     return await this.detectKeyboard(port);
   }
 
+  /**
+   * Detects keyboard after firmware of bootloader
+   */
   async detectKeyboard(port) {
     let focus = new Focus();
     const timeouts = 2000;
@@ -205,6 +243,9 @@ export default class FlashRaise {
     }
   }
 
+  /**
+   * Restores settings to keyboard after bootloader flashing
+   */
   async restoreSettings() {
     let focus = new Focus();
     try {
