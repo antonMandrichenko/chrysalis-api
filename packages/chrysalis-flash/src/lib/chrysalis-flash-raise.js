@@ -19,6 +19,8 @@ import Electron from "electron";
 import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
 
+
+
 export default class FlashRaise {
   constructor(port, device) {
     this.port = port;
@@ -106,15 +108,15 @@ export default class FlashRaise {
       filters: [{ name: "json", extensions: ["json"] }]
     });
 
-    fs.writeFile(fileName, JSON.stringify(this.backupFileData), err => {
-      if (err) throw err;
-      console.log("Log file is created successfully.");
-    });
+    if (fileName)
+      fs.writeFile(fileName, JSON.stringify(this.backupFileData), err => {
+        if (err) throw err;
+        console.log("Log file is created successfully.");
+      });
   }
 
   async resetKeyboard(port) {
     let focus = new Focus();
-    const delay = ms => new Promise(res => setTimeout(res, ms));
     const errorMessage =
       "The Raise bootloader wasn't found. Please try again, make sure you press and hold the Escape key when the Neuron light goes out";
     let timeouts = {
@@ -177,21 +179,25 @@ export default class FlashRaise {
 
     //wait until the bootloader serial port disconnects and the keyboard serial port reconnects
     this.delay(timeouts);
-    
-    if (await this.foundDevices(
-      Hardware.serial,
-      "Keyboard detected",
-      this.keyboardPort
-    )) {
+
+    if (
+      await this.foundDevices(
+        Hardware.serial,
+        "Keyboard detected",
+        this.keyboardPort
+      )
+    ) {
       console.log("find keyboard");
       await this.restoreSettings();
-    } 
+    }
     this.delay(timeouts);
-    if (await this.foundDevices(
-      Hardware.serial,
-      "Keyboard detected",
-      this.keyboardPort
-    )) {
+    if (
+      await this.foundDevices(
+        Hardware.serial,
+        "Keyboard detected",
+        this.keyboardPort
+      )
+    ) {
       console.log("find keyboard");
       await this.restoreSettings();
     } else {
@@ -202,7 +208,10 @@ export default class FlashRaise {
   async restoreSettings() {
     let focus = new Focus();
     try {
-      await focus.open(this.keyboardPort.comName, this.keyboardPort.device.info);
+      await focus.open(
+        this.keyboardPort.comName,
+        this.keyboardPort.device.info
+      );
       const commands = Object.keys(this.backupFileData.backup);
       for (let command of commands) {
         await focus.command(command, this.backupFileData.backup[command]);
