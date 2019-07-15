@@ -62,7 +62,6 @@ export default class FlashRaise {
    * Founds device what connected from Chrysalis Hardware api.
    * @param {array} hardware - Array of supported devices by Chrysalis api.
    * @param {string} message - Message for backup file.
-   * @param {object} findDevice - Device that found (keyboard bootloader or keyboard).
    * @returns {boolean} if device found - true, if no - false
    */
   async foundDevices(hardware, message) {
@@ -120,7 +119,7 @@ export default class FlashRaise {
   }
 
   /**
-   * Saves backup file in directory what user selected. If user click "Close" button in save dialog, nothing will happen.
+   * Saves backup file in directory, what user selected. If user click "Close" button in save dialog, nothing will happen.
    */
   saveBackupFile() {
     let fileName = Electron.remote.dialog.showSaveDialog({
@@ -196,13 +195,14 @@ export default class FlashRaise {
    * Updates firmware of bootloader
    * @param {object} port - serial port object for the "path".
    * @param {string} filename - path to file with firmware.
+   * @returns {promise}
    */
   async updateFirmware(_, filename) {
     this.backupFileData.log.push("Begin update firmware with SAM-BA");
     this.backupFileData.firmwareFile = filename;
-    await this.delay(3000); // time for flash bootloader, not implemented
     return new Promise(async (resolve, reject) => {
       try {
+        await this.delay(3000); // time for flash bootloader, not implemented
         await this.detectKeyboard();
         resolve();
       } catch (e) {
