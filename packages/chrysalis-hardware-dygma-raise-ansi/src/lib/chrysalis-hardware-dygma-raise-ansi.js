@@ -55,8 +55,10 @@ const Raise_ANSI = {
     return new Promise(async (resolve, reject) => {
       try {
         await flashRaise.updateFirmware(port, filename, device);
+        flashRaise.saveBackupFile();
         resolve();
       } catch (e) {
+        flashRaise.saveBackupFile();
         reject(e);
       }
     });
@@ -93,8 +95,10 @@ const Raise_ANSIBootloader = {
     return new Promise(async (resolve, reject) => {
       try {
         await flashRaise.updateFirmware(port, filename, device);
+        flashRaise.saveBackupFile();
         resolve();
       } catch (e) {
+        flashRaise.saveBackupFile();
         reject(e);
       }
     });

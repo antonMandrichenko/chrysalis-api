@@ -55,8 +55,10 @@ const Raise_ISO = {
     return new Promise(async (resolve, reject) => {
       try {
         await flashRaise.updateFirmware(port, filename, device);
+        flashRaise.saveBackupFile();
         resolve();
       } catch (e) {
+        flashRaise.saveBackupFile();
         reject(e);
       }
     });
@@ -92,8 +94,10 @@ const Raise_ISOBootloader = {
     return new Promise(async (resolve, reject) => {
       try {
         await flashRaise.updateFirmware(port, filename, device);
+        flashRaise.saveBackupFile();
         resolve();
       } catch (e) {
+        flashRaise.saveBackupFile();
         reject(e);
       }
     });
