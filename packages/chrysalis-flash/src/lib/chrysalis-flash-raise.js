@@ -112,8 +112,8 @@ export default class FlashRaise {
       }
       if (errorFlag) throw new Error(errorMessage);
       this.backupFileData.log.push("Settings backed up OK");
-      this.saveBackupFile();
     } catch (e) {
+      this.saveBackupFile();
       throw e;
     }
   }
