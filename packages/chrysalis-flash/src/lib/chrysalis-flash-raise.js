@@ -22,7 +22,7 @@ import Hardware from "@chrysalis-api/hardware";
 /**
  * Create a new flash raise object.
  * @class FlashRaise
- * @param {object} port - serial port object for the `path`
+ * @param {object} port - serial port object for the "path"
  * @param {object} device - device data from SerailPort.list()
  * @property {object} backupFileData Object with settings from raise keyboard EEPROM, logging data, keyboard serial number and file with firmware
  * @emits backupSettings
@@ -31,15 +31,12 @@ import Hardware from "@chrysalis-api/hardware";
  */
 export default class FlashRaise {
   constructor(port, device) {
-    this.port = port;
-    this.path = port.path;
     this.device = device.device;
-    this.bootloaderPort = null;
-    this.keyboardPort = null;
+    this.currentPort = null;
     this.backupFileName = null;
     this.backupFileData = {
       backup: {},
-      log: ["neuron detected"],
+      log: ["Neuron detected"],
       serialNumber: device.serialNumber,
       firmwareFile: null
     };
@@ -68,14 +65,14 @@ export default class FlashRaise {
    * @param {object} findDevice - Device that found (keyboard bootloader or keyboard).
    * @returns {boolean} if device found - true, if no - false
    */
-  async foundDevices(hardware, message, findDevice) {
+  async foundDevices(hardware, message) {
     let focus = new Focus();
     let isFindDevice = false;
     await focus.find(...hardware).then(devices => {
       for (const device of devices) {
         if (this.device.info.keyboardType == device.device.info.keyboardType) {
           this.backupFileData.log.push(message);
-          findDevice = { ...device };
+          this.currentPort = { ...device };
           isFindDevice = true;
         }
       }
@@ -115,9 +112,8 @@ export default class FlashRaise {
         }
       }
       if (errorFlag) throw new Error(errorMessage);
-      this.backupFileData.log.push(`Settings backed up OK`);
+      this.backupFileData.log.push("Settings backed up OK");
     } catch (e) {
-      this.saveBackupFile();
       throw e;
     }
   }
@@ -133,20 +129,24 @@ export default class FlashRaise {
       filters: [{ name: "json", extensions: ["json"] }]
     });
 
-    if (fileName)
+    if (fileName) {
       fs.writeFile(fileName, JSON.stringify(this.backupFileData), err => {
         if (err) throw err;
-        console.log("Log file is created successfully.");
+        this.backupFileData.log.push("Backup file is created successfully");
+        console.log("Backup file is created successfully");
       });
+    } else {
+      this.backupFileData.log.push("Backup file is not created");
+      console.log("Backup file is not created");
+    }
   }
 
-   /**
+  /**
    * Resets keyboard at the baud rate of 1200bps. Keyboard is restarted with the bootloader
-   * @param {object} port - serial port object for the `path`.
-   * @returns {promise} 
+   * @param {object} port - serial port object for the "path".
+   * @returns {promise}
    */
   async resetKeyboard(port) {
-    let focus = new Focus();
     const errorMessage =
       "The Raise bootloader wasn't found. Please try again, make sure you press and hold the Escape key when the Neuron light goes out";
     let timeouts = {
@@ -156,34 +156,32 @@ export default class FlashRaise {
     };
     return new Promise((resolve, reject) => {
       port.update({ baudRate: 1200 }, async () => {
-        this.backupFileData.log.push(`Resetting neuron`);
+        this.backupFileData.log.push("Resetting neuron");
         console.log("baud update");
         await this.delay(timeouts.dtrToggle);
         port.set({ dtr: true }, async () => {
           console.log("dtr on");
           await this.delay(timeouts.waitingClose);
           port.set({ dtr: false }, async () => {
-            this.backupFileData.log.push(`Waiting for bootloader`);
+            this.backupFileData.log.push("Waiting for bootloader");
             console.log("dtr off");
             try {
               await this.delay(timeouts.bootLoaderUp);
-              console.log("port dtr", port);
               if (
                 await this.foundDevices(
                   Hardware.nonSerial,
-                  "Bootloader detected",
-                  this.bootloaderPort
+                  "Bootloader detected"
                 )
               ) {
-                resolve("findBootloader");
+                resolve();
               } else {
+                this.backupFileData.log.push("Bootloader didn't detect");
                 throw new Error(errorMessage);
               }
             } catch (e) {
               this.backupFileData.log.push(
                 `Reset keyboard: Error: ${e.message}`
               );
-              this.saveBackupFile();
               reject(e);
             }
           });
@@ -192,54 +190,66 @@ export default class FlashRaise {
     });
   }
 
-   /**
-   * Updates firmware of bootloader (not implemented)
-   * @param {object} port - serial port object for the `path`.
+  /**
+   * Updates firmware of bootloader
+   * @param {object} port - serial port object for the "path".
    * @param {string} filename - path to file with firmware.
    */
-  async updateFirmware(port, filename, device) {
-    let focus = new Focus();
-    console.log("update1", this.backupFileData);
-    console.log("update", port, filename, device);
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-    await delay(4000);
-    return await this.detectKeyboard(port);
+  async updateFirmware(_, filename) {
+    this.backupFileData.log.push("Begin update firmware with SAM-BA");
+    this.backupFileData.firmwareFile = filename;
+    await this.delay(3000); // time for flash bootloader, not implemented
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.detectKeyboard();
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
 
   /**
    * Detects keyboard after firmware of bootloader
    */
-  async detectKeyboard(port) {
-    let focus = new Focus();
+  async detectKeyboard() {
     const timeouts = 2000;
+    const findTimes = 2;
     const errorMessage =
       "The firmware update has failed during the flashing process. Please unplug and replug the keyboard and try again";
-
+    this.backupFileData.log.push("Waiting for keyboard");
     //wait until the bootloader serial port disconnects and the keyboard serial port reconnects
-    this.delay(timeouts);
-
-    if (
-      await this.foundDevices(
-        Hardware.serial,
-        "Keyboard detected",
-        this.keyboardPort
-      )
-    ) {
-      console.log("find keyboard");
-      await this.restoreSettings();
+    const findKeyboard = async () => {
+      return new Promise(async resolve => {
+        this.delay(timeouts);
+        if (await this.foundDevices(Hardware.serial, "Keyboard detected")) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    };
+    try {
+      await this.runnerFindKeyboard(findKeyboard, findTimes, errorMessage);
+    } catch (e) {
+      this.backupFileData.log.push(`Detect keyboard: Error: ${e.message}`);
+      throw e;
     }
-    this.delay(timeouts);
-    if (
-      await this.foundDevices(
-        Hardware.serial,
-        "Keyboard detected",
-        this.keyboardPort
-      )
-    ) {
-      console.log("find keyboard");
+  }
+
+  /**
+   * Runs the function several times
+   * @param {function} findKeyboard - function that will run several times.
+   * @param {number} times - how many times function runs.
+   * @param {string} errorMessage - error message if error is.
+   */
+  async runnerFindKeyboard(findKeyboard, times, errorMessage) {
+    if (!times) throw new Error(errorMessage);
+    if (await findKeyboard()) {
       await this.restoreSettings();
     } else {
-      throw new Error(errorMessage);
+      this.backupFileData.log.push(`Keyboard didn't detect ${times} time`);
+      this.runnerFindKeyboard(findKeyboard, times - 1, errorMessage);
     }
   }
 
@@ -248,19 +258,40 @@ export default class FlashRaise {
    */
   async restoreSettings() {
     let focus = new Focus();
-    try {
-      await focus.open(
-        this.keyboardPort.comName,
-        this.keyboardPort.device.info
-      );
-      const commands = Object.keys(this.backupFileData.backup);
-      for (let command of commands) {
-        await focus.command(command, this.backupFileData.backup[command]);
+    const errorMessage =
+        "Firmware update failed, because the settings could not be restore";
+    return new Promise(async (resolve, reject) => {
+      try {
+        await focus.open(
+          this.currentPort.comName,
+          this.currentPort.device.info
+        );
+        if (focus.isOpen) {
+          const commands = Object.keys(this.backupFileData.backup);
+          let errorFlag = false;
+          for (let command of commands) {
+            let data = await focus.command(
+              command,
+              this.backupFileData.backup[command]
+            );
+            if (!data) {
+              this.backupFileData.log.push(
+                `Restore backup settings ${command}: Error: ${errorMessage}`
+              );
+              errorFlag = true;
+            }
+          }
+          if (errorFlag) throw new Error(errorMessage);
+          this.backupFileData.log.push("Restoring all settings");
+          this.backupFileData.log.push("Firmware update OK");
+          resolve();
+        } else {
+          throw new Error("Port is not open after ");
+        }
+      } catch (e) {
+        this.backupFileData.log.push(`Restore settings: Error: ${e.message}`);
+        reject(e);
       }
-      this.backupFileData.log.push(`Restoring all settings`);
-    } catch (e) {
-      this.backupFileData.log.push(`Restore settings: Error: ${e.message}`);
-      this.saveBackupFile();
-    }
+    });
   }
 }
