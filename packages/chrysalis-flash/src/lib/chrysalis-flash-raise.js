@@ -259,7 +259,8 @@ export default class FlashRaise {
   async runnerFindKeyboard(findKeyboard, times, errorMessage) {
     if (!times) throw new Error(errorMessage);
     if (await findKeyboard()) {
-      await this.restoreSettings();
+      // await this.restoreSettings();
+      console.log("find keyboard");
     } else {
       this.backupFileData.log.push(`Keyboard didn't detect ${times} time`);
       await this.runnerFindKeyboard(findKeyboard, times - 1, errorMessage);
