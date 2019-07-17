@@ -18,6 +18,7 @@ import fs from "fs";
 import Electron from "electron";
 import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
+import { arduino } from "./raiseFlash/arduino";
 
 /**
  * Create a new flash raise object.
@@ -202,9 +203,19 @@ export default class FlashRaise {
     this.backupFileData.firmwareFile = filename;
     return new Promise(async (resolve, reject) => {
       try {
-        await this.delay(3000); // time for flash bootloader, not implemented
-        await this.detectKeyboard();
-        resolve();
+        await focus.open (this.currentPort.comName, this.currentPort.device);
+        await arduino.flash(
+          this.currentPort.comName,
+          filename,
+          async (err, result) => {
+            if (err) throw new Error(`Flash error ${result}`);
+            else {
+              await this.delay(2000); // time for flash bootloader, not implemented
+              await this.detectKeyboard();
+              resolve();
+            }
+          }
+        );
       } catch (e) {
         reject(e);
       }
@@ -261,7 +272,7 @@ export default class FlashRaise {
   async restoreSettings() {
     let focus = new Focus();
     const errorMessage =
-        "Firmware update failed, because the settings could not be restore";
+      "Firmware update failed, because the settings could not be restore";
     return new Promise(async (resolve, reject) => {
       try {
         await focus.open(
