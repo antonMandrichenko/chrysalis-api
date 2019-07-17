@@ -1,44 +1,18 @@
 import async from "async";
 import fs from "fs";
 import Focus from "@chrysalis-api/focus";
-import Hardware from "@chrysalis-api/hardware";
-
-var CONNECTION_ID = -1;
 
 var MAX_MS = 2000;
 
-const GENUINO_VENDOR_IDS = [9025, 9114, 1209, 4617, 4617];
-const GENUINO_PRODUCT_IDS = [589, 77, 32780, 2201, 8705, 8704, 8706];
-
 const PACKET_SIZE = 4096;
 
-//ARDUINO ZERO
-//const GENUINO_VENDOR_ID = 9025
-//const GENUINO_PRODUCT_ID = 32845
-
-//CMSIS DAP
-//const GENUINO_VENDOR_ID = 1003
-//const GENUINO_PRODUCT_ID = 8535
-
 const TYPE_DAT = 0x00;
-const TYPE_EOF = 0x01;
-const TYPE_ESA = 0x02;
-const TYPE_SSA = 0x03;
 const TYPE_ELA = 0x04;
-const TYPE_SLA = 0x05;
 
-var serial_buffer = "";
 var focus = new Focus();
 
 function write_cb(buffer, cb) {
-  // if (CONNECTION_ID == -1) {
-  //   cb(true, "invalid connection");
-  //   return;
-  // }
-
   var buf = new Uint8Array(buffer);
-
-  //console.log("WRITING ", String.fromCharCode.apply(null, new Uint8Array(buffer)), new Uint8Array(buffer));
 
   //the MAX transmission of a chrome serial write is 200 bytes, we therefore
   //marshall the given buffer into 200 byte chunks, and serialise their execution.
@@ -54,19 +28,11 @@ function write_cb(buffer, cb) {
     //closure to ensure our buffer is local.
     (function(buf2send) {
       send.push(async function(callback) {
-        //console.log("SENDING ",new Uint8Array(buf2send),new Uint8Array(buf2send).length);
-        if (
-          (await focus._port.write(buf2send),
-          err => {
-            callback(true, err);
-          })
-        ) {
+        if (await focus._port.write(Buffer.from(buf2send))) {
           callback(null);
+        } else {
+          callback(true, "write");
         }
-        // chrome.serial.send(CONNECTION_ID, buf2send, function(writeInfo) {
-        //   if (writeInfo.error) callback(true, writeInfo.error);
-        //   else callback(null);
-        // });
       });
     })(buffer.slice(bufferTotal, bufferTotal + bufferSize));
 
@@ -99,89 +65,12 @@ async function read_cb(callback) {
           callback(null, "drain");
         }
       });
-      // if (serial_buffer.length > 0) {
-      //   var t = serial_buffer;
-      //   serial_buffer = "";
-      //   callback(null, t);
-      //   return;
-      // } else if (time > MAX_MS) {
-      //   callback(true, "TIMED OUT");
-      //   return;
-      // }
-
-      // timeout();
     }, 50);
   };
   timeout();
 }
 
-// function ls() {
-//   return new Promise(function(fulfill, reject) {
-//     // console.log(chrome.app);
-//     chrome.serial.getDevices(function(ports) {
-//       var retPorts = [];
-
-//       console.log(chrome.app, window.navigator);
-
-//       $(ports).each(function(idx, port) {
-//         console.log("P ", port);
-
-//         var vendorMatch = false;
-//         var pIDMatch = false;
-
-//         for (var i = 0; i < GENUINO_VENDOR_IDS.length; i++)
-//           if (port.vendorId == GENUINO_VENDOR_IDS[i]) vendorMatch = true;
-
-//         for (var i = 0; i < GENUINO_PRODUCT_IDS.length; i++)
-//           if (port.productId == GENUINO_PRODUCT_IDS[i]) pIDMatch = true;
-
-//         if (vendorMatch && pIDMatch)
-//           if (port.path.indexOf("tty") > 0) retPorts.push(port);
-//           else if (window.navigator.appVersion.indexOf("Windows") > -1)
-//             retPorts.push(port);
-//       });
-
-//       fulfill(retPorts);
-//     });
-//   });
-// }
-
-// function connect_cb(port, options, callback) {
-//   if (CONNECTION_ID != -1) {
-//     callback(true, "There is an already open connection");
-//     return;
-//   }
-
-//   if (typeof options == "undefined") options = null;
-
-//   chrome.serial.connect(port.path, options, function(openInfo) {
-//     console.log("crom serial", chrome.serial);
-//     CONNECTION_ID = openInfo.connectionId;
-
-//     console.log("CONNECTED ", openInfo);
-
-//     if (CONNECTION_ID == -1) {
-//       callback(true, "Invalid connection!");
-//     } else {
-//       callback(null);
-//     }
-//   });
-// }
-
 function disconnect_cb(cb) {
-  // if (CONNECTION_ID == -1) {
-  //   cb(true, "Could not connect to serial");
-  //   return;
-  // }
-
-  // chrome.serial.disconnect(CONNECTION_ID, function(result) {
-  //   if (!result) {
-  //     cb(true, "Could not connect to serial");
-  //   } else {
-  //     CONNECTION_ID = -1;
-  //     cb(null, "");
-  //   }
-  // });
   focus.close();
   cb(null, "");
 }
@@ -243,49 +132,8 @@ function ihex_decode(line) {
 }
 
 export var arduino = {
-  // find: function() {
-  //   return ls();
-  // },
-  // version: function(port, finished) {
-  //   var func_array = [];
-  //   func_array.push(function(callback) {
-  //     connect_cb(port, { bitrate: 115200 }, callback);
-  //   });
-  //   func_array.push(function(callback) {
-  //     write_cb(str2ab("V#"), callback);
-  //   });
-  //   func_array.push(function(callback) {
-  //     read_cb(callback);
-  //   });
-  //   func_array.push(function(callback) {
-  //     disconnect_cb(callback);
-  //   });
-
-  //   async.series(func_array, function(err, result) {
-  //     finished(err, result);
-  //   });
-  // },
-  // reset: function(port, finished) {
-  //   var func_array = [];
-  //   func_array.push(function(callback) {
-  //     connect_cb(port, { bitrate: 115200 }, callback);
-  //   });
-  //   func_array.push(function(callback) {
-  //     write_cb(str2ab("WE000ED0C,05FA0004#"), callback);
-  //   });
-  //   func_array.push(function(callback) {
-  //     disconnect_cb(callback);
-  //   });
-  //   async.series(func_array, function(err, result) {
-  //     finished(err, result);
-  //   });
-  // },
   flash: function(port, file, finished) {
     var func_array = [];
-
-    // func_array.push(function(callback) {
-    //   connect_cb(port, { bitrate: 115200 }, callback);
-    // });
 
     //CLEAR line
     func_array.push(function(callback) {
@@ -430,7 +278,6 @@ export var arduino = {
     func_array.push(function(callback) {
       write_cb(str2ab("WE000ED0C,05FA0004#"), callback);
     });
-    //func_array.push(function(callback){write_cb(str2ab("WE000ED0C,05FA0004"),callback)});
 
     //DISCONNECT
     func_array.push(function(callback) {
@@ -444,22 +291,3 @@ export var arduino = {
     });
   }
 };
-
-// chrome.serial.onReceiveError.addListener(function(info) {
-//   console.log("INFO ", info);
-//   if (info.connectId == CONNECTION_ID && info.error == "disconnected") {
-//     console.log("DISCONNECTED BY THINGY");
-//     CONNECTION_ID = -1;
-//   }
-// });
-
-// chrome.serial.onReceive.addListener(function(info) {
-//   console.log(
-//     "RX CONNECTION_ID ",
-//     info.connectionId,
-//     " DATA ",
-//     String.fromCharCode.apply(null, new Uint8Array(info.data)),
-//     new Uint8Array(info.data)
-//   );
-//   serial_buffer += String.fromCharCode.apply(null, new Uint8Array(info.data));
-// });
