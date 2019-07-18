@@ -15,7 +15,6 @@
  */
 
 import fs from "fs";
-import Electron from "electron";
 import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
 import { arduino } from "./raiseFlasher/arduino-flasher";
@@ -31,7 +30,7 @@ import { arduino } from "./raiseFlasher/arduino-flasher";
  * @emits updateFirmware
  */
 export default class FlashRaise {
-  constructor(port, device) {
+  constructor(device) {
     this.device = device.device;
     this.currentPort = null;
     this.backupFileName = null;
@@ -125,23 +124,14 @@ export default class FlashRaise {
    * Saves backup file in directory, what user selected. If user click "Close" button in save dialog, nothing will happen.
    */
   saveBackupFile() {
-    let fileName = Electron.remote.dialog.showSaveDialog({
-      title: "Save backup file",
-      defaultPath: this.backupFileName,
-      buttonLabel: "Save backup file",
-      filters: [{ name: "json", extensions: ["json"] }]
-    });
-
-    if (fileName) {
-      this.backupFileData.log.push("Backup file is created successfully");
-      fs.writeFile(fileName, JSON.stringify(this.backupFileData), err => {
+    fs.writeFile(
+      `./${this.backupFileName}`,
+      JSON.stringify(this.backupFileData),
+      err => {
         if (err) throw err;
-        console.log("Backup file is created successfully");
-      });
-    } else {
-      this.backupFileData.log.push("Backup file is not created");
-      console.log("Backup file is not created");
-    }
+        this.backupFileData.log.push("Backup file is created successfully");
+      }
+    );
   }
 
   /**
