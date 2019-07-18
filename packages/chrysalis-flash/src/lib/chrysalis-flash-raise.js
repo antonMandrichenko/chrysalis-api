@@ -18,7 +18,7 @@ import fs from "fs";
 import Electron from "electron";
 import Focus from "@chrysalis-api/focus";
 import Hardware from "@chrysalis-api/hardware";
-import { arduino } from "./raiseFlash/arduino";
+import { arduino } from "./raiseFlasher/arduino-flasher";
 
 /**
  * Create a new flash raise object.
