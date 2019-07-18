@@ -93,7 +93,8 @@ export default class FlashRaise {
       "keymap.onlyCustom",
       "led.theme",
       "palette",
-      "joint.threshold"
+      "joint.threshold",
+      "colormap.map"
     ];
     this.backupFileName = `Raise-backup-${this.formatedDate()}.json`;
 
@@ -103,8 +104,9 @@ export default class FlashRaise {
         "Firmware update failed, because the settings could not be saved";
       for (let command of commands) {
         let res = await focus.command(command);
-        this.backupFileData.backup[command] = res;
-        if (!res || res === "") {
+        this.backupFileData.backup[command] =
+          typeof res === "string" ? res.trim() : res;
+        if (res === undefined || res === "") {
           this.backupFileData.log.push(
             `Get backup settings ${command}: Error: ${errorMessage}`
           );
@@ -131,9 +133,9 @@ export default class FlashRaise {
     });
 
     if (fileName) {
+      this.backupFileData.log.push("Backup file is created successfully");
       fs.writeFile(fileName, JSON.stringify(this.backupFileData), err => {
         if (err) throw err;
-        this.backupFileData.log.push("Backup file is created successfully");
         console.log("Backup file is created successfully");
       });
     } else {
@@ -198,25 +200,25 @@ export default class FlashRaise {
    * @param {string} filename - path to file with firmware.
    * @returns {promise}
    */
-  async updateFirmware(_, filename) {
-    this.backupFileData.log.push("Begin update firmware with SAM-BA");
+  async updateFirmware(filename) {
+    let focus = new Focus();
+    this.backupFileData.log.push("Begin update firmware with arduino-flasher");
     this.backupFileData.firmwareFile = filename;
     return new Promise(async (resolve, reject) => {
       try {
-        await focus.open (this.currentPort.comName, this.currentPort.device);
-        await arduino.flash(
-          this.currentPort.comName,
-          filename,
-          async (err, result) => {
-            if (err) throw new Error(`Flash error ${result}`);
-            else {
-              await this.delay(2000); // time for flash bootloader, not implemented
-              await this.detectKeyboard();
-              resolve();
-            }
+        await focus.open(this.currentPort.comName, this.currentPort.device);
+        await arduino.flash(filename, async (err, result) => {
+          if (err) throw new Error(`Flash error ${result}`);
+          else {
+            this.backupFileData.log.push(
+              "End update firmware with arduino-flasher"
+            );
+            await this.detectKeyboard();
+            resolve();
           }
-        );
+        });
       } catch (e) {
+        this.backupFileData.log.push(e);
         reject(e);
       }
     });
@@ -226,7 +228,7 @@ export default class FlashRaise {
    * Detects keyboard after firmware of bootloader
    */
   async detectKeyboard() {
-    const timeouts = 2000;
+    const timeouts = 2000; //time to wait for keyboard
     const findTimes = 2;
     const errorMessage =
       "The firmware update has failed during the flashing process. Please unplug and replug the keyboard and try again";
@@ -234,7 +236,7 @@ export default class FlashRaise {
     //wait until the bootloader serial port disconnects and the keyboard serial port reconnects
     const findKeyboard = async () => {
       return new Promise(async resolve => {
-        this.delay(timeouts);
+        await this.delay(timeouts);
         if (await this.foundDevices(Hardware.serial, "Keyboard detected")) {
           resolve(true);
         } else {
@@ -257,14 +259,19 @@ export default class FlashRaise {
    * @param {string} errorMessage - error message if error is.
    */
   async runnerFindKeyboard(findKeyboard, times, errorMessage) {
-    if (!times) throw new Error(errorMessage);
-    if (await findKeyboard()) {
-      // await this.restoreSettings();
-      console.log("find keyboard");
-    } else {
-      this.backupFileData.log.push(`Keyboard didn't detect ${times} time`);
-      await this.runnerFindKeyboard(findKeyboard, times - 1, errorMessage);
-    }
+    return new Promise(async (resolve, reject) => {
+      if (!times) reject(errorMessage);
+
+      if (await findKeyboard()) {
+        await this.restoreSettings();
+        resolve();
+      } else {
+        this.backupFileData.log.push(
+          `Keyboard didn't detect ${times === 2 ? 1 : 2} time`
+        );
+        await this.runnerFindKeyboard(findKeyboard, times - 1, errorMessage);
+      }
+    });
   }
 
   /**
@@ -280,28 +287,29 @@ export default class FlashRaise {
           this.currentPort.comName,
           this.currentPort.device.info
         );
-        if (focus.isOpen) {
-          const commands = Object.keys(this.backupFileData.backup);
-          let errorFlag = false;
-          for (let command of commands) {
-            let data = await focus.command(
-              command,
-              this.backupFileData.backup[command]
-            );
-            if (!data) {
-              this.backupFileData.log.push(
-                `Restore backup settings ${command}: Error: ${errorMessage}`
-              );
-              errorFlag = true;
+        await focus
+          .probe()
+          .then(async () => {
+            const commands = Object.keys(this.backupFileData.backup);
+            for (let command of commands) {
+              await focus
+                .request(
+                  command,
+                  command === "keymap.onlyCustom"
+                    ? +this.backupFileData.backup[command]
+                    : this.backupFileData.backup[command]
+                )
+                .then(() => {
+                  console.log(`${command} set to keyboard`);
+                });
             }
-          }
-          if (errorFlag) throw new Error(errorMessage);
-          this.backupFileData.log.push("Restoring all settings");
-          this.backupFileData.log.push("Firmware update OK");
-          resolve();
-        } else {
-          throw new Error("Port is not open after ");
-        }
+          })
+          .catch(e => {
+            throw new Error(errorMessage);
+          });
+        this.backupFileData.log.push("Restoring all settings");
+        this.backupFileData.log.push("Firmware update OK");
+        resolve();
       } catch (e) {
         this.backupFileData.log.push(`Restore settings: Error: ${e.message}`);
         reject(e);
