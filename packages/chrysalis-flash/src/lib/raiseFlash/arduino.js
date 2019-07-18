@@ -148,7 +148,7 @@ function ihex_decode(line) {
 }
 
 export var arduino = {
-  flash: function(port, file, finished) {
+  flash: function(file, finished) {
     var func_array = [];
 
     //CLEAR line
