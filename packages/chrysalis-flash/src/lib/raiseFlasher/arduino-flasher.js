@@ -27,10 +27,20 @@ const TYPE_ELA = 0x04;
 
 var focus = new Focus();
 
+/**
+ * Writes data to the given bootloader serial port.
+ * example of buffer
+ * [[Int8Array]]: Int8Array(4096) [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, -128, -127, -126, -125, -124, -123, -122, -121, -120, -119, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, …]
+ * [[Int16Array]]: Int16Array(2048) [12335, 12849, 13363, 13877, 14391, 14905, 15419, 15933, 27199, 27755, 28269, 28783, 29297, 29811, 30325, 30839, 31353, 31867, 32381, -32641, -32127, -31613, -31099, -30585, -119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 257, 257, 257, 257, 257, 513, 514, 514, 514, 770, 771, 771, 771, 1028, 1028, 1284, 1285, 1541, 1542, 1798, 1799, 2055, 2056, 2313, 2569, 2570, 2827, 3083, 3340, 3341, …]
+ * [[Int32Array]]: Int32Array(1024) [842084399, 909456435, 976828471, 1044200507, 1818978879, 1886350957, 1953722993, 2021095029, 2088467065, -2139128195, -2071756159, -2004384123, 65417, 0, 0, 0, 0, 0, 0, 16842752, 16843009, 16843009, 33620225, 33686018, 50463234, 50529027, 67371779, 84149252, 100992261, 117835270, 134678279, 151586824, 168430089, 202050315, 218959116, 252644878, 286330896, 320016914, 353702932, 404166166, …]
+ * [[Uint8Array]]: Uint8Array(4096) [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, …]
+ * @param {array} buffer - Arrays of data, that will write to bootloader
+ * @param {function} cb - An optional callback to run once all the functions have completed.
+ */
 function write_cb(buffer, cb) {
   var buf = new Uint8Array(buffer);
 
-  //the MAX transmission of a chrome serial write is 200 bytes, we therefore
+  //the MAX transmission of a serial write is 200 bytes, we therefore
   //marshall the given buffer into 200 byte chunks, and serialise their execution.
   var send = [];
 
@@ -62,15 +72,17 @@ function write_cb(buffer, cb) {
   });
 }
 
+/**
+ * Waits until all output data is transmitted to the serial port.
+ * @param {function} callback - An optional callback to run once all the functions have completed.
+ */
 async function read_cb(callback) {
   var time = 0;
 
   var timeout = await function() {
     setTimeout(function() {
       time += 50;
-
       console.log(time);
-      //we presume the content returned is ok, we essentially block until "something is returned"
       focus._port.drain(err => {
         if (err) {
           if (time > MAX_MS) {
@@ -86,6 +98,10 @@ async function read_cb(callback) {
   timeout();
 }
 
+/**
+ * Closes the connection to the bootloader.
+ * @param {function} cb - An optional callback to run once all the functions have completed.
+ */
 function disconnect_cb(cb) {
   focus.close();
   cb(null, "");
@@ -121,6 +137,11 @@ function str2ab(str) {
   return buf;
 }
 
+/**
+ * Decodes hex line to object.
+ * @param {string} line - One line from hex file.
+ * @returns {object} Щbject for use in firmware.
+ */
 function ihex_decode(line) {
   var offset = 0;
 
@@ -147,6 +168,9 @@ function ihex_decode(line) {
   };
 }
 
+/**
+ * Object arduino with flash method.
+ */
 export var arduino = {
   flash: function(file, finished) {
     var func_array = [];
