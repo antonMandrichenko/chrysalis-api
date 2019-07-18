@@ -47,20 +47,19 @@ const Raise_ANSI = {
       updateInstructions: `To update the firmware, the keyboard needs a special reset. When you see the light on the Neuron go off, press and hold the Escape key. The Neuron's light should start a blue pulsing pattern`
     },
     hu: {
-      updateInstructions: `not translate`
+      updateInstructions: `A firmware frissítéséhez a billentyűzethez speciális visszaállítás szükséges. Ha megjelenik a Neuron fénye, nyomja meg és tartsa lenyomva a Menekülési gombot. A Neuron fényének kék pulzáló mintázatot kell indítania`
     }
   },
 
-  flash: async (port, filename, device, flashRaise) => {
+  flash: async (_, filename, flashRaise) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await flashRaise.updateFirmware(port, filename, device);
-        flashRaise.saveBackupFile();
+        await flashRaise.updateFirmware(filename);
         resolve();
       } catch (e) {
-        flashRaise.saveBackupFile();
         reject(e);
       }
+      flashRaise.saveBackupFile();
     });
   },
 
@@ -93,19 +92,6 @@ const Raise_ANSIBootloader = {
   usb: {
     vendorId: 0x1209,
     productId: 0x2200
-  },
-
-  flash: async (port, filename, device, flashRaise) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        await flashRaise.updateFirmware(port, filename, device);
-        flashRaise.saveBackupFile();
-        resolve();
-      } catch (e) {
-        flashRaise.saveBackupFile();
-        reject(e);
-      }
-    });
   }
 };
 
