@@ -38,7 +38,7 @@ export default class FlashRaise {
       backup: {},
       log: ["Neuron detected"],
       serialNumber: device.serialNumber,
-      firmwareFile: null
+      firmwareFile: "File not selected"
     };
     this.delay = ms => new Promise(res => setTimeout(res, ms));
   }
