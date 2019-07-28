@@ -121,7 +121,9 @@ export default class FlashRaise {
   }
 
   /**
-   * Saves backup file in directory, what user selected. If user click "Close" button in save dialog, nothing will happen.
+   * Saves backup file in directory: 
+   * windows: C:\Users\<Your_User_Namer>\AppData\Local\Programs\chrysalis, 
+   * linux: in directory, where the app is located.
    */
   saveBackupFile() {
     fs.writeFile(
