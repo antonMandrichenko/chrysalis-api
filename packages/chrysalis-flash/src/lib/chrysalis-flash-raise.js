@@ -76,7 +76,7 @@ export default class FlashRaise {
         }
       }
     });
-    return isFindDevice ? true : false;
+    return isFindDevice;
   }
 
   /**
