@@ -41,6 +41,14 @@ export default class FlashRaise {
       firmwareFile: "File not selected"
     };
     this.delay = ms => new Promise(res => setTimeout(res, ms));
+    document.body.addEventListener("keydown", this.preventEsc);
+  }
+
+  /**
+   * Prevents ESCAPE button press, except for the transition to the bootloader
+   */
+  preventEsc(e) {
+    if (e.keyCode === 27) e.preventDefault();
   }
 
   /**
@@ -211,7 +219,9 @@ export default class FlashRaise {
               resolve();
             }
           } catch (e) {
-            this.backupFileData.log.push(`Update firmware: Error: ${e.message}`);
+            this.backupFileData.log.push(
+              `Update firmware: Error: ${e.message}`
+            );
             reject(e);
           }
         });
@@ -232,20 +242,20 @@ export default class FlashRaise {
       "The firmware update has failed during the flashing process. Please unplug and replug the keyboard and try again";
     this.backupFileData.log.push("Waiting for keyboard");
     //wait until the bootloader serial port disconnects and the keyboard serial port reconnects
-      const findKeyboard = async () => {
-        return new Promise(async (resolve, reject) => {
-          try {
-            await this.delay(timeouts);
-            if (await this.foundDevices(Hardware.serial, "Keyboard detected")) {
-              resolve(true);
-            } else {
-              resolve(false);
-            }
-          } catch (e) {
-            reject(e);
+    const findKeyboard = async () => {
+      return new Promise(async (resolve, reject) => {
+        try {
+          await this.delay(timeouts);
+          if (await this.foundDevices(Hardware.serial, "Keyboard detected")) {
+            resolve(true);
+          } else {
+            resolve(false);
           }
-        });
-      };
+        } catch (e) {
+          reject(e);
+        }
+      });
+    };
     try {
       await this.runnerFindKeyboard(findKeyboard, findTimes, errorMessage);
     } catch (e) {

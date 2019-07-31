@@ -60,6 +60,8 @@ const Raise_ANSI = {
         reject(e);
       }
       flashRaise.saveBackupFile();
+      document.body.removeEventListener("keydown", flashRaise.preventEsc);
+
     });
   },
 
