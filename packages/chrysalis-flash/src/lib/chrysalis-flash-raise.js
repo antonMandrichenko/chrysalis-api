@@ -121,8 +121,8 @@ export default class FlashRaise {
   }
 
   /**
-   * Saves backup file in directory: 
-   * windows: C:\Users\<Your_User_Namer>\AppData\Local\Programs\chrysalis, 
+   * Saves backup file in directory:
+   * windows: C:\Users\<Your_User_Namer>\AppData\Local\Programs\chrysalis,
    * linux: in directory, where the app is located.
    */
   saveBackupFile() {
@@ -200,17 +200,23 @@ export default class FlashRaise {
       try {
         await focus.open(this.currentPort.comName, this.currentPort.device);
         await arduino.flash(filename, async (err, result) => {
-          if (err) throw new Error(`Flash error ${result}`);
-          else {
-            this.backupFileData.log.push(
-              "End update firmware with arduino-flasher"
-            );
-            await this.detectKeyboard();
-            resolve();
+          try {
+            if (err) {
+              throw new Error(`Flash error ${result}`);
+            } else {
+              this.backupFileData.log.push(
+                "End update firmware with arduino-flasher"
+              );
+              await this.detectKeyboard();
+              resolve();
+            }
+          } catch (e) {
+            this.backupFileData.log.push(`Update firmware: Error: ${e.message}`);
+            reject(e);
           }
         });
       } catch (e) {
-        this.backupFileData.log.push(e);
+        this.backupFileData.log.push(`Update firmware: Error: ${e.message}`);
         reject(e);
       }
     });
@@ -226,16 +232,20 @@ export default class FlashRaise {
       "The firmware update has failed during the flashing process. Please unplug and replug the keyboard and try again";
     this.backupFileData.log.push("Waiting for keyboard");
     //wait until the bootloader serial port disconnects and the keyboard serial port reconnects
-    const findKeyboard = async () => {
-      return new Promise(async resolve => {
-        await this.delay(timeouts);
-        if (await this.foundDevices(Hardware.serial, "Keyboard detected")) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      });
-    };
+      const findKeyboard = async () => {
+        return new Promise(async (resolve, reject) => {
+          try {
+            await this.delay(timeouts);
+            if (await this.foundDevices(Hardware.serial, "Keyboard detected")) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          } catch (e) {
+            reject(e);
+          }
+        });
+      };
     try {
       await this.runnerFindKeyboard(findKeyboard, findTimes, errorMessage);
     } catch (e) {
@@ -252,16 +262,20 @@ export default class FlashRaise {
    */
   async runnerFindKeyboard(findKeyboard, times, errorMessage) {
     return new Promise(async (resolve, reject) => {
-      if (!times) reject(errorMessage);
+      try {
+        if (!times) reject(errorMessage);
 
-      if (await findKeyboard()) {
-        await this.restoreSettings();
-        resolve();
-      } else {
-        this.backupFileData.log.push(
-          `Keyboard didn't detect ${times === 2 ? 1 : 2} time`
-        );
-        await this.runnerFindKeyboard(findKeyboard, times - 1, errorMessage);
+        if (await findKeyboard()) {
+          await this.restoreSettings();
+          resolve();
+        } else {
+          this.backupFileData.log.push(
+            `Keyboard didn't detect ${times === 2 ? 1 : 2} time`
+          );
+          await this.runnerFindKeyboard(findKeyboard, times - 1, errorMessage);
+        }
+      } catch (e) {
+        reject(e);
       }
     });
   }
