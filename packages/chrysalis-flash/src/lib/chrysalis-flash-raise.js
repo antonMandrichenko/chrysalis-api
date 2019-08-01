@@ -148,7 +148,7 @@ export default class FlashRaise {
     let timeouts = {
       dtrToggle: 250, // Time to wait (ms) between toggling DTR
       waitingClose: 2750, // Time to wait for boot loader
-      bootLoaderUp: 2000 // Time to wait for the boot loader to come up
+      bootLoaderUp: 2500 // Time to wait for the boot loader to come up
     };
     return new Promise((resolve, reject) => {
       port.update({ baudRate: 1200 }, async () => {
