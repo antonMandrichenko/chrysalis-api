@@ -41,14 +41,7 @@ export default class FlashRaise {
       firmwareFile: "File not selected"
     };
     this.delay = ms => new Promise(res => setTimeout(res, ms));
-    document.body.addEventListener("keydown", this.preventEsc);
-  }
-
-  /**
-   * Prevents ESCAPE button press, except for the transition to the bootloader
-   */
-  preventEsc(e) {
-    if (e.keyCode === 27) e.preventDefault();
+    navigator.keyboard.lock(["Escape"]);
   }
 
   /**
@@ -155,7 +148,7 @@ export default class FlashRaise {
     let timeouts = {
       dtrToggle: 250, // Time to wait (ms) between toggling DTR
       waitingClose: 2750, // Time to wait for boot loader
-      bootLoaderUp: 3000 // Time to wait for the boot loader to come up
+      bootLoaderUp: 2000 // Time to wait for the boot loader to come up
     };
     return new Promise((resolve, reject) => {
       port.update({ baudRate: 1200 }, async () => {

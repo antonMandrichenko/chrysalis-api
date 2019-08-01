@@ -60,7 +60,7 @@ const Raise_ISO = {
         reject(e);
       }
       flashRaise.saveBackupFile();
-      document.body.removeEventListener("keydown", flashRaise.preventEsc);
+      navigator.keyboard.unlock();
     });
   },
 
