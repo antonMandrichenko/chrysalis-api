@@ -208,21 +208,21 @@ export default class FlashRaise {
       try {
         await focus.open(this.currentPort.comName, this.currentPort.device);
         await arduino.flash(filename, async (err, result) => {
-          try {
-            if (err) {
-              throw new Error(`Flash error ${result}`);
-            } else {
-              this.backupFileData.log.push(
-                "End update firmware with arduino-flasher"
-              );
+          if (err) {
+            throw new Error(`Flash error ${result}`);
+          } else {
+            this.backupFileData.log.push(
+              "End update firmware with arduino-flasher"
+            );
+            try {
               await this.detectKeyboard();
               resolve();
+            } catch (e) {
+              this.backupFileData.log.push(
+                `Update firmware: Error: ${e.message}`
+              );
+              reject(e);
             }
-          } catch (e) {
-            this.backupFileData.log.push(
-              `Update firmware: Error: ${e.message}`
-            );
-            reject(e);
           }
         });
       } catch (e) {
