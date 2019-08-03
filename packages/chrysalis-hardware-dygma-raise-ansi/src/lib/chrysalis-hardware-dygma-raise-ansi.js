@@ -60,8 +60,6 @@ const Raise_ANSI = {
         reject(e);
       }
       flashRaise.saveBackupFile();
-      navigator.keyboard.unlock();
-
     });
   },
 

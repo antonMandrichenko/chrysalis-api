@@ -60,7 +60,6 @@ const Raise_ISO = {
         reject(e);
       }
       flashRaise.saveBackupFile();
-      navigator.keyboard.unlock();
     });
   },
 

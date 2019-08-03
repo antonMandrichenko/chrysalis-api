@@ -41,7 +41,6 @@ export default class FlashRaise {
       firmwareFile: "File not selected"
     };
     this.delay = ms => new Promise(res => setTimeout(res, ms));
-    navigator.keyboard.lock(["Escape"]);
   }
 
   /**
