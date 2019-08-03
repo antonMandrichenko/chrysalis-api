@@ -265,7 +265,7 @@ export default class FlashRaise {
   async runnerFindKeyboard(findKeyboard, times, errorMessage) {
     return new Promise(async (resolve, reject) => {
       try {
-        if (!times) reject(errorMessage);
+        if (!times) reject(new Error(errorMessage));
 
         if (await findKeyboard()) {
           await this.restoreSettings();
