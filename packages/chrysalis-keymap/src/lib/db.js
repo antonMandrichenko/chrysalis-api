@@ -49,7 +49,6 @@ import MiscellaneousTable from "./db/miscellaneous"
 
 import { OneShotModifierTable, OneShotLayerTable } from "./db/oneshot"
 import { DualUseModifierTables, DualUseLayerTables } from "./db/dualuse"
-import TapDanceTable from "./db/tapdance"
 import LeaderTable from "./db/leader"
 import StenoTable from "./db/steno"
 import SpaceCadetTable from "./db/spacecadet"
@@ -78,7 +77,6 @@ const baseKeyCodeTable = [
 
     OneShotModifierTable,
     OneShotLayerTable,
-    TapDanceTable,
     LeaderTable,
     StenoTable,
     SpaceCadetTable,
