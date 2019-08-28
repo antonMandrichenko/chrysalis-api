@@ -30,7 +30,6 @@ import NavigationTable, {
     ModifiedNavigationTables
 } from "./db/navigation"
 import LEDEffectsTable from "./db/ledeffects"
-import MacrosTable from "./db/macros"
 import NumpadTable, {
     ModifiedNumpadTables
 } from "./db/numpad"
@@ -68,7 +67,6 @@ const baseKeyCodeTable = [
     LockLayerTable,
 
     LEDEffectsTable,
-    MacrosTable,
     MediaControlTable,
     MouseMovementTable,
     MouseButtonTable,
