@@ -30,7 +30,6 @@ import NavigationTable, {
     ModifiedNavigationTables
 } from "./db/navigation"
 import LEDEffectsTable from "./db/ledeffects"
-import MacrosTable from "./db/macros"
 import NumpadTable, {
     ModifiedNumpadTables
 } from "./db/numpad"
@@ -49,7 +48,6 @@ import MiscellaneousTable from "./db/miscellaneous"
 
 import { OneShotModifierTable, OneShotLayerTable } from "./db/oneshot"
 import { DualUseModifierTables, DualUseLayerTables } from "./db/dualuse"
-import TapDanceTable from "./db/tapdance"
 import LeaderTable from "./db/leader"
 import StenoTable from "./db/steno"
 import SpaceCadetTable from "./db/spacecadet"
@@ -69,7 +67,6 @@ const baseKeyCodeTable = [
     LockLayerTable,
 
     LEDEffectsTable,
-    MacrosTable,
     MediaControlTable,
     MouseMovementTable,
     MouseButtonTable,
@@ -78,7 +75,6 @@ const baseKeyCodeTable = [
 
     OneShotModifierTable,
     OneShotLayerTable,
-    TapDanceTable,
     LeaderTable,
     StenoTable,
     SpaceCadetTable,
