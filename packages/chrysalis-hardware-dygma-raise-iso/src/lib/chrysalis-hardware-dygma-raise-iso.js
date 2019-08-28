@@ -42,15 +42,34 @@ const Raise_ISO = {
     keymap: KeymapISO
   },
 
-  flash: async () => {
-    console.log("Not implemented yet.");
+  instructions: {
+    en: {
+      updateInstructions: `To update the firmware, the keyboard needs a special reset. When you see the light on the Neuron go off, press and hold the Escape key. The Neuron's light should start a blue pulsing pattern`
+    },
+    hu: {
+      updateInstructions: `A firmware frissítéséhez a billentyűzethez speciális visszaállítás szükséges. Ha megjelenik a Neuron fénye, nyomja meg és tartsa lenyomva a Menekülési gombot. A Neuron fényének kék pulzáló mintázatot kell indítania`
+    }
+  },
+
+  flash: async (_, filename, flashRaise) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await flashRaise.updateFirmware(filename);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+      flashRaise.saveBackupFile();
+    });
   },
 
   isDeviceSupported: async port => {
     let focus = new Focus();
     let layout = localStorage.getItem(port.serialNumber);
     if (!layout) {
-      await focus.open(port.comName, port.device);
+      focus._port && focus._port.path === port.comName
+        ? await focus.open(focus._port, port.device)
+        : await focus.open(port.comName, port.device);
       layout = await focus.command("hardware.layout");
       focus.close();
       localStorage.setItem(port.serialNumber, layout);
@@ -59,4 +78,23 @@ const Raise_ISO = {
   }
 };
 
-export { Raise_ISO };
+const Raise_ISOBootloader = {
+  info: {
+    vendor: "Dygma",
+    product: "Raise",
+    keyboardType: "ISO",
+    displayName: "Dygma Raise ISO",
+    urls: [
+      {
+        name: "Homepage",
+        url: "https://www.dygma.com/raise/"
+      }
+    ]
+  },
+  usb: {
+    vendorId: 0x1209,
+    productId: 0x2200
+  }
+};
+
+export { Raise_ISO, Raise_ISOBootloader };

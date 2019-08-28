@@ -33,7 +33,9 @@ async function Avr109Bootloader(board, port, filename) {
         console.log(error)
         try {
           avrgirl.connection.serialPort.close()
-        } catch (_) { /* ignore the error */ }
+        } catch (_) {
+          /* ignore the error */
+        }
         reject(error)
       } else {
         resolve()
