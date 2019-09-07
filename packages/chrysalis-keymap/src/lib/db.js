@@ -96,7 +96,7 @@ observer.observe(selectLanguage, {
   subtree: true
 });
 
-// Callback when DOM was updated
+// Callback function when DOM was updated
 function checkLanguage() {
   baseKeyCodeTable = withLanguageLayout(
     baseKeyCodeTable,
