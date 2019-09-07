@@ -79,9 +79,30 @@ let baseKeyCodeTable = [
 
   BlankTable
 ];
+const languagesDB = {
+  english: baseKeyCodeTable,
+  spanish: spanish
+};
 
-/*const language = getLocalStorage("language") || "eng";*/
-baseKeyCodeTable = withLanguageLayout(baseKeyCodeTable, spanish);
+localStorage.setItem("language", "spanish");
+let language = localStorage.getItem("language") || "english";
+baseKeyCodeTable = withLanguageLayout(baseKeyCodeTable, languagesDB[language]);
+
+//Created an object that keeps track of DOM updates
+let observer = new MutationObserver(checkLanguage);
+const selectLanguage = document.body;
+observer.observe(selectLanguage, {
+  childList: true,
+  subtree: true
+});
+
+// Callback when DOM was updated
+function checkLanguage() {
+  baseKeyCodeTable = withLanguageLayout(
+    baseKeyCodeTable,
+    languagesDB[language]
+  );
+}
 
 const keyCodeTable = baseKeyCodeTable
   .concat(ModifiedLetterTables)
@@ -151,4 +172,4 @@ class KeymapDB {
   }
 }
 
-export { KeymapDB as default, baseKeyCodeTable, keyCodeTable };
+export { KeymapDB as default, baseKeyCodeTable, keyCodeTable, languagesDB };
