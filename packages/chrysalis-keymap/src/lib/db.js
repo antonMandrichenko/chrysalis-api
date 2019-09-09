@@ -84,43 +84,31 @@ const languagesDB = {
   spanish: spanish
 };
 
-localStorage.setItem("language", "spanish");
+/*localStorage.setItem("language", "spanish");*/
 let language = localStorage.getItem("language") || "english";
 baseKeyCodeTable = withLanguageLayout(baseKeyCodeTable, languagesDB[language]);
-
-//Created an object that keeps track of DOM updates
-let observer = new MutationObserver(checkLanguage);
-const selectLanguage = document.body;
-observer.observe(selectLanguage, {
-  childList: true,
-  subtree: true
-});
-
-// Callback function when DOM was updated
-function checkLanguage() {
-  baseKeyCodeTable = withLanguageLayout(
-    baseKeyCodeTable,
-    languagesDB[language]
-  );
-}
-
-const keyCodeTable = baseKeyCodeTable
-  .concat(ModifiedLetterTables)
-  .concat(ModifiedDigitTables)
-  .concat(ModifiedPunctuationTables)
-  .concat(ModifiedSpacingTables)
-  .concat(ModifiedNavigationTables)
-  .concat(ModifiedModifiersTables)
-  .concat(HyperMehTable)
-  .concat(ModifiedFunctionKeyTables)
-  .concat(ModifiedNumpadTables)
-  .concat(DualUseModifierTables)
-  .concat(DualUseLayerTables);
 
 class KeymapDB {
   constructor() {
     this.keymapCodeTable = [];
-
+    this.language = localStorage.getItem("language") || "english";
+    baseKeyCodeTable = withLanguageLayout(
+      baseKeyCodeTable,
+      languagesDB[language]
+    );
+    const keyCodeTable = baseKeyCodeTable
+      .concat(ModifiedLetterTables)
+      .concat(ModifiedDigitTables)
+      .concat(ModifiedPunctuationTables)
+      .concat(ModifiedSpacingTables)
+      .concat(ModifiedNavigationTables)
+      .concat(ModifiedModifiersTables)
+      .concat(HyperMehTable)
+      .concat(ModifiedFunctionKeyTables)
+      .concat(ModifiedNumpadTables)
+      .concat(DualUseModifierTables)
+      .concat(DualUseLayerTables);
+    console.log('db update');
     for (let group of keyCodeTable) {
       for (let key of group.keys) {
         let value;
@@ -172,4 +160,4 @@ class KeymapDB {
   }
 }
 
-export { KeymapDB as default, baseKeyCodeTable, keyCodeTable, languagesDB };
+export { KeymapDB as default, baseKeyCodeTable, languagesDB };

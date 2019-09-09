@@ -28,7 +28,7 @@ class Keymap {
             this.legacyInterface = false
         }
         instance.setLayerSize(opts)
-
+        console.log('Update Keymap');
         return instance
     }
 
