@@ -84,9 +84,9 @@ const languagesDB = {
   spanish: spanish
 };
 
-/*localStorage.setItem("language", "spanish");*/
+/*localStorage.setItem("language", "spanish");
 let language = localStorage.getItem("language") || "english";
-baseKeyCodeTable = withLanguageLayout(baseKeyCodeTable, languagesDB[language]);
+baseKeyCodeTable = withLanguageLayout(baseKeyCodeTable, languagesDB[language]);*/
 
 class KeymapDB {
   constructor() {
@@ -94,7 +94,7 @@ class KeymapDB {
     this.language = localStorage.getItem("language") || "english";
     baseKeyCodeTable = withLanguageLayout(
       baseKeyCodeTable,
-      languagesDB[language]
+      languagesDB[this.language]
     );
     const keyCodeTable = baseKeyCodeTable
       .concat(ModifiedLetterTables)
