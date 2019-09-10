@@ -29,7 +29,6 @@ class Focus {
             this.timeout = 5000
             this.debug = false
         }
-        console.log('New Focus');
         return instance
     }
 
