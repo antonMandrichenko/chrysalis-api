@@ -45,10 +45,17 @@ import TapDanceTable from "./db/tapdance";
 import LeaderTable from "./db/leader";
 import StenoTable from "./db/steno";
 import SpaceCadetTable from "./db/spacecadet";
-import spanish from "./languages/spanish/spanish";
-import withLanguageLayout from "./languages/withLanguageLayout";
 
-let baseKeyCodeTable = [
+// Spanish - is an Array of objects of values that have to be modified
+import spanish from "./languages/spanish/spanish";
+
+// newLanguageLayout - is a function that modify language layout
+import newLanguageLayout from "./languages/newLanguageLayout";
+
+//Rename baseKeyCodeTable to defaultBaseKeyCodeTable - 
+//It is our original table, on the basis of which we will  modify language layout
+//Default language - english
+const defaultBaseKeyCodeTable = [
   LetterTable,
   DigitTable,
   PunctuationTable,
@@ -79,23 +86,29 @@ let baseKeyCodeTable = [
 
   BlankTable
 ];
-const languagesDB = {
-  english: baseKeyCodeTable,
-  spanish: spanish
-};
 
-/*localStorage.setItem("language", "spanish");
-let language = localStorage.getItem("language") || "english";
-baseKeyCodeTable = withLanguageLayout(baseKeyCodeTable, languagesDB[language]);*/
+//A copy of defaultBaseKeyCodeTable to be modified, depending on the language selected
+let baseKeyCodeTable = defaultBaseKeyCodeTable.slice();
+
+// DataBase of language {"key- string": [value - array]}
+const languagesDB = {
+  english: defaultBaseKeyCodeTable,
+  spanish: spanish
+}; 
 
 class KeymapDB {
   constructor() {
     this.keymapCodeTable = [];
+    //create local variable that get Language from the local storage
     this.language = localStorage.getItem("language") || "english";
-    baseKeyCodeTable = withLanguageLayout(
-      baseKeyCodeTable,
+
+    //Modify our baseKeyCodeTable, depending on the language selected through function newLanguageLayout
+    baseKeyCodeTable = newLanguageLayout(
+      defaultBaseKeyCodeTable,
       languagesDB[this.language]
     );
+
+    //We have moved keyCode Table to modify it, when we change language and create new KeymapDB
     const keyCodeTable = baseKeyCodeTable
       .concat(ModifiedLetterTables)
       .concat(ModifiedDigitTables)
@@ -108,7 +121,7 @@ class KeymapDB {
       .concat(ModifiedNumpadTables)
       .concat(DualUseModifierTables)
       .concat(DualUseLayerTables);
-    console.log('db update');
+
     for (let group of keyCodeTable) {
       for (let key of group.keys) {
         let value;
