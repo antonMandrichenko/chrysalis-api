@@ -54,7 +54,13 @@ import LeaderTable from "./db/leader"
 import StenoTable from "./db/steno"
 import SpaceCadetTable from "./db/spacecadet"
 
-const baseKeyCodeTable = [
+// Spanish - is an Array of objects of values that have to be modified
+import spanish from "./languages/spanish/spanish";
+
+// newLanguageLayout - is a function that modify language layout
+import newLanguageLayout from "./languages/newLanguageLayout";
+
+const defaultBaseKeyCodeTable = [
     LetterTable,
     DigitTable,
     PunctuationTable,
@@ -85,7 +91,7 @@ const baseKeyCodeTable = [
 
     BlankTable
 ]
-const keyCodeTable = baseKeyCodeTable
+const defaultKeyCodeTable = defaultBaseKeyCodeTable
     .concat(ModifiedLetterTables)
     .concat(ModifiedDigitTables)
     .concat(ModifiedPunctuationTables)
@@ -98,9 +104,32 @@ const keyCodeTable = baseKeyCodeTable
     .concat(DualUseModifierTables)
     .concat(DualUseLayerTables)
 
+// DataBase of languages 
+const languagesDB = {
+    english: "english",
+    spanish
+  }; 
+
+let baseKeyCodeTable, keyCodeTable;
+
 class KeymapDB {
     constructor() {
         this.keymapCodeTable = []
+        //create variable that get language from the local storage
+        this.language = localStorage.getItem("language") || "english";
+
+        //Modify our baseKeyCodeTable, depending on the language selected through function newLanguageLayout
+        baseKeyCodeTable = newLanguageLayout(
+            defaultBaseKeyCodeTable,
+            this.language,
+            languagesDB[this.language]
+        );
+        //Modify our baseKeyCodeTable, depending on the language selected through function newLanguageLayout
+        keyCodeTable = newLanguageLayout(
+            defaultKeyCodeTable,
+            this.language,
+            languagesDB[this.language]
+        );
 
         for (let group of keyCodeTable) {
             for (let key of group.keys) {
@@ -153,4 +182,4 @@ class KeymapDB {
     }
 }
 
-export { KeymapDB as default, baseKeyCodeTable, keyCodeTable }
+export { KeymapDB as default, baseKeyCodeTable, keyCodeTable, languagesDB }
