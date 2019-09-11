@@ -1,5 +1,5 @@
 /* chrysalis-keymap -- Chrysalis keymap library
- * Copyright (C) 2018  Keyboardio, Inc.
+ * Copyright (C) 2019  Keyboardio, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -14,22 +14,23 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 /**
-   * Is a JavaScript function that change language layout
-   * @param {Array} baseKeyCodeTable Default language layout
-   * @param {Array} currentLayer Array of objects of values that have to be modified
-   */
-
-
-function newLanguageLayout(baseKeyCodeTable, language = "english") {
+ * Is a JavaScript function that changes language layout
+ * @param {Array} baseKeyCodeTable Default language layout (english)
+ * @param {string} language Select language
+ * @param {newKeyCodeTable} newKeyCodeTable Key codes for new language
+ */
+function newLanguageLayout(
+  baseKeyCodeTable,
+  language = "english",
+  newKeyCodeTable
+) {
   if (language === "english") {
     return baseKeyCodeTable;
   } else {
     return baseKeyCodeTable.map(groupe => {
       const newArray = groupe.keys.reduce((acc, key) => {
-        const newKey = language.find(item => item.code === key.code);
+        const newKey = newKeyCodeTable.find(item => item.code === key.code);
         if (newKey) {
           acc.push(newKey);
         } else {
