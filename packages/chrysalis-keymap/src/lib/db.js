@@ -125,11 +125,11 @@ class KeymapDB {
             languagesDB[this.language]
         );
         //Modify our baseKeyCodeTable, depending on the language selected through function newLanguageLayout
-        keyCodeTable = newLanguageLayout(
-            defaultKeyCodeTable,
+        keyCodeTable = baseKeyCodeTable.concat(newLanguageLayout(
+            defaultKeyCodeTable.slice(defaultBaseKeyCodeTable.length),
             this.language,
             languagesDB[this.language]
-        );
+        ));
 
         for (let group of keyCodeTable) {
             for (let key of group.keys) {
