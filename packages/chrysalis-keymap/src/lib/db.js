@@ -108,7 +108,9 @@ const defaultKeyCodeTable = defaultBaseKeyCodeTable
 const languagesDB = {
     english: "english",
     spanish
-  }; 
+  };
+ 
+const map = new Map(); 
 
 let baseKeyCodeTable, keyCodeTable;
 
@@ -179,6 +181,23 @@ class KeymapDB {
 
     serialize(key) {
         return key.keyCode
+    }
+
+    static updateBaseKeyCode() {
+        this.language = localStorage.getItem("language") || "english";
+        if(map.has(this.language)){
+            console.log('get from cach');
+            return map.get(this.language);
+        } else {
+            const newBase = newLanguageLayout(
+                defaultBaseKeyCodeTable,
+                this.language,
+                languagesDB[this.language]
+            );
+            map.set(this.language, newBase);
+            return newBase;
+        }
+
     }
 }
 
