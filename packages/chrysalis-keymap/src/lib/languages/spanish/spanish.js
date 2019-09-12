@@ -41,19 +41,22 @@ const spanish = [
     code: 48,
     labels: {
       primary: "+"
-    }
+    },
+    groupName: "Numpad"
   },
   {
     code: 49,
     labels: {
       primary: "ç"
-    }
+    },
+    groupName: "Letters"
   },
   {
     code: 51,
     labels: {
       primary: "ñ"
-    }
+    },
+    groupName: "Letters"
   },
   {
     code: 52,
@@ -71,21 +74,25 @@ const spanish = [
     code: 2079,
     labels: {
       primary: '"'
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
     code: 2080,
     labels: {
       primary: "·"
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
     code: 2083,
     labels: {
       primary: "&"
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
+    groupName: "Shifted Digits",
     code: 2084,
     labels: {
       primary: "/"
@@ -95,31 +102,36 @@ const spanish = [
     code: 2085,
     labels: {
       primary: "("
-    }
+    },
+    groupName: "Shifted Digits",
   },
   {
     code: 2086,
     labels: {
       primary: ")"
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
     code: 2087,
     labels: {
       primary: "="
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
     code: 2093,
     labels: {
       primary: "?"
-    }
+    },
+    groupName: "Shifted Digits"
   },
-  {
+  { 
     code: 2094,
     labels: {
       primary: "¿"
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
     code: 2095,
@@ -137,13 +149,15 @@ const spanish = [
     code: 2097,
     labels: {
       primary: "Ç"
-    }
+    },
+    groupName: "Letters"
   },
   {
     code: 2099,
     labels: {
       primary: "Ñ"
-    }
+    },
+    groupName: "Letters"
   },
   {
     code: 2100,
@@ -197,7 +211,8 @@ const spanish = [
     code: 802,
     labels: {
       primary: "€"
-    }
+    },
+    groupName: "Shifted Digits"
   },
   {
     code: 803,
