@@ -15,9 +15,9 @@
  */
 
 /**
-   * Is an Array of objects of values that have to be modified.
-   */
-  
+ * Is an Array of objects of values that have to be modified.
+ */
+
 const spanish = [
   {
     code: 45,
@@ -47,14 +47,14 @@ const spanish = [
   {
     code: 49,
     labels: {
-      primary: "ç"
+      primary: "Ç"
     },
     groupName: "Letters"
   },
   {
     code: 51,
     labels: {
-      primary: "ñ"
+      primary: "Ñ"
     },
     groupName: "Letters"
   },
@@ -68,6 +68,12 @@ const spanish = [
     code: 56,
     labels: {
       primary: "-"
+    }
+  },
+  {
+    code: 100,
+    labels: {
+      primary: "<"
     }
   },
   {
@@ -103,7 +109,7 @@ const spanish = [
     labels: {
       primary: "("
     },
-    groupName: "Shifted Digits",
+    groupName: "Shifted Digits"
   },
   {
     code: 2086,
@@ -126,7 +132,7 @@ const spanish = [
     },
     groupName: "Shifted Digits"
   },
-  { 
+  {
     code: 2094,
     labels: {
       primary: "¿"
@@ -148,14 +154,14 @@ const spanish = [
   {
     code: 2097,
     labels: {
-      primary: "Ç"
+      primary: "S+Ç"
     },
     groupName: "Letters"
   },
   {
     code: 2099,
     labels: {
-      primary: "Ñ"
+      primary: "S+Ñ"
     },
     groupName: "Letters"
   },
