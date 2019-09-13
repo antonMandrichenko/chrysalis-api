@@ -120,12 +120,9 @@ class KeymapDB {
         //create variable that get language from the local storage
         this.language = localStorage.getItem("language") || "english";
 
-        //Modify our baseKeyCodeTable, depending on the language selected through function newLanguageLayout
-        baseKeyCodeTable = newLanguageLayout(
-            defaultBaseKeyCodeTable,
-            this.language,
-            languagesDB[this.language]
-        );
+        //Modify our baseKeyCodeTable, depending on the language selected by the static methods and by inside function newLanguageLayout
+        baseKeyCodeTable = KeymapDB.updateBaseKeyCode();
+
         //Modify our baseKeyCodeTable, depending on the language selected through function newLanguageLayout
         keyCodeTable = baseKeyCodeTable.concat(newLanguageLayout(
             defaultKeyCodeTable.slice(defaultBaseKeyCodeTable.length),
