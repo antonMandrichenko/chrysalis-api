@@ -55,7 +55,9 @@ const led_map = [
   [ 7,  8,  9, 10, 11, 12, XX, XX,  14+LEDS_LEFT_KEYS, 13+LEDS_LEFT_KEYS, 12+LEDS_LEFT_KEYS, 11+LEDS_LEFT_KEYS, 10+LEDS_LEFT_KEYS, 9+LEDS_LEFT_KEYS, 8+LEDS_LEFT_KEYS, 7 +LEDS_LEFT_KEYS],
   [13, 14, 15, 16, 17, 18, XX, 29,  XX, 21+LEDS_LEFT_KEYS, 20+LEDS_LEFT_KEYS, 19+LEDS_LEFT_KEYS, 18+LEDS_LEFT_KEYS, 17+LEDS_LEFT_KEYS, 16+LEDS_LEFT_KEYS, 15 +LEDS_LEFT_KEYS],
   [19, 20, 21, 22, 23, 24, 25, XX,  XX, XX, 27+LEDS_LEFT_KEYS, 26+LEDS_LEFT_KEYS, 25+LEDS_LEFT_KEYS, 24+LEDS_LEFT_KEYS, 23+LEDS_LEFT_KEYS, 22 +LEDS_LEFT_KEYS],
-  [26, 27, 28, 29, 30, XX, 31, 32,  35+LEDS_LEFT_KEYS, 34+LEDS_LEFT_KEYS, 33+LEDS_LEFT_KEYS, 32+LEDS_LEFT_KEYS, 31+LEDS_LEFT_KEYS, 30+LEDS_LEFT_KEYS, 29+LEDS_LEFT_KEYS, 28+LEDS_LEFT_KEYS]];
+  [26, 27, 28, 29, 30, XX, 31, 32,  35+LEDS_LEFT_KEYS, 34+LEDS_LEFT_KEYS, 33+LEDS_LEFT_KEYS, 32+LEDS_LEFT_KEYS, 31+LEDS_LEFT_KEYS, 30+LEDS_LEFT_KEYS, 29+LEDS_LEFT_KEYS, 28+LEDS_LEFT_KEYS],
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+];
 
 class KeymapANSI extends React.Component {
   render() {
@@ -1039,13 +1041,27 @@ class KeymapANSI extends React.Component {
         </g>
         <g id="Areas">
           <polygon
-            style={st2}
+            id="R5C0_undegrow"
+            onClick={onClick}
+            fill={getColor(5, 0)}
+            stroke={stroke(0, 0)}
+            strokeWidth={getStrokeWidth(0, 0)}
+            data-led-index={getLEDIndex(0, 0)}
+            data-key-index={keyIndex(0, 0)}
+            data-layer={layer}
             points="479.4,365.6 472.9,365.6 472.9,392.2 467.3,392.2 461.9,392.2 456.7,392.2 451.4,392.2 446.5,392.2 
 		442.8,392.2 439.3,392.2 435.6,392.2 432.2,392.2 429.3,392.2 429.3,404 432.2,404 435.6,404 438.9,404 442.4,404 446.5,403.6 
 		450,403.6 455,403.6 459.9,403.6 465.3,403.6 469.8,403.6 474.9,403.6 479.4,403.6 	"
           />
           <polygon
-            style={st2}
+            id="R5C1_undegrow"
+            onClick={onClick}
+            fill={getColor(5, 1)}
+            stroke={stroke(0, 0)}
+            strokeWidth={getStrokeWidth(0, 0)}
+            data-led-index={getLEDIndex(0, 0)}
+            data-key-index={keyIndex(0, 0)}
+            data-layer={layer}
             points="402.4,448.2 391.5,445.4 392.5,440.8 393.5,435.9 394.5,431.6 395.6,427.1 396.2,423.3 396.9,420 
 		397.9,416.9 398.6,413.8 398.9,410.9 399.6,408.1 400.3,406.4 400.9,404.3 401.8,402.6 402.8,401 403.8,399.3 405.1,397.9 
 		406.5,396.5 408.2,395.5 409.8,394.4 411.4,393.8 413.4,393.1 415,392.4 417.1,392.2 419.1,392.2 420.1,392.2 420.9,392.2 
@@ -1055,7 +1071,14 @@ class KeymapANSI extends React.Component {
 		404.5,440.1 403.5,444 	"
           />
           <polygon
-            style={st2}
+            id="R5C2_undegrow"
+            onClick={onClick}
+            fill={getColor(5, 2)}
+            stroke={stroke(0, 0)}
+            strokeWidth={getStrokeWidth(0, 0)}
+            data-led-index={getLEDIndex(0, 0)}
+            data-key-index={keyIndex(0, 0)}
+            data-layer={layer}
             points="319.2,633 319.2,621.4 322.9,621.4 326.1,621.4 329.5,621.4 332.9,621.4 335.7,621.4 338.4,621.4 
 		340.8,621.4 341.1,621.4 341.4,621.4 341.8,621 343.1,621 344,620.7 345.3,620.3 347.3,619.8 349,619.1 350.3,617.7 351.7,616.7 
 		352.9,615.3 353.9,613.9 354.5,612.6 355.2,610.8 355.9,608.9 356.2,606.5 356.9,604.1 357.6,601 358.2,598.4 358.9,594.9 
@@ -1065,7 +1088,14 @@ class KeymapANSI extends React.Component {
 		335.4,633 331.9,633 327.8,633 323.6,633 	"
           />
           <polygon
-            style={st2}
+             id="R5C3_undegrow"
+             onClick={onClick}
+             fill={getColor(5, 3)}
+             stroke={stroke(0, 0)}
+             strokeWidth={getStrokeWidth(0, 0)}
+             data-led-index={getLEDIndex(0, 0)}
+             data-key-index={keyIndex(0, 0)}
+             data-layer={layer}
             points="362.4,578.3 363.4,573.2 364.8,567.5 366.1,561.9 367.5,556.2 368.8,550.2 370.5,542.2 372.2,534.4 
 		373.7,526.3 375.7,518.2 377.4,510.1 388.3,512.7 386,522.9 383.6,532.7 381.8,542.6 379.4,552.4 378.1,558.6 376.7,564.3 
 		375.4,570.2 374,575.6 373,581.3 	"
@@ -1400,958 +1430,958 @@ class KeymapANSI extends React.Component {
             points="915.2,14 909.7,14 904,14 898.4,14 892.4,14 886.5,14 879.6,14 872.9,14 865.6,14 858.4,14 851.2,14 
 		843.6,14 843.6,1.8 915.2,1.4 	"
           />
-          <g id="labels">
+          <g id="labels" pointerEvents="none">
             <text
               id="R4C9_t_primary"
+              fill={getContrastText(getColor(4, 9))}
               transform="matrix(1 0 0 1 569.925 347.018)"
-              style={(st4, st5, st7)}
             >
-              {(4, 9)}
+              {getLabel(4, 9).label}
             </text>
             <text
               id="R4C9_t_extra"
+              fill={getContrastText(getColor(4, 9))}
               transform="matrix(1 0 0 1 569.925 332.999)"
-              style={(st4, st5, st7)}
             >
-              {(4, 9)}
+              {getLabel(4, 9).extraLabel}
             </text>
             <text
               id="R4C8_t_primary"
+              fill={getContrastText(getColor(4, 8))}
               transform="matrix(1 0 0 1 511.613 347.018)"
-              style={(st4, st5, st7)}
             >
-              {(4, 8)}
+             {getLabel(4, 8).label}
             </text>
             <text
               id="R4C8_t_extra"
+              fill={getContrastText(getColor(4, 8))}
               transform="matrix(1 0 0 1 511.613 332.999)"
-              style={(st4, st5, st7)}
             >
-              {(4, 8)}
+              {getLabel(4, 8).extraLabel}
             </text>
             <text
               id="R4C7_t_primary"
               transform="matrix(1 0 0 1 416.585 347.018)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 7))}
             >
-              {(4, 7)}
+              {getLabel(4, 7).label}
             </text>
             <text
               id="R4C7_t_extra"
               transform="matrix(1 0 0 1 416.585 332.999)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 7))}
             >
-              {(4, 7)}
+              {getLabel(4, 7).extraLabel}
             </text>
             <text
               id="R4C6_t_primary"
               transform="matrix(1 0 0 1 342.272 347.018)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 6))}
             >
-              {(4, 6)}
+              {getLabel(4, 6).label}
             </text>
             <text
               id="R4C6_t_extra"
               transform="matrix(1 0 0 1 342.272 332.999)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 6))}
             >
-              {(4, 6)}
+              {getLabel(4, 6).extraLabel}
             </text>
             <text
               id="R4C15_t_primary"
               transform="matrix(1 0 0 1 908.553 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 15))}
             >
-              {(4, 15)}
+              {getLabel(4, 15).label}
             </text>
             <text
               id="R4C15_t_extra"
               transform="matrix(1 0 0 1 908.553 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 15))}
             >
-              {(4, 15)}
+              {getLabel(4, 15).extraLabel}
             </text>
             <text
               id="R4C14_t_primary"
               transform="matrix(1 0 0 1 848.523 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 14))}
             >
-              {(4, 14)}
+              {getLabel(4, 14).label}
             </text>
             <text
               id="R4C14_t_extra"
               transform="matrix(1 0 0 1 848.523 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 14))}
             >
-              {(4, 14)}
+              {getLabel(4, 14).extraLabel}
             </text>
             <text
               id="R4C13_t_primary"
               transform="matrix(1 0 0 1 773.493 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 13))}
             >
-              {(4, 13)}
+               {getLabel(4, 13).label}
             </text>
             <text
               id="R4C13_t_extra"
               transform="matrix(1 0 0 1 773.493 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 13))}
             >
-              {(4, 13)}
+              {getLabel(4, 13).extraLabel}
             </text>
             <text
               id="R4C12_t_primary"
               transform="matrix(1 0 0 1 698.473 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 12))}
             >
-              {(4, 12)}
+              {getLabel(4, 12).label}
             </text>
             <text
               id="R4C12_t_extra"
               transform="matrix(1 0 0 1 698.473 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 12))}
             >
-              {(4, 12)}
+              {getLabel(4, 12).extraLabel}
             </text>
             <text
               id="R4C11_t_primary"
               transform="matrix(1 0 0 1 615.543 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 11))}
             >
-              {(4, 11)}
+              {getLabel(4, 11).label}
             </text>
             <text
               id="R4C11_t_extra"
               transform="matrix(1 0 0 1 615.543 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 11))}
             >
-              {(4, 11)}
+              {getLabel(4, 11).extraLabel}
             </text>
             <text
               id="R4C10_t_primary"
               transform="matrix(1 0 0 1 513.613 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 10))}
             >
-              {(4, 10)}
+               {getLabel(4, 10).label}
             </text>
             <text
               id="R4C10_t_extra"
               transform="matrix(1 0 0 1 513.613 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 10))}
             >
-              {(4, 10)}
+              {getLabel(4, 10).extraLabel}
             </text>
             <text
               id="R4C4_t_primary"
               transform="matrix(1 0 0 1 372.684 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 4))}
             >
-              {(4, 4)}
+              {getLabel(4, 4).label}
             </text>
             <text
               id="R4C4_t_extra"
               transform="matrix(1 0 0 1 372.684 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 4))}
             >
-              {(4, 4)}
+              {getLabel(4, 4).extraLabel}
             </text>
             <text
               id="R4C3_t_primary"
               transform="matrix(1 0 0 1 287.756 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 3))}
             >
-              {(4, 3)}
+              {getLabel(4, 3).label}
             </text>
             <text
               id="R4C3_t_extra"
               transform="matrix(1 0 0 1 287.756 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 3))}
             >
-              {(4, 3)}
+              {getLabel(4, 3).extraLabel}
             </text>
             <text
               id="R4C2_t_primary"
               transform="matrix(1 0 0 1 212.728 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 2))}
             >
-              {(4, 2)}
+              {getLabel(4, 2).label}
             </text>
             <text
               id="R4C2_t_extra"
               transform="matrix(1 0 0 1 212.728 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 2))}
             >
-              {(4, 2)}
+              {getLabel(4, 2).extraLabel}
             </text>
             <text
               id="R4C1_t_primary"
               transform="matrix(1 0 0 1 137.701 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 1))}
             >
-              {(4, 1)}
+              {getLabel(4, 1).label}
             </text>
             <text
               id="R4C1_t_extra"
               transform="matrix(1 0 0 1 137.701 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 1))}
             >
-              {(4, 1)}
+              {getLabel(4, 1).extraLabel}
             </text>
             <text
               id="R4C0_t_primary"
               transform="matrix(1 0 0 1 61.673 287.539)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 0))}
             >
-              {(4, 0)}
+              {getLabel(4, 0).label}
             </text>
             <text
               id="R4C0_t_extra"
               transform="matrix(1 0 0 1 61.673 273.52)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(4, 0))}
             >
-              {(4, 0)}
+              {getLabel(4, 0).extraLabel}
             </text>
             <text
               id="R3C15_t_primary"
               transform="matrix(1 0 0 1 818.334 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 15))}
             >
-              {(3, 15)}
+              {getLabel(3, 15).label}
             </text>
             <text
               id="R3C15_t_extra"
               transform="matrix(1 0 0 1 818.335 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 15))}
             >
-              {(3, 15)}
+              {getLabel(3, 15).extraLabel}
             </text>
             <text
               id="R3C14_t_primary"
               transform="matrix(1 0 0 1 759.274 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 14))}
             >
-              {(3, 14)}
+              {getLabel(3, 14).label}
             </text>
             <text
               id="R3C14_t_extra"
               transform="matrix(1 0 0 1 759.275 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 14))}
             >
-              {(3, 14)}
+              {getLabel(3, 14).extraLabel}
             </text>
             <text
               id="R3C13_t_primary"
               transform="matrix(1 0 0 1 700.214 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 13))}
             >
-              {(3, 13)}
+              {getLabel(3, 13).label}
             </text>
             <text
               id="R3C13_t_extra"
               transform="matrix(1 0 0 1 700.215 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 13))}
             >
-              {(3, 13)}
+              {getLabel(3, 13).extraLabel}
             </text>
             <text
               id="R3C12_t_primary"
               transform="matrix(1 0 0 1 641.154 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 12))}
             >
-              {(3, 12)}
+              {getLabel(3, 12).label}
             </text>
             <text
               id="R3C12_t_extra"
               transform="matrix(1 0 0 1 641.155 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 12))}
             >
-              {(3, 12)}
+              {getLabel(3, 12).extraLabel}
             </text>
             <text
               id="R3C11_t_primary"
               transform="matrix(1 0 0 1 582.098 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 11))}
             >
-              {(3, 11)}
+              {getLabel(3, 11).label}
             </text>
             <text
               id="R3C11_t_extra"
               transform="matrix(1 0 0 1 582.098 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 11))}
             >
-              {(3, 11)}
+              {getLabel(3, 11).extraLabel}
             </text>
             <text
               id="R3C10_t_primary"
               transform="matrix(1 0 0 1 526.04 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 10))}
             >
-              {(3, 10)}
+              {getLabel(3, 10).label}
             </text>
             <text
               id="R3C10_t_extra"
               transform="matrix(1 0 0 1 526.039 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 10))}
             >
-              {(3, 10)}
+              {getLabel(3, 10).extraLabel}
             </text>
             <text
               id="R3C6_t_primary"
               transform="matrix(1 0 0 1 415.981 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 6))}
             >
-              {(3, 6)}
+              {getLabel(3, 6).label}
             </text>
             <text
               id="R3C6_t_extra"
               transform="matrix(1 0 0 1 415.981 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 6))}
             >
-              {(3, 6)}
+              {getLabel(3, 6).extraLabel}
             </text>
             <text
               id="R3C5_t_primary"
               transform="matrix(1 0 0 1 356.923 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 5))}
             >
-              {(3, 5)}
+               {getLabel(3, 5).label}
             </text>
             <text
               id="R3C5_t_extra"
               transform="matrix(1 0 0 1 356.923 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 5))}
             >
-              {(3, 5)}
+              {getLabel(3, 5).extraLabel}
             </text>
             <text
               id="R3C4_t_primary"
               transform="matrix(1 0 0 1 297.865 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 4))}
             >
-              {(3, 4)}
+              {getLabel(3, 4).label}
             </text>
             <text
               id="R3C4_t_extra"
               transform="matrix(1 0 0 1 297.864 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 4))}
             >
-              {(3, 4)}
+              {getLabel(3, 4).extraLabel}
             </text>
             <text
               id="R3C3_t_primary"
               transform="matrix(1 0 0 1 238.806 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 3))}
             >
-              {(3, 3)}
+              {getLabel(3, 3).label}
             </text>
             <text
               id="R3C3_t_extra"
               transform="matrix(1 0 0 1 238.806 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 3))}
             >
-              {(3, 3)}
+              {getLabel(3, 3).extraLabel}
             </text>
             <text
               id="R3C2_t_primary"
               transform="matrix(1 0 0 1 179.748 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 2))}
             >
-              {(3, 2)}
+              {getLabel(3, 2).label}
             </text>
             <text
               id="R3C2_t_extra"
               transform="matrix(1 0 0 1 179.748 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 2))}
             >
-              {(3, 2)}
+              {getLabel(3, 2).extraLabel}
             </text>
             <text
               id="R3C0_t_primary"
               transform="matrix(1 0 0 1 61.69 227.984)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 0))}
             >
-              {(3, 0)}
+              {getLabel(3, 0).label}
             </text>
             <text
               id="R3C0_t_extra"
               transform="matrix(1 0 0 1 61.69 213.939)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(3, 0))}
             >
-              {(3, 0)}
+              {getLabel(3, 0).extraLabel}
             </text>
             <text
               id="R2C15_t_primary"
               transform="matrix(1 0 0 1 865.394 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 15))}
             >
-              {(1, 15)}
+              {getLabel(2, 15).label}
             </text>
             <text
               id="R2C15_t_extra"
               transform="matrix(1 0 0 1 865.385 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 15))}
             >
-              {(1, 15)}
+              {getLabel(2, 15).extraLabel}
             </text>
             <text
               id="R2C14_t_primary"
               transform="matrix(1 0 0 1 806.334 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 14))}
             >
-              {(2, 14)}
+              {getLabel(2, 14).label}
             </text>
             <text
               id="R2C14_t_extra"
               transform="matrix(1 0 0 1 806.335 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 14))}
             >
-              {(2, 14)}
+              {getLabel(2, 14).extraLabel}
             </text>
             <text
               id="R2C13_t_primary"
               transform="matrix(1 0 0 1 747.274 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 13))}
             >
-              {(2, 13)}
+              {getLabel(2, 13).label}
             </text>
             <text
               id="R2C13_t_extra"
               transform="matrix(1 0 0 1 747.275 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 13))}
             >
-              {(2, 13)}
+              {getLabel(2, 13).extraLabel}
             </text>
             <text
               id="R2C12_t_primary"
               transform="matrix(1 0 0 1 688.214 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 12))}
             >
-              {(2, 12)}
+              {getLabel(2, 12).label}
             </text>
             <text
               id="R2C12_t_extra"
               transform="matrix(1 0 0 1 688.215 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 12))}
             >
-              {(2, 12)}
+              {getLabel(2, 12).extraLabel}
             </text>
             <text
               id="R2C11_t_primary"
               transform="matrix(1 0 0 1 629.154 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 11))}
             >
-              {(2, 11)}
+              {getLabel(2, 11).label}
             </text>
             <text
               id="R2C11_t_extra"
               transform="matrix(1 0 0 1 629.155 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 11))}
             >
-              {(2, 11)}
+               {getLabel(2, 11).extraLabel}
             </text>
             <text
               id="R2C10_t_primary"
               transform="matrix(1 0 0 1 570.098 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 10))}
             >
-              {(2, 10)}
+              {getLabel(2, 10).label}
             </text>
             <text
               id="R2C10_t_extra"
               transform="matrix(1 0 0 1 570.098 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 10))}
             >
-              {(2, 10)}
+              {getLabel(2, 10).extraLabel}
             </text>
             <text
               id="R2C9_t_primary"
               transform="matrix(1 0 0 1 511.04 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 9))}
             >
-              {(2, 9)}
+              {getLabel(2, 9).label}
             </text>
             <text
               id="R2C9_t_extra"
               transform="matrix(1 0 0 1 511.039 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 9))}
             >
-              {(2, 9)}
+              {getLabel(2, 9).extraLabel}
             </text>
             <text
               id="R2C5_t_primary"
               transform="matrix(1 0 0 1 393.981 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 5))}
             >
-              {(2, 5)}
+              {getLabel(2, 5).label}
             </text>
             <text
               id="R2C5_t_extra"
               transform="matrix(1 0 0 1 393.981 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 5))}
             >
-              {(2, 5)}
+              {getLabel(2, 5).extraLabel}
             </text>
             <text
               id="R2C4_t_primary"
               transform="matrix(1 0 0 1 334.923 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 4))}
             >
-              {(2, 4)}
+              {getLabel(2, 4).label}
             </text>
             <text
               id="R2C4_t_extra"
               transform="matrix(1 0 0 1 334.923 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 4))}
             >
-              {(2, 4)}
+              {getLabel(2, 4).extraLabel}
             </text>
             <text
               id="R2C3_t_primary"
               transform="matrix(1 0 0 1 275.865 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 3))}
             >
-              {(2, 3)}
+              {getLabel(2, 3).label}
             </text>
             <text
               id="R2C3_t_extra"
               transform="matrix(1 0 0 1 275.864 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 3))}
             >
-              {(2, 3)}
+              {getLabel(2, 3).extraLabel}
             </text>
             <text
               id="R2C2_t_primary"
               transform="matrix(1 0 0 1 216.806 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 2))}
             >
-              {(2, 2)}
+              {getLabel(2, 2).label}
             </text>
             <text
               id="R2C2_t_extra"
               transform="matrix(1 0 0 1 216.806 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 2))}
             >
-              {(2, 2)}
+              {getLabel(2, 2).extraLabel}
             </text>
             <text
               id="R2C1_t_primary"
               transform="matrix(1 0 0 1 157.748 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 1))}
             >
-              {(2, 1)}
+              {getLabel(2, 1).label}
             </text>
             <text
               id="R2C1_t_extra"
               transform="matrix(1 0 0 1 157.748 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 1))}
             >
-              {(2, 1)}
+              {getLabel(2, 1).extraLabel}
             </text>
             <text
               id="R2C0_t_primary"
               transform="matrix(1 0 0 1 61.69 168.383)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 0))}
             >
-              {(2, 0)}
+              {getLabel(2, 0).label}
             </text>
             <text
               id="R2C0_t_extra"
               transform="matrix(1 0 0 1 61.69 154.338)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(2, 0))}
             >
-              {(2, 0)}
+              {getLabel(2, 0).extraLabel}
             </text>
             <text
               id="R1C15_t_primary"
               transform="matrix(1 0 0 1 897.444 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 15))}
             >
-              {(2, 15)}
+              {getLabel(1, 15).label}
             </text>
             <text
               id="R1C15_t_extra"
               transform="matrix(1 0 0 1 897.445 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 15))}
             >
-              {(2, 15)}
+              {getLabel(1, 15).extraLabel}
             </text>
             <text
               id="R1C14_t_primary"
               transform="matrix(1 0 0 1 841.394 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 14))}
             >
-              {(1, 14)}
+              {getLabel(1, 14).label}
             </text>
             <text
               id="R1C14_t_extra"
               transform="matrix(1 0 0 1 841.385 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 14))}
             >
-              {(1, 14)}
+              {getLabel(1, 14).extraLabel}
             </text>
             <text
               id="R1C13_t_primary"
               transform="matrix(1 0 0 1 782.334 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 13))}
             >
-              {(1, 13)}
+              {getLabel(1, 13).label}
             </text>
             <text
               id="R1C13_t_extra"
               transform="matrix(1 0 0 1 782.335 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 13))}
             >
-              {(1, 13)}
+              {getLabel(1, 13).extraLabel}
             </text>
             <text
               id="R1C12_t_primary"
               transform="matrix(1 0 0 1 725.274 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 12))}
             >
-              {(1, 12)}
+              {getLabel(1, 12).label}
             </text>
             <text
               id="R1C12_t_extra"
               transform="matrix(1 0 0 1 725.275 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 12))}
             >
-              {(1, 12)}
+              {getLabel(1, 12).extraLabel}
             </text>
             <text
               id="R1C11_t_primary"
               transform="matrix(1 0 0 1 668.214 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 11))}
             >
-              {(1, 11)}
+              {getLabel(1, 11).label}
             </text>
             <text
               id="R1C11_t_extra"
               transform="matrix(1 0 0 1 668.215 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 11))}
             >
-              {(1, 11)}
+              {getLabel(1, 11).extraLabel}
             </text>
             <text
               id="R1C10_t_primary"
               transform="matrix(1 0 0 1 609.156 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 10))}
             >
-              {(1, 10)}
+              {getLabel(1, 10).label}
             </text>
             <text
               id="R1C10_t_extra"
               transform="matrix(1 0 0 1 609.156 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 10))}
             >
-              {(1, 10)}
+              {getLabel(1, 10).extraLabel}
             </text>
             <text
               id="R1C9_t_primary"
               transform="matrix(1 0 0 1 552.098 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 9))}
             >
-              {(1, 9)}
+              {getLabel(1, 9).label}
             </text>
             <text
               id="R1C9_t_extra"
               transform="matrix(1 0 0 1 552.098 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 9))}
             >
-              {(1, 9)}
+              {getLabel(1, 9).extraLabel}
             </text>
             <text
               id="R1C8_t_primary"
               transform="matrix(1 0 0 1 494.04 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 8))}
             >
-              {(1, 8)}
+              {getLabel(1, 8).label}
             </text>
             <text
               id="R1C8_t_extra"
               transform="matrix(1 0 0 1 494.039 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 8))}
             >
-              {(1, 8)}
+              {getLabel(1, 8).extraLabel}
             </text>
             <text
               id="R1C5_t_primary"
               transform="matrix(1 0 0 1 386.981 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 5))}
             >
-              {(1, 5)}
+              {getLabel(1, 5).label}
             </text>
             <text
               id="R1C5_t_extra"
               transform="matrix(1 0 0 1 386.981 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 5))}
             >
-              {(1, 5)}
+              {getLabel(1, 5).extraLabel}
             </text>
             <text
               id="R1C4_t_primary"
               transform="matrix(1 0 0 1 327.923 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 4))}
             >
-              {(1, 4)}
+              {getLabel(1, 4).label}
             </text>
             <text
               id="R1C4_t_extra"
               transform="matrix(1 0 0 1 327.923 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 4))}
             >
-              {(1, 4)}
+              {getLabel(1, 4).extraLabel}
             </text>
             <text
               id="R1C3_t_primary"
               transform="matrix(1 0 0 1 268.865 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 3))}
             >
-              {(1, 3)}
+              {getLabel(1, 3).label}
             </text>
             <text
               id="R1C3_t_extra"
               transform="matrix(1 0 0 1 268.864 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 3))}
             >
-              {(1, 3)}
+              {getLabel(1, 3).extraLabel}
             </text>
             <text
               id="R1C2_t_primary"
               transform="matrix(1 0 0 1 209.806 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 2))}
             >
-              {(1, 2)}
+              {getLabel(1, 2).label}
             </text>
             <text
               id="R1C2_t_extra"
               transform="matrix(1 0 0 1 209.806 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 2))}
             >
-              {(1, 2)}
+               {getLabel(1, 2).extraLabel}
             </text>
             <text
               id="R1C1_t_primary"
               transform="matrix(1 0 0 1 150.748 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 1))}
             >
-              {(1, 1)}
+              {getLabel(1, 1).label}
             </text>
             <text
               id="R1C1_t_extra"
               transform="matrix(1 0 0 1 150.748 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 1))}
             >
-              {(1, 1)}
+              {getLabel(1, 1).extraLabel}
             </text>
             <text
               id="R1C0_t_primary"
               transform="matrix(1 0 0 1 61.69 108.782)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 0))}
             >
-              {(1, 0)}
+              {getLabel(1, 0).label}
             </text>
             <text
               id="R1C0_t_extra"
               transform="matrix(1 0 0 1 61.69 94.737)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(1, 0))}
             >
-              {(1, 0)}
+              {getLabel(1, 0).extraLabel}
             </text>
             <text
               id="R0C15_t_primary"
               transform="matrix(1 0 0 1 865.444 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 15))}
             >
-              {(0, 15)}
+              {getLabel(0, 15).label}
             </text>
             <text
               id="R0C15_t_extra"
               transform="matrix(1 0 0 1 865.445 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 15))}
             >
-              {(0, 15)}
+              {getLabel(0, 15).extraLabel}
             </text>
             <text
               id="R0C14_t_primary"
               transform="matrix(1 0 0 1 807.394 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 14))}
             >
-              {(0, 14)}
+              {getLabel(0, 14).label}
             </text>
             <text
               id="R0C14_t_extra"
               transform="matrix(1 0 0 1 807.385 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 14))}
             >
-              {(0, 14)}
+              {getLabel(0, 14).extraLabel}
             </text>
             <text
               id="R0C13_t_primary"
               transform="matrix(1 0 0 1 748.334 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 13))}
             >
-              {(0, 13)}
+              {getLabel(0, 13).label}
             </text>
             <text
               id="R0C13_t_extra"
               transform="matrix(1 0 0 1 748.335 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 13))}
             >
-              {(0, 13)}
+              {getLabel(0, 13).extraLabel}
             </text>
             <text
               id="R0C12_t_primary"
               transform="matrix(1 0 0 1 689.274 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 12))}
             >
-              {(0, 12)}
+              {getLabel(0, 12).label}
             </text>
             <text
               id="R0C12_t_extra"
               transform="matrix(1 0 0 1 689.275 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 12))}
             >
-              {(0, 12)}
+              {getLabel(0, 12).extraLabel}
             </text>
             <text
               id="R0C11_t_primary"
               transform="matrix(1 0 0 1 630.214 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 11))}
             >
-              {(0, 11)}
+              {getLabel(0, 11).label}
             </text>
             <text
               id="R0C11_t_extra"
               transform="matrix(1 0 0 1 630.215 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 11))}
             >
-              {(0, 11)}
+              {getLabel(0, 11).extraLabel}
             </text>
             <text
               id="R0C10_t_primary"
               transform="matrix(1 0 0 1 571.156 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 10))}
             >
-              {(0, 10)}
+              {getLabel(0, 10).label}
             </text>
             <text
               id="R0C10_t_extra"
               transform="matrix(1 0 0 1 571.156 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 10))}
             >
-              {(0, 10)}
+              {getLabel(0, 10).extraLabel}
             </text>
             <text
               id="R0C9_t_primary"
               transform="matrix(1 0 0 1 512.098 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 9))}
             >
-              {(0, 9)}
+              {getLabel(0, 9).label}
             </text>
             <text
               id="R0C9_t_extra"
               transform="matrix(1 0 0 1 512.098 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 9))}
             >
-              {(0, 9)}
+              {getLabel(0, 9).extraLabel}
             </text>
             <text
               id="R0C6_t_primary"
               transform="matrix(1 0 0 1 415.04 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 6))}
             >
-              {(0, 6)}
+              {getLabel(0, 6).label}
             </text>
             <text
               id="R0C6_t_extra"
               transform="matrix(1 0 0 1 415.039 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 6))}
             >
-              {(0, 6)}
+              {getLabel(0, 6).extraLabel}
             </text>
             <text
               id="R0C5_t_primary"
               transform="matrix(1 0 0 1 355.981 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 5))}
             >
-              {(0, 5)}
+              {getLabel(0, 5).label}
             </text>
             <text
               id="R0C5_t_extra"
               transform="matrix(1 0 0 1 355.981 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 5))}
             >
-              {(0, 5)}
+              {getLabel(0, 5).extraLabel}
             </text>
             <text
               id="R0C4_t_primary"
               transform="matrix(1 0 0 1 296.923 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 4))}
             >
-              {(0, 4)}
+              {getLabel(0, 4).label}
             </text>
             <text
               id="R0C4_t_extra"
               transform="matrix(1 0 0 1 296.923 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 4))}
             >
-              {(0, 4)}
+              {getLabel(0, 4).extraLabel}
             </text>
             <text
               id="R0C3_t_primary"
               transform="matrix(1 0 0 1 237.865 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 3))}
             >
-              {(0, 3)}
+              {getLabel(0, 3).label}
             </text>
             <text
               id="R0C3_t_extra"
               transform="matrix(1 0 0 1 237.864 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 3))}
             >
-              {(0, 3)}
+              {getLabel(0, 3).extraLabel}
             </text>
             <text
               id="R0C2_t_primary"
               transform="matrix(1 0 0 1 178.806 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 2))}
             >
-              {(0, 2)}
+              {getLabel(0, 2).label}
             </text>
             <text
               id="R0C2_t_extra"
               transform="matrix(1 0 0 1 178.806 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 2))}
             >
-              {(0, 2)}
+              {getLabel(0, 2).extraLabel}
             </text>
             <text
               id="R0C1_t_primary"
               transform="matrix(1 0 0 1 119.748 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 1))}
             >
-              {(0, 1)}
+              {getLabel(0, 1).label}
             </text>
             <text
               id="R0C1_t_extra"
               transform="matrix(1 0 0 1 119.748 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 1))}
             >
-              {(0, 1)}
+              {getLabel(0, 1).extraLabel}
             </text>
             <text
               id="R0C0_t_primary"
               transform="matrix(1 0 0 1 61.69 49.182)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 0))}
             >
-              {(0, 0)}
+              {getLabel(0, 0).label}
             </text>
             <text
               id="R0C0_t_extra"
               transform="matrix(1 0 0 1 61.69 35.136)"
-              style={(st4, st5, st7)}
+              fill={getContrastText(getColor(0, 0))}
             >
-              {(0, 0)}
+              {getLabel(0, 0).extraLabel}
             </text>
           </g>
         </g>
