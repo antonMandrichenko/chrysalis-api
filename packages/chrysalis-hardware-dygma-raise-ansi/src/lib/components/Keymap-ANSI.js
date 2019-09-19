@@ -154,7 +154,9 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C9_keyshape"
-						fill={getColor(4, 9)}
+            onClick={onClick}
+            className="key"
+            fill={getColor(4, 9)}
             stroke={stroke(4, 9)}
             strokeWidth={getStrokeWidth(4, 9)}
             data-led-index={getLEDIndex(4, 9)}
@@ -165,6 +167,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C8_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 8)}
             stroke={stroke(4, 8)}
             strokeWidth={getStrokeWidth(4, 8)}
@@ -176,6 +180,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C7_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 7)}
             stroke={stroke(4, 7)}
             strokeWidth={getStrokeWidth(4, 7)}
@@ -187,6 +193,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C6_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 6)}
             stroke={stroke(4, 6)}
             strokeWidth={getStrokeWidth(4, 6)}
@@ -198,6 +206,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C15_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 15)}
             stroke={stroke(4, 15)}
             strokeWidth={getStrokeWidth(4, 15)}
@@ -209,6 +219,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C14_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 14)}
             stroke={stroke(4, 14)}
             strokeWidth={getStrokeWidth(4, 14)}
@@ -220,6 +232,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C13_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 13)}
             stroke={stroke(4, 13)}
             strokeWidth={getStrokeWidth(4, 13)}
@@ -231,6 +245,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C12_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 12)}
             stroke={stroke(4, 12)}
             strokeWidth={getStrokeWidth(4, 12)}
@@ -242,6 +258,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C11_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 11)}
             stroke={stroke(4, 11)}
             strokeWidth={getStrokeWidth(4, 11)}
@@ -253,6 +271,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C10_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 10)}
             stroke={stroke(4, 10)}
             strokeWidth={getStrokeWidth(4, 10)}
@@ -264,6 +284,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C4_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 4)}
             stroke={stroke(4, 4)}
             strokeWidth={getStrokeWidth(4, 4)}
@@ -275,6 +297,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C3_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 3)}
             stroke={stroke(4, 3)}
             strokeWidth={getStrokeWidth(4, 3)}
@@ -286,6 +310,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C2_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 2)}
             stroke={stroke(4, 2)}
             strokeWidth={getStrokeWidth(4, 2)}
@@ -297,6 +323,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C1_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 1)}
             stroke={stroke(4, 1)}
             strokeWidth={getStrokeWidth(4, 1)}
@@ -308,6 +336,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C0_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(4, 0)}
             stroke={stroke(4, 0)}
             strokeWidth={getStrokeWidth(4, 0)}
@@ -319,6 +349,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C15_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 15)}
             stroke={stroke(3, 15)}
             strokeWidth={getStrokeWidth(3, 15)}
@@ -330,6 +362,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C14_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 14)}
             stroke={stroke(3, 14)}
             strokeWidth={getStrokeWidth(3, 14)}
@@ -341,6 +375,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C13_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 13)}
             stroke={stroke(3, 13)}
             strokeWidth={getStrokeWidth(3, 13)}
@@ -352,6 +388,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C12_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 12)}
             stroke={stroke(3, 12)}
             strokeWidth={getStrokeWidth(3, 12)}
@@ -363,6 +401,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C11_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 11)}
             stroke={stroke(3, 11)}
             strokeWidth={getStrokeWidth(3, 11)}
@@ -374,6 +414,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C10_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 10)}
             stroke={stroke(3, 10)}
             strokeWidth={getStrokeWidth(3, 10)}
@@ -385,6 +427,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C6_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 6)}
             stroke={stroke(3, 6)}
             strokeWidth={getStrokeWidth(3, 6)}
@@ -396,6 +440,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C5_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 5)}
             stroke={stroke(3, 5)}
             strokeWidth={getStrokeWidth(3, 5)}
@@ -407,6 +453,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C4_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 4)}
             stroke={stroke(3, 4)}
             strokeWidth={getStrokeWidth(3, 4)}
@@ -418,6 +466,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C3_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 3)}
             stroke={stroke(3, 3)}
             strokeWidth={getStrokeWidth(3, 3)}
@@ -429,6 +479,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C2_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 2)}
             stroke={stroke(3, 2)}
             strokeWidth={getStrokeWidth(3, 2)}
@@ -440,6 +492,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R3C0_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(3, 0)}
             stroke={stroke(3, 0)}
             strokeWidth={getStrokeWidth(3, 0)}
@@ -451,6 +505,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C15_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 15)}
             stroke={stroke(2, 15)}
             strokeWidth={getStrokeWidth(2, 15)}
@@ -462,6 +518,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C14_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 14)}
             stroke={stroke(2, 14)}
             strokeWidth={getStrokeWidth(2, 14)}
@@ -473,6 +531,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C13_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 13)}
             stroke={stroke(2, 13)}
             strokeWidth={getStrokeWidth(2, 13)}
@@ -484,6 +544,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C12_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 12)}
             stroke={stroke(2, 12)}
             strokeWidth={getStrokeWidth(2, 12)}
@@ -495,6 +557,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C11_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 11)}
             stroke={stroke(2, 11)}
             strokeWidth={getStrokeWidth(2, 11)}
@@ -506,6 +570,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C10_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 10)}
             stroke={stroke(2, 10)}
             strokeWidth={getStrokeWidth(2, 10)}
@@ -517,6 +583,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C9_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 9)}
             stroke={stroke(2, 9)}
             strokeWidth={getStrokeWidth(2, 9)}
@@ -528,6 +596,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C5_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 5)}
             stroke={stroke(2, 5)}
             strokeWidth={getStrokeWidth(2, 5)}
@@ -539,6 +609,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C4_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 4)}
             stroke={stroke(2, 4)}
             strokeWidth={getStrokeWidth(2, 4)}
@@ -550,6 +622,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C3_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 3)}
             stroke={stroke(2, 3)}
             strokeWidth={getStrokeWidth(2, 3)}
@@ -561,6 +635,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C2_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 2)}
             stroke={stroke(2, 2)}
             strokeWidth={getStrokeWidth(2, 2)}
@@ -572,6 +648,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C1_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 1)}
             stroke={stroke(2, 1)}
             strokeWidth={getStrokeWidth(2, 1)}
@@ -583,6 +661,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R2C0_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(2, 0)}
             stroke={stroke(2, 0)}
             strokeWidth={getStrokeWidth(2, 0)}
@@ -594,6 +674,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C15_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 15)}
             stroke={stroke(1, 15)}
             strokeWidth={getStrokeWidth(1, 15)}
@@ -605,6 +687,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C14_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 14)}
             stroke={stroke(1, 14)}
             strokeWidth={getStrokeWidth(1, 14)}
@@ -616,6 +700,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C13_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 13)}
             stroke={stroke(1, 13)}
             strokeWidth={getStrokeWidth(1, 13)}
@@ -627,6 +713,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C12_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 12)}
             stroke={stroke(1, 12)}
             strokeWidth={getStrokeWidth(1, 12)}
@@ -638,6 +726,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C11_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 11)}
             stroke={stroke(1, 11)}
             strokeWidth={getStrokeWidth(1, 11)}
@@ -649,6 +739,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C10_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 10)}
             stroke={stroke(1, 10)}
             strokeWidth={getStrokeWidth(1, 10)}
@@ -660,6 +752,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C9_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 9)}
             stroke={stroke(1, 9)}
             strokeWidth={getStrokeWidth(1, 9)}
@@ -671,6 +765,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C8_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 8)}
             stroke={stroke(1, 8)}
             strokeWidth={getStrokeWidth(1, 8)}
@@ -682,6 +778,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C5_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 5)}
             stroke={stroke(1, 5)}
             strokeWidth={getStrokeWidth(1, 5)}
@@ -693,6 +791,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C4_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 4)}
             stroke={stroke(1, 4)}
             strokeWidth={getStrokeWidth(1, 4)}
@@ -704,6 +804,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C3_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 3)}
             stroke={stroke(1, 3)}
             strokeWidth={getStrokeWidth(1, 3)}
@@ -715,6 +817,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C2_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 2)}
             stroke={stroke(1, 2)}
             strokeWidth={getStrokeWidth(1, 2)}
@@ -726,6 +830,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C1_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 1)}
             stroke={stroke(1, 1)}
             strokeWidth={getStrokeWidth(1, 1)}
@@ -737,6 +843,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R1C0_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(1, 0)}
             stroke={stroke(1, 0)}
             strokeWidth={getStrokeWidth(1, 0)}
@@ -748,6 +856,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C15_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 15)}
             stroke={stroke(0, 15)}
             strokeWidth={getStrokeWidth(0, 15)}
@@ -759,6 +869,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C14_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 14)}
             stroke={stroke(0, 14)}
             strokeWidth={getStrokeWidth(0, 14)}
@@ -770,6 +882,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C13_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 13)}
             stroke={stroke(0, 13)}
             strokeWidth={getStrokeWidth(0, 13)}
@@ -781,6 +895,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C12_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 12)}
             stroke={stroke(0, 12)}
             strokeWidth={getStrokeWidth(0, 12)}
@@ -792,6 +908,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C11_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 11)}
             stroke={stroke(0, 11)}
             strokeWidth={getStrokeWidth(0, 11)}
@@ -803,6 +921,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C10_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 10)}
             stroke={stroke(0, 10)}
             strokeWidth={getStrokeWidth(0, 10)}
@@ -814,6 +934,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C9_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 9)}
             stroke={stroke(0, 9)}
             strokeWidth={getStrokeWidth(0, 9)}
@@ -825,6 +947,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C6_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 6)}
             stroke={stroke(0, 6)}
             strokeWidth={getStrokeWidth(0, 6)}
@@ -836,6 +960,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C5_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 5)}
             stroke={stroke(0, 5)}
             strokeWidth={getStrokeWidth(0, 5)}
@@ -847,6 +973,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C4_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 4)}
             stroke={stroke(0, 4)}
             strokeWidth={getStrokeWidth(0, 4)}
@@ -858,6 +986,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C3_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 3)}
             stroke={stroke(0, 3)}
             strokeWidth={getStrokeWidth(0, 3)}
@@ -869,6 +999,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C2_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 2)}
             stroke={stroke(0, 2)}
             strokeWidth={getStrokeWidth(0, 2)}
@@ -880,6 +1012,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C1_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 1)}
             stroke={stroke(0, 1)}
             strokeWidth={getStrokeWidth(0, 1)}
@@ -891,6 +1025,8 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R0C0_keyshape"
+            onClick={onClick}
+            className="key"
             fill={getColor(0, 0)}
             stroke={stroke(0, 0)}
             strokeWidth={getStrokeWidth(0, 0)}
