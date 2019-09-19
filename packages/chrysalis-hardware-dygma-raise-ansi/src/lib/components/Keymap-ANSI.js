@@ -22,29 +22,6 @@
 
 import React from "react";
 
-const st0 = { fill: "none", stroke: "#B4B4B4" };
-const st1 = { stroke: "#B4B4B4" };
-const st2 = {
-  fill: "#1CFF64",
-  stroke: "#000000",
-  strokeWidth: 0.25,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  strokeMiterlimit: 10
-};
-const st3 = {
-  fill: "none",
-  stroke: "#000000",
-  strokeWidth: 0.25,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  strokeMiterlimit: 10
-};
-const st4 = { fill: "#1CFF64" };
-const st5 = { fontFamily: "ArialMT" };
-const st6 = { fontSize: 10 };
-const st7 = { fontSize: 12 };
-
 const XX = 255;
 const LEDS_LEFT_KEYS = 33;
 const UNDERGLOW = 79;
