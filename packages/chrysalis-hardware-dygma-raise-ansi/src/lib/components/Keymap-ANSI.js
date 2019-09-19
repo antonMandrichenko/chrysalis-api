@@ -187,391 +187,716 @@ class KeymapANSI extends React.Component {
           />
           <path
             id="R4C6_keyshape"
-            style={st2}
+            fill={getColor(4, 6)}
+            stroke={stroke(4, 6)}
+            strokeWidth={getStrokeWidth(4, 6)}
+            data-led-index={getLEDIndex(4, 6)}
+            data-key-index={keyIndex(4, 6)}
+            data-layer={layer}
             d="M317.1,325.7c-0.6-0.9-1-1.9-1-3c0-2.9,2.4-5.3,5.3-5.3h76.9c2.9,0,5.3,2.4,5.3,5.3v40.7
 		c0,2.9-2.4,5.3-5.3,5.3H350c-1.7,0-3.3-0.8-4.3-2.2L317.1,325.7z"
           />
           <path
             id="R4C15_keyshape"
-            style={st2}
+            fill={getColor(4, 15)}
+            stroke={stroke(4, 15)}
+            strokeWidth={getStrokeWidth(4, 15)}
+            data-led-index={getLEDIndex(4, 15)}
+            data-key-index={keyIndex(4, 15)}
+            data-layer={layer}
             d="M904.4,263.2c0-2.9,2.4-5.3,5.3-5.3h55.7c2.9,0,5.3,2.4,5.3,5.3l0,0v40.7
 		c0,2.9-2.4,5.3-5.3,5.3l0,0h-55.7c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C14_keyshape"
-            style={st2}
+            fill={getColor(4, 14)}
+            stroke={stroke(4, 14)}
+            strokeWidth={getStrokeWidth(4, 14)}
+            data-led-index={getLEDIndex(4, 14)}
+            data-key-index={keyIndex(4, 14)}
+            data-layer={layer}
             d="M844.6,263.2c0-2.9,2.4-5.3,5.3-5.3h40.5c2.9,0,5.3,2.4,5.3,5.3v40.7
 		c0,2.9-2.4,5.3-5.3,5.3h-40.5c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C13_keyshape"
-            style={st2}
+            fill={getColor(4, 13)}
+            stroke={stroke(4, 13)}
+            strokeWidth={getStrokeWidth(4, 13)}
+            data-led-index={getLEDIndex(4, 13)}
+            data-key-index={keyIndex(4, 13)}
+            data-layer={layer}
             d="M769.4,263.2c0-2.9,2.4-5.3,5.3-5.3h55.7c2.9,0,5.3,2.4,5.3,5.3l0,0v40.7
 		c0,2.9-2.4,5.3-5.3,5.3l0,0h-55.7c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C12_keyshape"
-            style={st2}
+            fill={getColor(4, 12)}
+            stroke={stroke(4, 12)}
+            strokeWidth={getStrokeWidth(4, 12)}
+            data-led-index={getLEDIndex(4, 12)}
+            data-key-index={keyIndex(4, 12)}
+            data-layer={layer}
             d="M694.3,263.2c0-2.9,2.4-5.3,5.3-5.3h55.7c2.9,0,5.3,2.4,5.3,5.3l0,0v40.7
 		c0,2.9-2.4,5.3-5.3,5.3l0,0h-55.7c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C11_keyshape"
-            style={st2}
+            fill={getColor(4, 11)}
+            stroke={stroke(4, 11)}
+            strokeWidth={getStrokeWidth(4, 11)}
+            data-led-index={getLEDIndex(4, 11)}
+            data-key-index={keyIndex(4, 11)}
+            data-layer={layer}
             d="M609.6,263.2c0-2.9,2.4-5.3,5.3-5.3l0,0h65.6c2.9,0,5.3,2.4,5.3,5.3l0,0v40.7
 		c0,2.9-2.3,5.3-5.2,5.3l0,0H615c-2.9,0-5.3-2.4-5.3-5.3l0,0L609.6,263.2L609.6,263.2z"
           />
           <path
             id="R4C10_keyshape"
-            style={st2}
+            fill={getColor(4, 10)}
+            stroke={stroke(4, 10)}
+            strokeWidth={getStrokeWidth(4, 10)}
+            data-led-index={getLEDIndex(4, 10)}
+            data-key-index={keyIndex(4, 10)}
+            data-layer={layer}
             d="M508.6,263.2c0-2.9,2.4-5.3,5.3-5.3h83.6c2.9,0,5.3,2.4,5.3,5.3v40.7
 		c0,2.9-2.4,5.3-5.3,5.3h-83.6c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C4_keyshape"
-            style={st2}
+            fill={getColor(4, 4)}
+            stroke={stroke(4, 4)}
+            strokeWidth={getStrokeWidth(4, 4)}
+            data-led-index={getLEDIndex(4, 4)}
+            data-key-index={keyIndex(4, 4)}
+            data-layer={layer}
             d="M367.7,263.2c0-2.9,2.4-5.3,5.3-5.3h83.6c2.9,0,5.3,2.4,5.3,5.3v40.7
 		c0,2.9-2.4,5.3-5.3,5.3H373c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C3_keyshape"
-            style={st2}
+            fill={getColor(4, 3)}
+            stroke={stroke(4, 3)}
+            strokeWidth={getStrokeWidth(4, 3)}
+            data-led-index={getLEDIndex(4, 3)}
+            data-key-index={keyIndex(4, 3)}
+            data-layer={layer}
             d="M282.8,263.2c0-2.9,2.4-5.3,5.3-5.3h65.6c2.9,0,5.3,2.4,5.3,5.3l0,0v40.7
 		c0,2.9-2.3,5.3-5.2,5.3l0,0H288c-2.9,0-5.3-2.4-5.3-5.3l0,0L282.8,263.2L282.8,263.2z"
           />
           <path
             id="R4C2_keyshape"
-            style={st2}
+            fill={getColor(4, 2)}
+            stroke={stroke(4, 2)}
+            strokeWidth={getStrokeWidth(4, 2)}
+            data-led-index={getLEDIndex(4, 2)}
+            data-key-index={keyIndex(4, 2)}
+            data-layer={layer}
             d="M207.7,263.2c0-2.9,2.4-5.3,5.3-5.3h55.7c2.9,0,5.3,2.4,5.3,5.3v40.7
 		c0,2.9-2.4,5.3-5.3,5.3H213c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C1_keyshape"
-            style={st2}
+            fill={getColor(4, 1)}
+            stroke={stroke(4, 1)}
+            strokeWidth={getStrokeWidth(4, 1)}
+            data-led-index={getLEDIndex(4, 1)}
+            data-key-index={keyIndex(4, 1)}
+            data-layer={layer}
             d="M132.7,263.2c0-2.9,2.4-5.3,5.3-5.3h55.7c2.9,0,5.3,2.4,5.3,5.3v40.7
 		c0,2.9-2.4,5.3-5.3,5.3H138c-2.9,0-5.3-2.4-5.3-5.3V263.2z"
           />
           <path
             id="R4C0_keyshape"
-            style={st2}
+            fill={getColor(4, 0)}
+            stroke={stroke(4, 0)}
+            strokeWidth={getStrokeWidth(4, 0)}
+            data-led-index={getLEDIndex(4, 0)}
+            data-key-index={keyIndex(4, 0)}
+            data-layer={layer}
             d="M57.7,263.2c0-2.9,2.4-5.3,5.3-5.3h55.7c2.9,0,5.3,2.4,5.3,5.3v40.7c0,2.9-2.4,5.3-5.3,5.3
 		H62.9c-2.9,0-5.3-2.4-5.3-5.3L57.7,263.2L57.7,263.2z"
           />
           <path
             id="R3C15_keyshape"
-            style={st2}
+            fill={getColor(3, 15)}
+            stroke={stroke(3, 15)}
+            strokeWidth={getStrokeWidth(3, 15)}
+            data-led-index={getLEDIndex(3, 15)}
+            data-key-index={keyIndex(3, 15)}
+            data-layer={layer}
             d="M814.2,203.6c0-2.9,2.4-5.3,5.3-5.3l0,0h146c2.9,0,5.3,2.4,5.3,5.3l0,0v40.9
 		c0,2.9-2.4,5.3-5.3,5.3l0,0h-146c-2.9,0-5.3-2.4-5.3-5.3l0,0V203.6z"
           />
           <path
             id="R3C14_keyshape"
-            style={st2}
+            fill={getColor(3, 14)}
+            stroke={stroke(3, 14)}
+            strokeWidth={getStrokeWidth(3, 14)}
+            data-led-index={getLEDIndex(3, 14)}
+            data-key-index={keyIndex(3, 14)}
+            data-layer={layer}
             d="M755.7,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6L755.7,203.6L755.7,203.6z"
           />
           <path
             id="R3C13_keyshape"
-            style={st2}
+            fill={getColor(3, 13)}
+            stroke={stroke(3, 13)}
+            strokeWidth={getStrokeWidth(3, 13)}
+            data-led-index={getLEDIndex(3, 13)}
+            data-key-index={keyIndex(3, 13)}
+            data-layer={layer}
             d="M696.9,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6z"
           />
           <path
             id="R3C12_keyshape"
-            style={st2}
+            fill={getColor(3, 12)}
+            stroke={stroke(3, 12)}
+            strokeWidth={getStrokeWidth(3, 12)}
+            data-led-index={getLEDIndex(3, 12)}
+            data-key-index={keyIndex(3, 12)}
+            data-layer={layer}
             d="M638.2,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6z"
           />
           <path
             id="R3C11_keyshape"
-            style={st2}
+            fill={getColor(3, 11)}
+            stroke={stroke(3, 11)}
+            strokeWidth={getStrokeWidth(3, 11)}
+            data-led-index={getLEDIndex(3, 11)}
+            data-key-index={keyIndex(3, 11)}
+            data-layer={layer}
             d="M579.4,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6z"
           />
           <path
             id="R3C10_keyshape"
-            style={st2}
+            fill={getColor(3, 10)}
+            stroke={stroke(3, 10)}
+            strokeWidth={getStrokeWidth(3, 10)}
+            data-led-index={getLEDIndex(3, 10)}
+            data-key-index={keyIndex(3, 10)}
+            data-layer={layer}
             d="M522.5,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6z"
           />
           <path
             id="R3C6_keyshape"
-            style={st2}
+            fill={getColor(3, 6)}
+            stroke={stroke(3, 6)}
+            strokeWidth={getStrokeWidth(3, 6)}
+            data-led-index={getLEDIndex(3, 6)}
+            data-key-index={keyIndex(3, 6)}
+            data-layer={layer}
             d="M411,203.6c0-2.9,2.4-5.3,5.3-5.3H457c2.9,0,5.3,2.4,5.3,5.3v40.9c0,2.9-2.4,5.3-5.3,5.3
 		h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6z"
           />
           <path
             id="R3C5_keyshape"
-            style={st2}
+            fill={getColor(3, 5)}
+            stroke={stroke(3, 5)}
+            strokeWidth={getStrokeWidth(3, 5)}
+            data-led-index={getLEDIndex(3, 5)}
+            data-key-index={keyIndex(3, 5)}
+            data-layer={layer}
             d="M352.1,203.6c0-2.9,2.4-5.3,5.3-5.3H398c2.9,0,5.3,2.4,5.3,5.3v40.9c0,2.9-2.4,5.3-5.3,5.3
 		h-40.7c-2.9,0-5.3-2.4-5.3-5.3L352.1,203.6L352.1,203.6z"
           />
           <path
             id="R3C4_keyshape"
-            style={st2}
+            fill={getColor(3, 4)}
+            stroke={stroke(3, 4)}
+            strokeWidth={getStrokeWidth(3, 4)}
+            data-led-index={getLEDIndex(3, 4)}
+            data-key-index={keyIndex(3, 4)}
+            data-layer={layer}
             d="M293.3,203.6c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L293.3,203.6L293.3,203.6z"
           />
           <path
             id="R3C3_keyshape"
-            style={st2}
+            fill={getColor(3, 3)}
+            stroke={stroke(3, 3)}
+            strokeWidth={getStrokeWidth(3, 3)}
+            data-led-index={getLEDIndex(3, 3)}
+            data-key-index={keyIndex(3, 3)}
+            data-layer={layer}
             d="M234.5,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V203.6z"
           />
           <path
             id="R3C2_keyshape"
-            style={st2}
+            fill={getColor(3, 2)}
+            stroke={stroke(3, 2)}
+            strokeWidth={getStrokeWidth(3, 2)}
+            data-led-index={getLEDIndex(3, 2)}
+            data-key-index={keyIndex(3, 2)}
+            data-layer={layer}
             d="M175.7,203.6c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.8c-2.9,0-5.3-2.4-5.3-5.3L175.7,203.6L175.7,203.6z"
           />
           <path
             id="R3C0_keyshape"
-            style={st2}
+            fill={getColor(3, 0)}
+            stroke={stroke(3, 0)}
+            strokeWidth={getStrokeWidth(3, 0)}
+            data-led-index={getLEDIndex(3, 0)}
+            data-key-index={keyIndex(3, 0)}
+            data-layer={layer}
             d="M57.7,203.6c0-2.9,2.1-5.3,4.7-5.3h100.9c2.6,0,4.7,2.4,4.7,5.3v40.9
 		c0,2.9-2.1,5.3-4.7,5.3H62.4c-2.6,0-4.7-2.4-4.7-5.3V203.6z"
           />
           <path
             id="R2C15_keyshape"
-            style={st2}
+            fill={getColor(2, 15)}
+            stroke={stroke(2, 15)}
+            strokeWidth={getStrokeWidth(2, 15)}
+            data-led-index={getLEDIndex(2, 15)}
+            data-key-index={keyIndex(2, 15)}
+            data-layer={layer}
             d="M861.3,144c0-2.9,2.1-5.3,4.7-5.3l0,0h100c2.6,0,4.7,2.4,4.7,5.3l0,0v40.9
 		c0,2.9-2.1,5.3-4.7,5.3l0,0H866c-2.6,0-4.7-2.4-4.7-5.3l0,0V144z"
           />
           <path
             id="R2C14_keyshape"
-            style={st2}
+            fill={getColor(2, 14)}
+            stroke={stroke(2, 14)}
+            strokeWidth={getStrokeWidth(2, 14)}
+            data-led-index={getLEDIndex(2, 14)}
+            data-key-index={keyIndex(2, 14)}
+            data-layer={layer}
             d="M802.5,144L802.5,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V144z"
           />
           <path
             id="R2C13_keyshape"
-            style={st2}
+            fill={getColor(2, 13)}
+            stroke={stroke(2, 13)}
+            strokeWidth={getStrokeWidth(2, 13)}
+            data-led-index={getLEDIndex(2, 13)}
+            data-key-index={keyIndex(2, 13)}
+            data-layer={layer}
             d="M743.7,144L743.7,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H749c-2.9,0-5.3-2.4-5.3-5.3V144L743.7,144L743.7,144z"
           />
           <path
             id="R2C12_keyshape"
-            style={st2}
+            fill={getColor(2, 12)}
+            stroke={stroke(2, 12)}
+            strokeWidth={getStrokeWidth(2, 12)}
+            data-led-index={getLEDIndex(2, 12)}
+            data-key-index={keyIndex(2, 12)}
+            data-layer={layer}
             d="M684.9,144L684.9,144c0-2.9,2.4-5.3,5.3-5.3H731c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V144z"
           />
           <path
             id="R2C11_keyshape"
-            style={st2}
+            fill={getColor(2, 11)}
+            stroke={stroke(2, 11)}
+            strokeWidth={getStrokeWidth(2, 11)}
+            data-led-index={getLEDIndex(2, 11)}
+            data-key-index={keyIndex(2, 11)}
+            data-layer={layer}
             d="M626.2,144L626.2,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V144z"
           />
           <path
             id="R2C10_keyshape"
-            style={st2}
+            fill={getColor(2, 10)}
+            stroke={stroke(2, 10)}
+            strokeWidth={getStrokeWidth(2, 10)}
+            data-led-index={getLEDIndex(2, 10)}
+            data-key-index={keyIndex(2, 10)}
+            data-layer={layer}
             d="M567.4,144L567.4,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V144z"
           />
           <path
             id="R2C9_keyshape"
-            style={st2}
+            fill={getColor(2, 9)}
+            stroke={stroke(2, 9)}
+            strokeWidth={getStrokeWidth(2, 9)}
+            data-led-index={getLEDIndex(2, 9)}
+            data-key-index={keyIndex(2, 9)}
+            data-layer={layer}
             d="M508.6,144L508.6,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L508.6,144L508.6,144z"
           />
           <path
             id="R2C5_keyshape"
-            style={st2}
+            fill={getColor(2, 5)}
+            stroke={stroke(2, 5)}
+            strokeWidth={getStrokeWidth(2, 5)}
+            data-led-index={getLEDIndex(2, 5)}
+            data-key-index={keyIndex(2, 5)}
+            data-layer={layer}
             d="M389,144L389,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V144z"
           />
           <path
             id="R2C4_keyshape"
-            style={st2}
+            fill={getColor(2, 4)}
+            stroke={stroke(2, 4)}
+            strokeWidth={getStrokeWidth(2, 4)}
+            data-led-index={getLEDIndex(2, 4)}
+            data-key-index={keyIndex(2, 4)}
+            data-layer={layer}
             d="M330.2,144L330.2,144c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L330.2,144L330.2,144z"
           />
           <path
             id="R2C3_keyshape"
-            style={st2}
+            fill={getColor(2, 3)}
+            stroke={stroke(2, 3)}
+            strokeWidth={getStrokeWidth(2, 3)}
+            data-led-index={getLEDIndex(2, 3)}
+            data-key-index={keyIndex(2, 3)}
+            data-layer={layer}
             d="M271.4,144L271.4,144c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L271.4,144L271.4,144z"
           />
           <path
             id="R2C2_keyshape"
-            style={st2}
+            fill={getColor(2, 2)}
+            stroke={stroke(2, 2)}
+            strokeWidth={getStrokeWidth(2, 2)}
+            data-led-index={getLEDIndex(2, 2)}
+            data-key-index={keyIndex(2, 2)}
+            data-layer={layer}
             d="M212.6,144L212.6,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V144z"
           />
           <path
             id="R2C1_keyshape"
-            style={st2}
+            fill={getColor(2, 1)}
+            stroke={stroke(2, 1)}
+            strokeWidth={getStrokeWidth(2, 1)}
+            data-led-index={getLEDIndex(2, 1)}
+            data-key-index={keyIndex(2, 1)}
+            data-layer={layer}
             d="M153.8,144L153.8,144c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H159c-2.9,0-5.3-2.4-5.3-5.3L153.8,144L153.8,144z"
           />
           <path
             id="R2C0_keyshape"
-            style={st2}
+            fill={getColor(2, 0)}
+            stroke={stroke(2, 0)}
+            strokeWidth={getStrokeWidth(2, 0)}
+            data-led-index={getLEDIndex(2, 0)}
+            data-key-index={keyIndex(2, 0)}
+            data-layer={layer}
             d="M57.7,144c0-2.9,2.2-5.3,4.9-5.3l0,0h79.3c2.7,0,4.9,2.4,4.9,5.3l0,0v40.9
 		c0,2.9-2.2,5.3-4.9,5.3l0,0H62.6c-2.7,0-4.9-2.4-4.9-5.3l0,0C57.7,184.9,57.7,144,57.7,144z"
           />
           <path
             id="R1C15_keyshape"
-            style={st2}
+            fill={getColor(1, 15)}
+            stroke={stroke(1, 15)}
+            strokeWidth={getStrokeWidth(1, 15)}
+            data-led-index={getLEDIndex(1, 15)}
+            data-key-index={keyIndex(1, 15)}
+            data-layer={layer}
             d="M892.8,84.4c0-2.9,2.3-5.3,5.2-5.3l0,0h67.5c2.9,0,5.2,2.4,5.2,5.3v40.9
 		c0,2.9-2.3,5.3-5.2,5.3l0,0H898c-2.9,0-5.2-2.4-5.2-5.3l0,0V84.4z"
           />
           <path
             id="R1C14_keyshape"
-            style={st2}
+            fill={getColor(1, 14)}
+            stroke={stroke(1, 14)}
+            strokeWidth={getStrokeWidth(1, 14)}
+            data-led-index={getLEDIndex(1, 14)}
+            data-key-index={keyIndex(1, 14)}
+            data-layer={layer}
             d="M835.4,84.4L835.4,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4z"
           />
           <path
             id="R1C13_keyshape"
-            style={st2}
+            fill={getColor(1, 13)}
+            stroke={stroke(1, 13)}
+            strokeWidth={getStrokeWidth(1, 13)}
+            data-led-index={getLEDIndex(1, 13)}
+            data-key-index={keyIndex(1, 13)}
+            data-layer={layer}
             d="M777.9,84.4L777.9,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4z"
           />
           <path
             id="R1C12_keyshape"
-            style={st2}
+            fill={getColor(1, 12)}
+            stroke={stroke(1, 12)}
+            strokeWidth={getStrokeWidth(1, 12)}
+            data-led-index={getLEDIndex(1, 12)}
+            data-key-index={keyIndex(1, 12)}
+            data-layer={layer}
             d="M720.5,84.4L720.5,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4L720.5,84.4L720.5,84.4z"
           />
           <path
             id="R1C11_keyshape"
-            style={st2}
+            fill={getColor(1, 11)}
+            stroke={stroke(1, 11)}
+            strokeWidth={getStrokeWidth(1, 11)}
+            data-led-index={getLEDIndex(1, 11)}
+            data-key-index={keyIndex(1, 11)}
+            data-layer={layer}
             d="M663,84.4L663,84.4c0-2.9,2.4-5.3,5.3-5.3H709c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4z"
           />
           <path
             id="R1C10_keyshape"
-            style={st2}
+            fill={getColor(1, 10)}
+            stroke={stroke(1, 10)}
+            strokeWidth={getStrokeWidth(1, 10)}
+            data-led-index={getLEDIndex(1, 10)}
+            data-key-index={keyIndex(1, 10)}
+            data-layer={layer}
             d="M605.6,84.4L605.6,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4z"
           />
           <path
             id="R1C9_keyshape"
-            style={st2}
+            fill={getColor(1, 9)}
+            stroke={stroke(1, 9)}
+            strokeWidth={getStrokeWidth(1, 9)}
+            data-led-index={getLEDIndex(1, 9)}
+            data-key-index={keyIndex(1, 9)}
+            data-layer={layer}
             d="M548.1,84.4L548.1,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4z"
           />
           <path
             id="R1C8_keyshape"
-            style={st2}
+            fill={getColor(1, 8)}
+            stroke={stroke(1, 8)}
+            strokeWidth={getStrokeWidth(1, 8)}
+            data-led-index={getLEDIndex(1, 8)}
+            data-key-index={keyIndex(1, 8)}
+            data-layer={layer}
             d="M490.7,84.4L490.7,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L490.7,84.4L490.7,84.4z"
           />
           <path
             id="R1C5_keyshape"
-            style={st2}
+            fill={getColor(1, 5)}
+            stroke={stroke(1, 5)}
+            strokeWidth={getStrokeWidth(1, 5)}
+            data-led-index={getLEDIndex(1, 5)}
+            data-key-index={keyIndex(1, 5)}
+            data-layer={layer}
             d="M381.1,84.4L381.1,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V84.4z"
           />
           <path
             id="R1C4_keyshape"
-            style={st2}
+            fill={getColor(1, 4)}
+            stroke={stroke(1, 4)}
+            strokeWidth={getStrokeWidth(1, 4)}
+            data-led-index={getLEDIndex(1, 4)}
+            data-key-index={keyIndex(1, 4)}
+            data-layer={layer}
             d="M322.2,84.4L322.2,84.4c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L322.2,84.4L322.2,84.4z"
           />
           <path
             id="R1C3_keyshape"
-            style={st2}
+            fill={getColor(1, 3)}
+            stroke={stroke(1, 3)}
+            strokeWidth={getStrokeWidth(1, 3)}
+            data-led-index={getLEDIndex(1, 3)}
+            data-key-index={keyIndex(1, 3)}
+            data-layer={layer}
             d="M263.5,84.4L263.5,84.4c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L263.5,84.4L263.5,84.4z"
           />
           <path
             id="R1C2_keyshape"
-            style={st2}
+            fill={getColor(1, 2)}
+            stroke={stroke(1, 2)}
+            strokeWidth={getStrokeWidth(1, 2)}
+            data-led-index={getLEDIndex(1, 2)}
+            data-key-index={keyIndex(1, 2)}
+            data-layer={layer}
             d="M204.6,84.4L204.6,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L204.6,84.4L204.6,84.4z"
           />
           <path
             id="R1C1_keyshape"
-            style={st2}
+            fill={getColor(1, 1)}
+            stroke={stroke(1, 1)}
+            strokeWidth={getStrokeWidth(1, 1)}
+            data-led-index={getLEDIndex(1, 1)}
+            data-key-index={keyIndex(1, 1)}
+            data-layer={layer}
             d="M145.8,84.4L145.8,84.4c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H151c-2.9,0-5.3-2.4-5.3-5.3L145.8,84.4L145.8,84.4z"
           />
           <path
             id="R1C0_keyshape"
-            style={st2}
+            fill={getColor(1, 0)}
+            stroke={stroke(1, 0)}
+            strokeWidth={getStrokeWidth(1, 0)}
+            data-led-index={getLEDIndex(1, 0)}
+            data-key-index={keyIndex(1, 0)}
+            data-layer={layer}
             d="M57.7,84.4c0-2.9,2.4-5.3,5.3-5.3h70.9c2.9,0,5.3,2.4,5.3,5.3l0,0v40.9
 		c0,2.9-2.4,5.3-5.3,5.3l0,0h-71c-2.9,0-5.3-2.4-5.3-5.3L57.7,84.4L57.7,84.4z"
           />
           <path
             id="R0C15_keyshape"
-            style={st2}
+            fill={getColor(0, 15)}
+            stroke={stroke(0, 15)}
+            strokeWidth={getStrokeWidth(0, 15)}
+            data-led-index={getLEDIndex(0, 15)}
+            data-key-index={keyIndex(0, 15)}
+            data-layer={layer}
             d="M861.3,24.8c0-2.9,2.4-5.3,5.3-5.3l0,0h98.8c2.9,0,5.3,2.4,5.3,5.3l0,0v40.9
 		c0,2.9-2.4,5.3-5.3,5.3l0,0h-98.8c-2.9,0-5.3-2.4-5.3-5.3l0,0V24.8z"
           />
           <path
             id="R0C14_keyshape"
-            style={st2}
+            fill={getColor(0, 14)}
+            stroke={stroke(0, 14)}
+            strokeWidth={getStrokeWidth(0, 14)}
+            data-led-index={getLEDIndex(0, 14)}
+            data-key-index={keyIndex(0, 14)}
+            data-layer={layer}
             d="M802.5,24.8L802.5,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C13_keyshape"
-            style={st2}
+            fill={getColor(0, 13)}
+            stroke={stroke(0, 13)}
+            strokeWidth={getStrokeWidth(0, 13)}
+            data-led-index={getLEDIndex(0, 13)}
+            data-key-index={keyIndex(0, 13)}
+            data-layer={layer}
             d="M743.8,24.8L743.8,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H749c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C12_keyshape"
-            style={st2}
+            fill={getColor(0, 12)}
+            stroke={stroke(0, 12)}
+            strokeWidth={getStrokeWidth(0, 12)}
+            data-led-index={getLEDIndex(0, 12)}
+            data-key-index={keyIndex(0, 12)}
+            data-layer={layer}
             d="M685,24.8L685,24.8c0-2.9,2.4-5.3,5.3-5.3H731c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V24.8L685,24.8L685,24.8z"
           />
           <path
             id="R0C11_keyshape"
-            style={st2}
+            fill={getColor(0, 11)}
+            stroke={stroke(0, 11)}
+            strokeWidth={getStrokeWidth(0, 11)}
+            data-led-index={getLEDIndex(0, 11)}
+            data-key-index={keyIndex(0, 11)}
+            data-layer={layer}
             d="M626.2,24.8L626.2,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C10_keyshape"
-            style={st2}
+            fill={getColor(0, 10)}
+            stroke={stroke(0, 10)}
+            strokeWidth={getStrokeWidth(0, 10)}
+            data-led-index={getLEDIndex(0, 10)}
+            data-key-index={keyIndex(0, 10)}
+            data-layer={layer}
             d="M567.4,24.8L567.4,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C9_keyshape"
-            style={st2}
+            fill={getColor(0, 9)}
+            stroke={stroke(0, 9)}
+            strokeWidth={getStrokeWidth(0, 9)}
+            data-led-index={getLEDIndex(0, 9)}
+            data-key-index={keyIndex(0, 9)}
+            data-layer={layer}
             d="M508.7,24.8L508.7,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H514c-2.9,0-5.3-2.4-5.3-5.3L508.7,24.8L508.7,24.8z"
           />
           <path
             id="R0C6_keyshape"
-            style={st2}
+            fill={getColor(0, 6)}
+            stroke={stroke(0, 6)}
+            strokeWidth={getStrokeWidth(0, 6)}
+            data-led-index={getLEDIndex(0, 6)}
+            data-key-index={keyIndex(0, 6)}
+            data-layer={layer}
             d="M410,24.8L410,24.8c0-2.9,2.4-5.3,5.3-5.3H456c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C5_keyshape"
-            style={st2}
+            fill={getColor(0, 5)}
+            stroke={stroke(0, 5)}
+            strokeWidth={getStrokeWidth(0, 5)}
+            data-led-index={getLEDIndex(0, 5)}
+            data-key-index={keyIndex(0, 5)}
+            data-layer={layer}
             d="M351.2,24.8L351.2,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C4_keyshape"
-            style={st2}
+            fill={getColor(0, 4)}
+            stroke={stroke(0, 4)}
+            strokeWidth={getStrokeWidth(0, 4)}
+            data-led-index={getLEDIndex(0, 4)}
+            data-key-index={keyIndex(0, 4)}
+            data-layer={layer}
             d="M292.3,24.8L292.3,24.8c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L292.3,24.8L292.3,24.8z"
           />
           <path
             id="R0C3_keyshape"
-            style={st2}
+            fill={getColor(0, 3)}
+            stroke={stroke(0, 3)}
+            strokeWidth={getStrokeWidth(0, 3)}
+            data-led-index={getLEDIndex(0, 3)}
+            data-key-index={keyIndex(0, 3)}
+            data-layer={layer}
             d="M233.6,24.8L233.6,24.8c0-2.9,2.4-5.3,5.3-5.3h40.6c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.7c-2.9,0-5.3-2.4-5.3-5.3L233.6,24.8L233.6,24.8z"
           />
           <path
             id="R0C2_keyshape"
-            style={st2}
+            fill={getColor(0, 2)}
+            stroke={stroke(0, 2)}
+            strokeWidth={getStrokeWidth(0, 2)}
+            data-led-index={getLEDIndex(0, 2)}
+            data-key-index={keyIndex(0, 2)}
+            data-layer={layer}
             d="M174.7,24.8L174.7,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H180c-2.9,0-5.3-2.4-5.3-5.3V24.8z"
           />
           <path
             id="R0C1_keyshape"
-            style={st2}
+            fill={getColor(0, 1)}
+            stroke={stroke(0, 1)}
+            strokeWidth={getStrokeWidth(0, 1)}
+            data-led-index={getLEDIndex(0, 1)}
+            data-key-index={keyIndex(0, 1)}
+            data-layer={layer}
             d="M116,24.8L116,24.8c0-2.9,2.4-5.3,5.3-5.3H162c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3h-40.8c-2.9,0-5.3-2.4-5.3-5.3L116,24.8L116,24.8z"
           />
           <path
             id="R0C0_keyshape"
-            style={st2}
+            fill={getColor(0, 0)}
+            stroke={stroke(0, 0)}
+            strokeWidth={getStrokeWidth(0, 0)}
+            data-led-index={getLEDIndex(0, 0)}
+            data-key-index={keyIndex(0, 0)}
+            data-layer={layer}
             d="M57.1,24.8L57.1,24.8c0-2.9,2.4-5.3,5.3-5.3h40.7c2.9,0,5.3,2.4,5.3,5.3v40.9
 		c0,2.9-2.4,5.3-5.3,5.3H62.3c-2.9,0-5.3-2.4-5.3-5.3L57.1,24.8L57.1,24.8z"
           />
