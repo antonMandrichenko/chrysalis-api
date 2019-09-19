@@ -60,7 +60,15 @@ const led_map = [
 ];
 
 class KeymapANSI extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      underglowIndex: null
+    };
+  }
+
   render() {
+    const {underglowIndex} = this.state;
     const keymap =
       this.props.keymap ||
       Array(80)
@@ -75,18 +83,19 @@ class KeymapANSI extends React.Component {
     let keyIndex = (row, col) => {
       return row * 16 + col;
     };
+
     let getLabel = (row, col) => {
       return keymap[keyIndex(row, col)];
     };
-    let stroke = (row, col) => {
-      return this.props.selectedKey == keyIndex(row, col)
-        ? "#202020"
-        : "#b3b3b3";
+
+    let isSelected = (row, col) => {
+      const selectIndex = keyIndex(row, col);
+      return underglowIndex ? underglowIndex == selectIndex : this.props.selectedKey == selectIndex
     };
 
-    let getStrokeWidth = (row, col) => {
-      return this.props.selectedKey == keyIndex(row, col) ? "3.0" : "1.5";
-    };
+    let stroke = (row, col) => isSelected(row, col) ? "#202020" : "#b3b3b3";
+
+    let getStrokeWidth = (row, col) => isSelected(row, col) ? "3.0" : "1.5";
 
     const colormap =
       this.props.colormap ||
@@ -113,8 +122,17 @@ class KeymapANSI extends React.Component {
       return led_map[parseInt(row)][parseInt(col)];
     };
 
-    const onClick = this.props.onKeySelect;
+    const onClick = e => {
+      this.setState({underglowIndex: null})
+      this.props.onKeySelect(e);
+    }
     const layer = this.props.index;
+    const setUndeglowIndex = (row, col, e) => {
+      this.setState({underglowIndex: keyIndex(row, col)});
+      this.props.onKeySelect(e);
+    };
+
+    const initUnderglowIndex = keyIndex(5, 0);
 
     return (
       <svg
@@ -1041,26 +1059,26 @@ class KeymapANSI extends React.Component {
         </g>
         <g id="Areas">
           <polygon
-            id="R5C0_undegrow"
-            onClick={onClick}
+            id="R5C0_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 0, e)}}
             fill={getColor(5, 0)}
-            stroke={stroke(0, 0)}
-            strokeWidth={getStrokeWidth(0, 0)}
-            data-led-index={getLEDIndex(0, 0)}
-            data-key-index={keyIndex(0, 0)}
+            stroke={stroke(5, 0)}
+            strokeWidth={getStrokeWidth(5, 0)}
+            data-led-index={getLEDIndex(5, 0)}
+            data-key-index={keyIndex(5, 0)-initUnderglowIndex}
             data-layer={layer}
             points="479.4,365.6 472.9,365.6 472.9,392.2 467.3,392.2 461.9,392.2 456.7,392.2 451.4,392.2 446.5,392.2 
 		442.8,392.2 439.3,392.2 435.6,392.2 432.2,392.2 429.3,392.2 429.3,404 432.2,404 435.6,404 438.9,404 442.4,404 446.5,403.6 
 		450,403.6 455,403.6 459.9,403.6 465.3,403.6 469.8,403.6 474.9,403.6 479.4,403.6 	"
           />
           <polygon
-            id="R5C1_undegrow"
-            onClick={onClick}
+            id="R5C1_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 1, e)}}
             fill={getColor(5, 1)}
-            stroke={stroke(0, 0)}
-            strokeWidth={getStrokeWidth(0, 0)}
-            data-led-index={getLEDIndex(0, 0)}
-            data-key-index={keyIndex(0, 0)}
+            stroke={stroke(5, 1)}
+            strokeWidth={getStrokeWidth(5, 1)}
+            data-led-index={getLEDIndex(5, 1)}
+            data-key-index={keyIndex(5, 1)-initUnderglowIndex}
             data-layer={layer}
             points="402.4,448.2 391.5,445.4 392.5,440.8 393.5,435.9 394.5,431.6 395.6,427.1 396.2,423.3 396.9,420 
 		397.9,416.9 398.6,413.8 398.9,410.9 399.6,408.1 400.3,406.4 400.9,404.3 401.8,402.6 402.8,401 403.8,399.3 405.1,397.9 
@@ -1071,13 +1089,13 @@ class KeymapANSI extends React.Component {
 		404.5,440.1 403.5,444 	"
           />
           <polygon
-            id="R5C2_undegrow"
-            onClick={onClick}
+            id="R5C2_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 2, e)}}
             fill={getColor(5, 2)}
-            stroke={stroke(0, 0)}
-            strokeWidth={getStrokeWidth(0, 0)}
-            data-led-index={getLEDIndex(0, 0)}
-            data-key-index={keyIndex(0, 0)}
+            stroke={stroke(5, 2)}
+            strokeWidth={getStrokeWidth(5, 2)}
+            data-led-index={getLEDIndex(5, 2)}
+            data-key-index={keyIndex(5, 2)-initUnderglowIndex}
             data-layer={layer}
             points="319.2,633 319.2,621.4 322.9,621.4 326.1,621.4 329.5,621.4 332.9,621.4 335.7,621.4 338.4,621.4 
 		340.8,621.4 341.1,621.4 341.4,621.4 341.8,621 343.1,621 344,620.7 345.3,620.3 347.3,619.8 349,619.1 350.3,617.7 351.7,616.7 
@@ -1088,26 +1106,40 @@ class KeymapANSI extends React.Component {
 		335.4,633 331.9,633 327.8,633 323.6,633 	"
           />
           <polygon
-             id="R5C3_undegrow"
-             onClick={onClick}
-             fill={getColor(5, 3)}
-             stroke={stroke(0, 0)}
-             strokeWidth={getStrokeWidth(0, 0)}
-             data-led-index={getLEDIndex(0, 0)}
-             data-key-index={keyIndex(0, 0)}
-             data-layer={layer}
+            id="R5C3_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 3, e)}}
+            fill={getColor(5, 3)}
+            stroke={stroke(5, 3)}
+            strokeWidth={getStrokeWidth(5, 3)}
+            data-led-index={getLEDIndex(5, 3)}
+            data-key-index={keyIndex(5, 3) - initUnderglowIndex}
+            data-layer={layer}
             points="362.4,578.3 363.4,573.2 364.8,567.5 366.1,561.9 367.5,556.2 368.8,550.2 370.5,542.2 372.2,534.4 
 		373.7,526.3 375.7,518.2 377.4,510.1 388.3,512.7 386,522.9 383.6,532.7 381.8,542.6 379.4,552.4 378.1,558.6 376.7,564.3 
 		375.4,570.2 374,575.6 373,581.3 	"
           />
           <polygon
-            style={st2}
+            id="R5C4_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 4, e)}}
+            fill={getColor(5, 4)}
+            stroke={stroke(5, 4)}
+            strokeWidth={getStrokeWidth(5, 4)}
+            data-led-index={getLEDIndex(5, 4)}
+            data-key-index={keyIndex(5, 4)-initUnderglowIndex}
+            data-layer={layer}
             points="378.1,507.7 380.1,498.5 381.9,489.3 384,480.5 385.3,473.6 387,466.9 388.3,460.5 389.7,453.9 
 		391,447.9 402.1,450.6 400.9,456.7 399.6,462.7 397.9,469.3 396.6,476 394.9,482.8 392.9,491.9 391,501.3 388.7,510.4 	"
           />
-          <path style={st2} d="M34.9,630.9" />
+          {/* <path style={st2} d="M34.9,630.9" /> */}
           <polyline
-            style={st2}
+            id="R5C5_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 5, e)}}
+            fill={getColor(5, 5)}
+            stroke={stroke(5, 5)}
+            strokeWidth={getStrokeWidth(5, 5)}
+            data-led-index={getLEDIndex(5, 5)}
+            data-key-index={keyIndex(5, 5)-initUnderglowIndex}
+            data-layer={layer}
             points="32.7,629.7 36.4,618.4 36.4,618.6 34.9,617.7 33.2,616.4 31.8,615 30.5,613.6 29.2,611.9 28.1,610.1 
 		27.1,608.6 26.1,606.5 25.8,604.4 25.3,602.4 25.3,600.1 25,596.7 25,593.2 24.6,589.6 24.6,585.4 24.3,581.3 24.3,577 23.9,571.8 
 		23.9,566.1 23.6,560.7 23.3,554.5 11.7,555.2 12,560.9 12.3,566.4 12.3,571.8 12.7,577 12.7,582 13,587.2 13.4,591.8 13.4,596.3 
@@ -1115,7 +1147,14 @@ class KeymapANSI extends React.Component {
 		30.2,628.6 32.5,630 32.5,630 	"
           />
           <polyline
-            style={st2}
+            id="R5C6_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 6, e)}}
+            fill={getColor(5, 6)}
+            stroke={stroke(5, 6)}
+            strokeWidth={getStrokeWidth(5, 6)}
+            data-led-index={getLEDIndex(5, 6)}
+            data-key-index={keyIndex(5, 6)-initUnderglowIndex}
+            data-layer={layer}
             points="38.6,619.8 35,630.9 34.9,631.1 37.2,631.7 39.1,632.3 41.4,632.6 44.1,633 46.3,633 46.6,633 
 		47,633 47.3,633 47.6,633 48,633 50.7,633 53.4,633 56.2,633 60.6,633 65.5,633 70.2,633 76,633 82.1,633 88,633 94.2,633 
 		100.9,633 107.5,633 107.5,621.4 101.6,621.4 95.9,621.4 90.3,621.4 84.6,621.4 79.4,621.4 74.4,621.4 69.5,621.4 64.8,621.4 
@@ -1123,52 +1162,115 @@ class KeymapANSI extends React.Component {
 		40.4,620.3 38.6,619.8 	"
           />
           <polygon
-            style={st2}
+            id="R5C7_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 7, e)}}
+            fill={getColor(5, 7)}
+            stroke={stroke(5, 7)}
+            strokeWidth={getStrokeWidth(5, 7)}
+            data-led-index={getLEDIndex(5, 7)}
+            data-key-index={keyIndex(5, 7)-initUnderglowIndex}
+            data-layer={layer}
             points="109.8,633 118.1,633 126.6,633 135.5,633 144.1,633 153,633 162.3,633 171.2,633 180.4,633 
 		180.4,621.4 170.2,621.4 160.1,621.4 149.8,621.4 139.9,621.4 132.2,621.4 124.6,621.4 117.1,621.4 109.8,621.4 	"
           />
           <polygon
-            style={st2}
+               id="R5C8_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 8, e)}}
+               fill={getColor(5, 8)}
+               stroke={stroke(5, 8)}
+               strokeWidth={getStrokeWidth(5, 8)}
+               data-led-index={getLEDIndex(5, 8)}
+               data-key-index={keyIndex(5, 8)-initUnderglowIndex}
+               data-layer={layer}
             points="182.8,633 182.8,621.4 193,621.4 203.3,621.4 213.2,621.4 223.4,621.4 233.4,621.4 242.9,621.4 
 		252.5,621.4 252.5,633 242.9,633 233.4,633 223.1,633 213.2,633 202.9,633 193,633 	"
           />
           <polygon
-            style={st2}
+               id="R5C9_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 9, e)}}
+               fill={getColor(5, 9)}
+               stroke={stroke(5, 9)}
+               strokeWidth={getStrokeWidth(5, 9)}
+               data-led-index={getLEDIndex(5, 9)}
+               data-key-index={keyIndex(5, 9)-initUnderglowIndex}
+               data-layer={layer}
             points="254.9,633 262.4,633 270,633 277.2,633 284.3,633 290.2,633 295.7,633 301.4,633 306.6,633 312,633 
 		316.9,633 316.9,621.4 312,621.4 307,621.4 301.8,621.4 296.1,621.4 290.5,621.4 284.6,621.4 277.6,621.4 270.3,621.4 262.8,621.4 
 		254.9,621.4 	"
           />
           <polygon
-            style={st2}
+               id="R5C10_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 10, e)}}
+               fill={getColor(5, 10)}
+               stroke={stroke(5, 10)}
+               strokeWidth={getStrokeWidth(5, 10)}
+               data-led-index={getLEDIndex(5, 10)}
+               data-key-index={keyIndex(5, 10)-initUnderglowIndex}
+               data-layer={layer}
             points="1.1,296.3 12.7,295.6 12.7,298.3 13,301.8 13,305.1 13,308.5 13.4,312.3 13.4,316.7 13.7,320.8 
 		14,325.5 14,330.3 14.4,335 14.4,340.2 2.8,340.9 2.8,335 2.4,329.3 2.1,323.8 2.1,318.4 1.8,313.2 1.8,309.6 1.4,305.8 1.4,302.5 
 		1.1,299.4 	"
           />
           <polygon
-            style={st2}
+               id="R5C11_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 11, e)}}
+               fill={getColor(5, 11)}
+               stroke={stroke(5, 11)}
+               strokeWidth={getStrokeWidth(5, 11)}
+               data-led-index={getLEDIndex(5, 11)}
+               data-key-index={keyIndex(5, 11)-initUnderglowIndex}
+               data-layer={layer}
             points="14.7,342.6 14.7,348.6 15,354.7 15.4,360.9 15.7,367.3 16,374.1 16.2,382.5 16.5,391.5 16.9,400.3 
 		17.2,409.5 17.6,418.6 6.1,419.3 5.8,410.2 5.5,401 5.1,392.2 4.8,383.2 4.4,374.7 4.1,368.3 3.8,362 3.4,355.4 3.1,349.3 
 		3.1,343.1 	"
           />
           <polygon
-            style={st2}
+               id="R5C12_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 12, e)}}
+               fill={getColor(5, 12)}
+               stroke={stroke(5, 12)}
+               strokeWidth={getStrokeWidth(5, 12)}
+               data-led-index={getLEDIndex(5, 12)}
+               data-key-index={keyIndex(5, 12)-initUnderglowIndex}
+               data-layer={layer}
             points="8.6,485.2 8.3,473.3 7.6,461.5 7.3,449.6 6.6,435.6 6.3,421.8 17.6,421.1 18.2,434.9 18.9,448.9 
 		19.2,460.8 19.9,472.6 20.2,484.5 	"
           />
           <polygon
-            style={st2}
+               id="R5C13_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 13, e)}}
+               fill={getColor(5, 13)}
+               stroke={stroke(5, 13)}
+               strokeWidth={getStrokeWidth(5, 13)}
+               data-led-index={getLEDIndex(5, 13)}
+               data-key-index={keyIndex(5, 13)-initUnderglowIndex}
+               data-layer={layer}
             points="11.7,552.8 11.3,546 11,538.9 10.7,532 10.3,524.6 10,517.5 9.7,507.7 9.3,497.8 9,487.6 20.6,486.9 
 		20.9,497.1 21.3,507 21.6,516.8 21.9,524.2 22.3,531.3 22.6,538.6 22.9,545.3 23.3,552.1 	"
           />
           <polygon
-            style={st2}
+               id="R5C14_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 14, e)}}
+               fill={getColor(5, 14)}
+               stroke={stroke(5, 14)}
+               strokeWidth={getStrokeWidth(5, 14)}
+               data-led-index={getLEDIndex(5, 14)}
+               data-key-index={keyIndex(5, 14)-initUnderglowIndex}
+               data-layer={layer}
             points="9,262.1 11,259.3 13,256.2 15.4,252.9 17.9,249.1 20.6,244.9 32.5,250.1 29.8,253.6 27.5,257.2 
 		25.3,260 23.3,263.1 21.3,265.7 19.2,268.1 17.6,271.2 16.2,273.8 15.4,276.9 14.4,280 13.4,283.1 13,286.4 12.7,289.9 12.7,293 
 		1.1,293.5 0.7,292 0.7,290.2 0.7,286.8 1.1,283.5 1.4,280.4 2.4,276.9 3.1,273.8 4.4,270.9 5.8,267.8 7.3,264.6 	"
           />
-          <line style={st3} x1="37.4" y1="178.1" x2="49.7" y2="178.1" />
+          {/* <line style={st3} x1="37.4" y1="178.1" x2="49.7" y2="178.1" /> */}
           <polyline
-            style={st2}
+               id="R5C15_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 15, e)}}
+               fill={getColor(5, 15)}
+               stroke={stroke(5, 15)}
+               strokeWidth={getStrokeWidth(5, 15)}
+               data-led-index={getLEDIndex(5, 15)}
+               data-key-index={keyIndex(5, 15)-initUnderglowIndex}
+               data-layer={layer}
             points="49.7,178.1 49.7,182.9 49.7,187.9 49.7,192.4 49.7,196.7 49.7,200.2 49.7,202.9 49.7,205.9 
 		49.7,208.3 49.7,210.4 49.7,211.1 49.7,211.8 49.7,212.8 49.7,213.5 49.7,214.2 49.7,214.4 49.7,214.7 49.7,216.8 49.3,219.2 
 		49,221.6 48.3,224.2 47.6,226.6 46.6,229.4 45.6,231.8 44.4,233.9 42.8,236.1 41.1,238.5 39.1,241.3 36.7,244.6 34.2,248.1 
@@ -1177,32 +1279,74 @@ class KeymapANSI extends React.Component {
 		37.4,197.8 37.4,194.6 37.4,191 37.4,186.9 37.4,182.6 37.4,178.1 	"
           />
           <polygon
-            style={st2}
+               id="R5C16_undeglow"
+               onClick={(e)=>{setUndeglowIndex(5, 16, e)}}
+               fill={getColor(5, 16)}
+               stroke={stroke(5, 16)}
+               strokeWidth={getStrokeWidth(5, 16)}
+               data-led-index={getLEDIndex(5, 16)}
+               data-key-index={keyIndex(5, 16)-initUnderglowIndex}
+               data-layer={layer}
             points="37.7,103.7 49.7,103.7 49.7,114.6 49.7,125.3 49.7,136.2 49.7,143.1 49.7,149.9 49.7,156.6 
 		49.7,163.2 49.7,169.2 49.7,175.3 37.4,175.3 37.4,169.6 37.7,163.5 37.7,157 37.7,150.2 37.7,143.8 37.7,136.6 37.7,125.7 
 		37.7,115 	"
           />
           <polygon
-            style={st2}
+            id="R5C17_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 17, e)}}
+            fill={getColor(5, 17)}
+            stroke={stroke(5, 17)}
+            strokeWidth={getStrokeWidth(5, 17)}
+            data-led-index={getLEDIndex(5, 17)}
+            data-key-index={keyIndex(5, 17)-initUnderglowIndex}
+            data-layer={layer}
             points="469.8,14 447.8,14 426,14 404.1,14 404.1,2.1 428,2.1 452.4,2.1 476.6,2.1 476.6,14 	"
           />
           <polygon
-            style={st2}
+            id="R5C18_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 18, e)}}
+            fill={getColor(5, 18)}
+            stroke={stroke(5, 18)}
+            strokeWidth={getStrokeWidth(5, 18)}
+            data-led-index={getLEDIndex(5, 18)}
+            data-key-index={keyIndex(5, 18)-initUnderglowIndex}
+            data-layer={layer}
             points="401.8,2.1 401.8,14 386,14 370.5,14 355.2,14 340.1,14 325.1,14 325.1,1.8 340.4,2.1 355.2,2.1 
 		370.8,2.1 386,2.1 	"
           />
           <polygon
-            style={st2}
+            id="R5C19_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 19, e)}}
+            fill={getColor(5, 19)}
+            stroke={stroke(5, 19)}
+            strokeWidth={getStrokeWidth(5, 19)}
+            data-led-index={getLEDIndex(5, 19)}
+            data-key-index={keyIndex(5, 19)-initUnderglowIndex}
+            data-layer={layer}
             points="244.6,14 244.6,1.8 257.1,1.8 270,1.8 282.9,1.8 296.1,1.8 309.3,1.8 322.9,1.8 322.9,14 311.3,14 
 		299.8,14 288.5,14 277.2,14 266.1,14 255.2,14 	"
           />
           <polygon
-            style={st2}
+            id="R5C20_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 20, e)}}
+            fill={getColor(5, 20)}
+            stroke={stroke(5, 20)}
+            strokeWidth={getStrokeWidth(5, 20)}
+            data-led-index={getLEDIndex(5, 20)}
+            data-key-index={keyIndex(5, 20)-initUnderglowIndex}
+            data-layer={layer}
             points="242.3,14 242.3,1.8 232.7,1.8 223.1,1.8 213.9,1.8 204.6,1.8 195.7,1.8 186.8,1.8 178.2,1.8 170,1.4 
 		170,14 178.2,14 186.8,14 195.4,14 204.6,14 213.5,14 223.1,14 232.7,14 	"
           />
           <polygon
-            style={st2}
+            id="R5C21_undeglow"
+            onClick={(e)=>{setUndeglowIndex(5, 21, e)}}
+            fill={getColor(5, 21)}
+            stroke={stroke(5, 21)}
+            strokeWidth={getStrokeWidth(5, 21)}
+            data-led-index={getLEDIndex(5, 21)}
+            data-key-index={keyIndex(5, 21)-initUnderglowIndex}
+            data-layer={layer}
             points="93.2,1.4 93.2,14.4 98.2,14.4 103.1,14.4 108.5,14.4 113.7,14.4 119.4,14.4 125,14.4 131.3,14.4 
 		137.9,14.4 145.1,14 152.4,14 159.7,14 167.3,14 167.3,1.4 160.1,1.4 152.7,1.4 145.5,1.4 138.6,1.4 131.5,1.4 124.6,1.4 
 		118.1,1.4 111.5,1.4 105.1,1.4 99.2,1.4 	"
