@@ -27,12 +27,11 @@ const LEDS_LEFT_KEYS = 33;
 const UNDERGLOW = 69;
 const led_map = [
   // LHS                            RHS
-  [ 0,  1,  2,  3,  4,  5,  6, 6+LEDS_LEFT_KEYS, 5+LEDS_LEFT_KEYS, 4+LEDS_LEFT_KEYS, 3+LEDS_LEFT_KEYS, 2+LEDS_LEFT_KEYS, 1+LEDS_LEFT_KEYS, 0+LEDS_LEFT_KEYS],
+  [ 0,  1,  2,  3,  4,  5,  6, XX, XX, 6+LEDS_LEFT_KEYS, 5+LEDS_LEFT_KEYS, 4+LEDS_LEFT_KEYS, 3+LEDS_LEFT_KEYS, 2+LEDS_LEFT_KEYS, 1+LEDS_LEFT_KEYS, 0+LEDS_LEFT_KEYS],
   [ 7,  8,  9, 10, 11, 12, XX, XX,  14+LEDS_LEFT_KEYS, 13+LEDS_LEFT_KEYS, 12+LEDS_LEFT_KEYS, 11+LEDS_LEFT_KEYS, 10+LEDS_LEFT_KEYS, 9+LEDS_LEFT_KEYS, 8+LEDS_LEFT_KEYS, 7 +LEDS_LEFT_KEYS],
   [13, 14, 15, 16, 17, 18, XX, 29,  XX, 21+LEDS_LEFT_KEYS, 20+LEDS_LEFT_KEYS, 19+LEDS_LEFT_KEYS, 18+LEDS_LEFT_KEYS, 17+LEDS_LEFT_KEYS, 16+LEDS_LEFT_KEYS, 15 +LEDS_LEFT_KEYS],
   [19, 20, 21, 22, 23, 24, 25, XX,  XX, XX, 27+LEDS_LEFT_KEYS, 26+LEDS_LEFT_KEYS, 25+LEDS_LEFT_KEYS, 24+LEDS_LEFT_KEYS, 23+LEDS_LEFT_KEYS, 22 +LEDS_LEFT_KEYS],
   [26, 27, 28, 29, 30, XX, 31, 32,  35+LEDS_LEFT_KEYS, 34+LEDS_LEFT_KEYS, 33+LEDS_LEFT_KEYS, 32+LEDS_LEFT_KEYS, 31+LEDS_LEFT_KEYS, 30+LEDS_LEFT_KEYS, 29+LEDS_LEFT_KEYS, 28+LEDS_LEFT_KEYS],
-  []
 ];
 
 const no_key_led_map = [ ...Array.apply(0, Array(63)).map((_, i) => i + UNDERGLOW) ]
@@ -59,7 +58,7 @@ class KeymapANSI extends React.Component {
         : null;
     };
     let keyIndex = (row, col) => {
-      return col ? row * 16 + col : row;
+      return col !== undefined ? row * 16 + col : row;
     };
 
     let getLabel = (row, col) => {
@@ -67,7 +66,7 @@ class KeymapANSI extends React.Component {
     };
 
     let isSelected = (row, col) => {
-      const selectIndex = col ? keyIndex(row, col) : row;
+      const selectIndex = col !== undefined ? keyIndex(row, col) : row;
       return underglowIndex ? underglowIndex == selectIndex : this.props.selectedKey == selectIndex
     };
 
@@ -90,14 +89,14 @@ class KeymapANSI extends React.Component {
             }));
 
     let getColor = (row, col) => {
-      let ledIndex = col ? led_map[parseInt(row)][parseInt(col)] : no_key_led_map[row - UNDERGLOW],
+      let ledIndex = col !== undefined ? led_map[parseInt(row)][parseInt(col)] : no_key_led_map[row - UNDERGLOW],
         colorIndex = colormap[ledIndex],
         color = palette[colorIndex].rgb;
       return color;
     };
 
     let getLEDIndex = (row, col) => {
-      return col ? led_map[parseInt(row)][parseInt(col)] : no_key_led_map[row - UNDERGLOW];
+      return col !== undefined ? led_map[parseInt(row)][parseInt(col)] : no_key_led_map[row - UNDERGLOW];
     };
 
     const onClick = e => {
