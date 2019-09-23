@@ -58,7 +58,7 @@ class KeymapANSI extends React.Component {
         : null;
     };
     let keyIndex = (row, col) => {
-      return col !== undefined ? row * 16 + col : row;
+      return col !== undefined ? row * 16 + col : row + 11;
     };
 
     let getLabel = (row, col) => {
@@ -66,7 +66,7 @@ class KeymapANSI extends React.Component {
     };
 
     let isSelected = (row, col) => {
-      const selectIndex = col !== undefined ? keyIndex(row, col) : row;
+      const selectIndex = keyIndex(row, col);
       return underglowIndex ? underglowIndex == selectIndex : this.props.selectedKey == selectIndex
     };
 
@@ -106,7 +106,7 @@ class KeymapANSI extends React.Component {
     const layer = this.props.index;
 
     const setUndeglowIndex = (index, e) => {
-      this.setState({underglowIndex: index});
+      this.setState({underglowIndex: keyIndex(index)});
       this.props.onKeySelect(e);
     };
 
