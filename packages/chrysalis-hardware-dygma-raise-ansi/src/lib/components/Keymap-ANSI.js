@@ -107,7 +107,7 @@ class KeymapANSI extends React.Component {
 
     const setUndeglowIndex = (index, e) => {
       this.setState({underglowIndex: keyIndex(index)});
-      this.props.setMode("colormap");
+      this.props.setMode("colormap", true);
       this.props.onKeySelect(e);
     };
 
@@ -135,7 +135,9 @@ class KeymapANSI extends React.Component {
         <g id="keyshapes">
           <path
             id="neuron_led"
-            onClick={onClick}
+            onClick={e => {
+              setUndeglowIndex(131, e);
+            }}
             className="key"
             fill={getColor(131)}
             stroke={stroke(131)}
