@@ -35,8 +35,12 @@ const Raise_ANSI = {
     productId: 0x2201
   },
   keyboard: {
-    rows: 4,
-    columns: 33
+    rows: 5,
+    columns: 16
+  },
+  keyboardUnderglow: {
+    rows: 6,
+    columns: 22
   },
   components: {
     keymap: KeymapANSI
