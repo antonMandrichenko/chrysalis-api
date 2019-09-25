@@ -107,8 +107,8 @@ class KeymapANSI extends React.Component {
 
     const setUndeglowIndex = (index, e) => {
       this.setState({underglowIndex: keyIndex(index)});
-      this.props.onKeySelect(e);
       this.props.setMode("colormap");
+      this.props.onKeySelect(e);
     };
 
     return (
