@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
+import settings from "electron-settings";
 import BlankTable from "./db/blanks"
 import LetterTable, { ModifiedLetterTables } from "./db/letters"
 import DigitTable, { ModifiedDigitTables } from "./db/digits"
@@ -114,7 +114,7 @@ class KeymapDB {
     constructor() {
         this.keymapCodeTable = []
         //create variable that get language from the local storage
-        this.language = localStorage.getItem("language") || "english";
+        this.language = settings.get("keyboard.language");
 
         //Modify our baseKeyCodeTable, depending on the language selected by the static methods and by inside function newLanguageLayout
         baseKeyCodeTable = KeymapDB.updateBaseKeyCode();
@@ -177,7 +177,7 @@ class KeymapDB {
     }
 
     static updateBaseKeyCode() {
-        this.language = localStorage.getItem("language") || "english";
+        this.language = settings.get("keyboard.language") || "english";
         //Checking language in the cache
         if(map.has(this.language)){
            //Return language layout from the cache 
