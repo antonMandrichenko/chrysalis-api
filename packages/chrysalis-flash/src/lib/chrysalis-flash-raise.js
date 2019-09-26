@@ -1,5 +1,5 @@
-/* chrysalis-colormap -- Chrysalis colormap library
- * Copyright (C) 2019  Keyboardio, Inc.
+/* chrysalis-flash-raise -- Dygma Raise flash helper for Chrysalis
+ * Copyright (C) 2019  DygmaLab SE
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -38,7 +38,7 @@ export default class FlashRaise {
       backup: {},
       log: ["Neuron detected"],
       serialNumber: device.serialNumber,
-      firmwareFile: "File not selected"
+      firmwareFile: "File has not being selected"
     };
     this.delay = ms => new Promise(res => setTimeout(res, ms));
   }
@@ -121,9 +121,9 @@ export default class FlashRaise {
   }
 
   /**
-   * Saves backup file in directory:
-   * windows: C:\Users\<Your_User_Namer>\AppData\Local\Programs\chrysalis,
-   * linux: in directory, where the app is located.
+  * Saves backup file in directory:
+  * windows: C:\Users\<Your_User_Namer>\AppData\Local\Programs\chrysalis,
+  * linux: in directory, where the app is located.
    */
   saveBackupFile() {
     fs.writeFile(
@@ -152,14 +152,11 @@ export default class FlashRaise {
     return new Promise((resolve, reject) => {
       port.update({ baudRate: 1200 }, async () => {
         this.backupFileData.log.push("Resetting neuron");
-        console.log("baud update");
         await this.delay(timeouts.dtrToggle);
         port.set({ dtr: true }, async () => {
-          console.log("dtr on");
           await this.delay(timeouts.waitingClose);
           port.set({ dtr: false }, async () => {
             this.backupFileData.log.push("Waiting for bootloader");
-            console.log("dtr off");
             try {
               await this.delay(timeouts.bootLoaderUp);
               if (

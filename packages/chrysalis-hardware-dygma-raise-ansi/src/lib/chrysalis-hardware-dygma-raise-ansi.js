@@ -38,16 +38,20 @@ const Raise_ANSI = {
     rows: 5,
     columns: 16
   },
+  keyboardUnderglow: {
+    rows: 6,
+    columns: 22
+  },
   components: {
     keymap: KeymapANSI
   },
 
   instructions: {
     en: {
-      updateInstructions: `To update the firmware, the keyboard needs a special reset. When you see the light on the Neuron go off, press and hold the Escape key. The Neuron's light should start a blue pulsing pattern`
+      updateInstructions: `To update the firmware, the keyboard needs a special reset. When you see the light on the Neuron go off, press and hold the Escape key. The Neuron's light should start a blue pulsing pattern.`
     },
     hu: {
-      updateInstructions: `A firmware frissítéséhez a billentyűzethez speciális visszaállítás szükséges. Ha megjelenik a Neuron fénye, nyomja meg és tartsa lenyomva a Menekülési gombot. A Neuron fényének kék pulzáló mintázatot kell indítania`
+      updateInstructions: `A firmware frissítéséhez a billentyűzetet egy megadott módon kell újraindítani. Amikor elalszik a Neuron fénye, nyomja le, és tartsa nyomva az Escape gombot. A Neuron fénye ezután egy pulzáló kék mintázatot kell kezdjen.`
     }
   },
 

@@ -1,5 +1,5 @@
-/* chrysalis-colormap -- Chrysalis colormap library
- * Copyright (C) 2019  Keyboardio, Inc.
+/* chrysalis-flash-raise -- Dygma Raise flash helper for Chrysalis
+ * Copyright (C) 2019  DygmaLab SE
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -69,6 +69,7 @@ function write_cb(buffer, cb) {
   //execute!
   async.series(send, function(err, result) {
     cb(err);
+    console.log(result);
   });
 }
 
@@ -82,7 +83,6 @@ async function read_cb(callback) {
   var timeout = await function() {
     setTimeout(function() {
       time += 50;
-      console.log(time);
       focus._port.drain(err => {
         if (err) {
           if (time > MAX_MS) {
@@ -222,7 +222,7 @@ export var arduino = {
       return;
     }
 
-    var i = 0;
+    i = 0;
 
     while (total > 0) {
       var bufferSize = total < PACKET_SIZE ? total : PACKET_SIZE;
@@ -247,7 +247,7 @@ export var arduino = {
           if (bufferTotal > 0) {
             //break early, we're going to move to a different memory vector.
             bufferSize = bufferTotal;
-            var t = buffer.slice(0, bufferTotal);
+            t = buffer.slice(0, bufferTotal);
             buffer = t;
             break;
           }
@@ -268,7 +268,6 @@ export var arduino = {
       (function(localAddress, localBufferSize, localBuffer) {
         //tell the arduino we are writing at memory 20005000, for N bytes.
         func_array.push(function(callback) {
-          console.log("LOCAL SIZE ", localBufferSize);
           write_cb(
             str2ab("S20005000," + num2hexstr(localBufferSize, 8) + "#"),
             callback
