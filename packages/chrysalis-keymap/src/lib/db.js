@@ -51,6 +51,7 @@ import { DualUseModifierTables, DualUseLayerTables } from "./db/dualuse"
 import LeaderTable from "./db/leader"
 import StenoTable from "./db/steno"
 import SpaceCadetTable from "./db/spacecadet"
+import MacrosTable from "./db/macros"
 
 // Spanish - is an Array of objects of values that have to be modified
 import spanish from "./languages/spanish/spanish";
@@ -85,7 +86,8 @@ const defaultBaseKeyCodeTable = [
     StenoTable,
     SpaceCadetTable,
 
-    BlankTable
+    BlankTable,
+    MacrosTable
 ]
 const defaultKeyCodeTable = defaultBaseKeyCodeTable
     .concat(ModifiedLetterTables)
