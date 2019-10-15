@@ -45,6 +45,7 @@ import {
     MouseWarpTable
 } from "./db/mousecontrols"
 import MiscellaneousTable from "./db/miscellaneous"
+import MacrosTable from "./db/macros"
 
 import { OneShotModifierTable, OneShotLayerTable } from "./db/oneshot"
 import { DualUseModifierTables, DualUseLayerTables } from "./db/dualuse"
@@ -85,7 +86,8 @@ const defaultBaseKeyCodeTable = [
     StenoTable,
     SpaceCadetTable,
 
-    BlankTable
+    BlankTable,
+    MacrosTable
 ]
 const defaultKeyCodeTable = defaultBaseKeyCodeTable
     .concat(ModifiedLetterTables)
