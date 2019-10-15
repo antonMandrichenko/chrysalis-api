@@ -154,13 +154,15 @@ const spanish = [
   {
     code: 2097,
     labels: {
-      primary: "S+Ç"
+      primary: "Ç",
+      top: "S+"
     }
   },
   {
     code: 2099,
     labels: {
-      primary: "S+Ñ"
+      primary: "Ñ",
+      top: "S+"
     }
   },
   {
